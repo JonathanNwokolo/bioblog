@@ -1,0 +1,173 @@
+.section {
+  position: relative;
+  background: var(--night);
+  color: var(--white);
+  padding-block: var(--section-pad);
+  overflow: hidden;
+}
+
+/* Halo que invade a borda superior: transição a partir da seção clara */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -22%;
+  width: min(1100px, 120vw);
+  aspect-ratio: 1;
+  transform: translateX(-10%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(128, 249, 199, 0.14), rgba(140, 90, 220, 0.1) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+.title {
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.titleLine {
+  display: block;
+}
+
+.lede {
+  max-width: 42ch;
+  margin-top: 22px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--step-0);
+  line-height: 1.65;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 0.55em 1.1em;
+  border: 1.5px solid rgba(128, 249, 199, 0.6);
+  border-radius: 999px;
+  color: var(--mint);
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.facts {
+  display: grid;
+  gap: 0;
+  max-width: 28rem;
+  margin: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.facts > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 20px;
+  padding-block: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: var(--step--1);
+}
+
+.facts dt {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.facts dd {
+  font-weight: 700;
+}
+
+/* ---------- Campo de visão (ponto de montagem) ---------- */
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.aperture {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  color: var(--mint);
+  background:
+    radial-gradient(circle at 36% 32%, rgba(168, 120, 255, 0.5), transparent 42%),
+    radial-gradient(circle at 70% 72%, rgba(70, 200, 255, 0.28), transparent 46%),
+    radial-gradient(circle at 50% 50%, #1b1442 0%, #0d0b24 58%, #06060c 100%);
+  box-shadow:
+    0 0 0 1.5px rgba(128, 249, 199, 0.65),
+    0 0 0 14px rgba(128, 249, 199, 0.06),
+    0 0 90px 6px rgba(130, 90, 230, 0.35);
+}
+
+.graticule {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 32%, #f2e8ff, #a98af0 55%, rgba(120, 80, 220, 0.2));
+  filter: blur(0.4px);
+}
+
+.annotation {
+  position: absolute;
+  right: -2%;
+  top: -6%;
+  width: 40%;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.15rem, 1.8vw, 1.6rem);
+  line-height: 1.1;
+  transform: rotate(-4deg);
+  text-align: right;
+}
+
+.arrow {
+  width: 34%;
+  margin: 6px 0 0 auto;
+  transform: scaleX(-1) rotate(8deg);
+}
+
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(32px, 5vw, 80px);
+  }
+}
+
+@media (max-width: 959px) {
+  .annotation {
+    position: static;
+    width: auto;
+    margin-top: 20px;
+    text-align: left;
+    transform: none;
+  }
+
+  .arrow {
+    display: none;
+  }
+}

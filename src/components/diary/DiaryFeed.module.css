@@ -1,0 +1,191 @@
+.feed {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.headTitle {
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.controls[hidden] {
+  display: none;
+}
+
+.step {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.step svg {
+  width: 18px;
+  height: 18px;
+}
+
+.step:hover:not(:disabled) {
+  background: var(--white);
+}
+
+.step:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Desktop: a seta aponta para onde o feed anda (cima/baixo). */
+.prev svg {
+  transform: rotate(-90deg);
+}
+
+.next svg {
+  transform: rotate(90deg);
+}
+
+.frame {
+  position: relative;
+  min-width: 0;
+}
+
+/* Sombras de borda: indicam conteúdo adicional sem barra grossa. */
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.frame::before {
+  inset: 0 0 auto 0;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--paper), transparent);
+}
+
+.frame::after {
+  inset: auto 0 0 0;
+  height: 72px;
+  background: linear-gradient(to top, var(--paper), transparent);
+}
+
+.frame[data-more-start]::before,
+.frame[data-more-end]::after {
+  opacity: 1;
+}
+
+/*
+ * Rolagem nativa: sem `overscroll-behavior: contain` no eixo vertical, então a
+ * roda e o toque passam para a página ao chegar ao fim. O padding e a margem
+ * negativa dão espaço ao anel de foco do link estendido sem cortá-lo.
+ */
+.scroller {
+  position: relative;
+  max-height: clamp(460px, calc(100vh - 160px), 760px);
+  margin: -10px;
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.scroller:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: -3px;
+  border-radius: var(--radius-s);
+}
+
+.list {
+  display: grid;
+  gap: 36px;
+  margin: 0;
+  padding: 0 0 56px;
+  list-style: none;
+}
+
+.list > li {
+  min-width: 0;
+}
+
+/* Tablet e mobile: faixa horizontal com encaixe. */
+@media (max-width: 959px) {
+  .prev svg {
+    transform: rotate(180deg);
+  }
+
+  .next svg {
+    transform: none;
+  }
+
+  .frame::before {
+    inset: 0 auto 0 0;
+    width: 28px;
+    height: auto;
+    background: linear-gradient(to right, var(--paper), transparent);
+  }
+
+  .frame::after {
+    inset: 0 0 0 auto;
+    width: 24px;
+    height: auto;
+    background: linear-gradient(to left, var(--paper), transparent);
+  }
+
+  .scroller {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10px;
+    overscroll-behavior-x: contain;
+    /* O swipe e os botões bastam; sem barra horizontal grosseira. */
+    scrollbar-width: none;
+  }
+
+  .list {
+    display: flex;
+    gap: 16px;
+    padding: 0 0 8px;
+  }
+
+  .list > li {
+    flex: 0 0 min(calc(100vw - 32px - 48px), 26rem);
+    scroll-snap-align: start;
+  }
+}

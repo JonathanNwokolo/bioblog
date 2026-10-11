@@ -1,0 +1,107 @@
+.page {
+  background: var(--paper);
+  padding-block: clamp(24px, 4vw, 56px) var(--section-pad);
+}
+
+.inner {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.back a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.back a::before {
+  content: "\2190";
+  margin-right: 10px;
+}
+
+.header {
+  display: grid;
+  gap: 16px;
+  max-width: 52rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.organism {
+  color: var(--ink);
+}
+
+.title {
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.excerpt {
+  max-width: 54ch;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.figure {
+  display: grid;
+  gap: 10px;
+  max-width: 60rem;
+}
+
+.media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+}
+
+.figure figcaption {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.content {
+  display: grid;
+  gap: 32px;
+  max-width: 44rem;
+}
+
+.notice {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: var(--radius-m);
+  background: var(--white);
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.prose {
+  display: grid;
+  gap: 1.1em;
+  font-size: var(--step-1);
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+.engagement {
+  margin-left: -14px;
+}
+
+.related {
+  margin: 0;
+}

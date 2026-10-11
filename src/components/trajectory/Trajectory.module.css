@@ -1,0 +1,198 @@
+.section {
+  background: var(--white);
+  padding-block: var(--section-pad);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px 40px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+
+.headerText {
+  max-width: 46rem;
+}
+
+.title {
+  font-size: var(--step-3);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  max-width: 48ch;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+}
+
+.pendingNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-top: 20px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+/* ---------- Linha do tempo ---------- */
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 40px 32px;
+  border-left: 1.5px solid var(--line-strong);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.dot {
+  position: absolute;
+  left: -8px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow:
+    0 0 0 4px var(--white),
+    0 0 0 5.5px var(--ink);
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.index {
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.period {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Período verificado ganha escala de manchete; pendente fica discreto. */
+.item[data-pending="false"] .period {
+  color: var(--ink);
+  font-size: var(--step-2);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.kind {
+  margin-top: 14px;
+  font-size: var(--step-2);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.institution {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: var(--step--1);
+}
+
+.description {
+  max-width: 34ch;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.media {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 16 / 10;
+  margin-top: auto;
+  padding-top: 0;
+  flex: none;
+  overflow: hidden;
+  border-radius: var(--radius-s);
+}
+
+/* Marcos pendentes: espaço de imagem baixo, para não dominar telas estreitas */
+.item[data-pending="true"] .media {
+  aspect-ratio: 16 / 6;
+  min-height: 84px;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+
+  .item:last-child {
+    padding-bottom: 40px;
+  }
+}
+
+/* ---------- Desktop: trilho horizontal com marcos lado a lado ---------- */
+
+@media (min-width: 900px) {
+  .timeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10px;
+    height: 1.5px;
+    background: var(--line-strong);
+  }
+
+  .item {
+    padding: 36px clamp(16px, 2vw, 32px) 0 clamp(16px, 2vw, 28px);
+    border-left: 1.5px solid var(--line);
+  }
+
+  .item:first-child {
+    border-left-color: transparent;
+  }
+
+  .item[data-pending="true"] .media {
+    aspect-ratio: 16 / 10;
+    max-width: 280px;
+  }
+
+  .dot {
+    top: 3px;
+    left: -8px;
+  }
+
+  .item:first-child .dot {
+    left: -1px;
+  }
+}

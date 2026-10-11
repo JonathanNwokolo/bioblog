@@ -1,0 +1,162 @@
+.section {
+  background: var(--white);
+  padding-block: var(--section-pad);
+}
+
+.grid {
+  display: grid;
+  gap: 40px;
+  align-items: start;
+}
+
+.title {
+  font-size: var(--step-3);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 36ch;
+  margin-top: 18px;
+  color: var(--ink-soft);
+}
+
+.provisional {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  margin-top: 22px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  max-width: 36ch;
+}
+
+/* ---------- Placa ---------- */
+
+.plate {
+  display: grid;
+  gap: 10px;
+  max-width: 420px;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--paper);
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 0.4em 0.95em;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+@media (max-width: 639px) {
+  .frame {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.plate figcaption {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* ---------- Ficha ---------- */
+
+.sheet {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.name {
+  font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.name i {
+  font-style: italic;
+}
+
+.common {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.summary {
+  max-width: 52ch;
+  font-size: var(--step-0);
+}
+
+.facts {
+  display: grid;
+  margin-top: 8px;
+}
+
+.fact {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding-block: 14px;
+  border-top: 1.5px solid var(--ink);
+}
+
+.fact dt {
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.fact dd {
+  font-weight: 700;
+}
+
+.sheet > :global(.btn) {
+  justify-self: start;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 640px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+  }
+}
+
+@media (min-width: 1040px) {
+  .grid {
+    grid-template-columns: minmax(0, 3.3fr) minmax(0, 3.2fr) minmax(0, 5.2fr);
+    gap: clamp(28px, 3.6vw, 56px);
+  }
+
+  .plate {
+    margin-top: 12px;
+  }
+
+  .sheet {
+    padding-top: 4px;
+  }
+
+  .facts {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: clamp(16px, 2vw, 32px);
+    margin-top: 24px;
+  }
+}

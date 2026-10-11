@@ -1,0 +1,41 @@
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.mark {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  fill: currentColor;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.signature {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  letter-spacing: 0.005em;
+}
+
+.onDark {
+  color: var(--white);
+}
+
+.onDark .signature {
+  color: rgba(255, 255, 255, 0.7);
+}

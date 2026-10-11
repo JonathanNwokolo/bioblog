@@ -1,0 +1,152 @@
+.panel {
+  display: grid;
+  gap: 28px;
+  scroll-margin-top: 24px;
+}
+
+.title {
+  font-size: var(--step-2);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.count {
+  margin-left: 6px;
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.form {
+  display: grid;
+  gap: 18px;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: var(--radius-m);
+  background: var(--white);
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-s);
+  background: var(--white);
+  line-height: 1.5;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--like);
+}
+
+.help {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.over {
+  color: var(--like);
+  font-weight: 700;
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.ok,
+.error {
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+.ok {
+  color: var(--ink-soft);
+}
+
+.error {
+  color: var(--like);
+}
+
+.empty {
+  color: var(--ink-soft);
+}
+
+.list {
+  display: grid;
+  gap: 0;
+}
+
+.item {
+  display: grid;
+  gap: 8px;
+  padding-block: 20px;
+  border-top: 1.5px solid var(--line);
+}
+
+.itemHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+}
+
+.author {
+  font-weight: 800;
+}
+
+.time {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.remove {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -12px -8px -12px auto;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.remove:hover {
+  background: var(--paper);
+}
+
+.remove svg {
+  width: 18px;
+  height: 18px;
+}
+
+.text {
+  max-width: 64ch;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

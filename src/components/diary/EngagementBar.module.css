@@ -1,0 +1,67 @@
+.bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like,
+.comment {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-size: var(--step--1);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.like:hover,
+.comment:hover {
+  background: var(--paper);
+  border-color: var(--line);
+}
+
+.like svg,
+.comment svg {
+  width: 20px;
+  height: 20px;
+}
+
+.heart {
+  color: var(--ink);
+}
+
+.like[aria-pressed="true"] .heart {
+  color: var(--like);
+}
+
+.like[aria-pressed="true"] {
+  background: var(--like-wash);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .like[aria-pressed="true"] .heart {
+    animation: pop 260ms var(--ease-out);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  55% {
+    transform: scale(1.28);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

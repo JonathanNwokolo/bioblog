@@ -1,0 +1,107 @@
+.footer {
+  background: var(--white);
+  padding-block: clamp(48px, 6vw, 80px) 36px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 0;
+}
+
+.inner {
+  display: grid;
+  gap: 40px;
+}
+
+.identity {
+  display: grid;
+  gap: 16px;
+  max-width: 34ch;
+}
+
+.attribution {
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  line-height: 1.6;
+}
+
+.attribution strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: var(--step--1);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--mint);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+/* Entrada discreta para o arquivo completo (/diario); sem CTA na home. */
+.nav a.archive {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.contact {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+
+.contactTitle {
+  font-size: var(--step--1);
+  font-weight: 700;
+}
+
+.linkedin {
+  min-height: 44px;
+}
+
+.email {
+  font-weight: 600;
+}
+
+.pending {
+  color: var(--ink-soft);
+}
+
+.legal {
+  display: grid;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.disclaimer {
+  max-width: 70ch;
+}
+
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: 1.1fr 1.3fr 0.9fr;
+    align-items: start;
+  }
+
+  .legal {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+  }
+}
