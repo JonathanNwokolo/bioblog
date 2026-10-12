@@ -1,0 +1,23 @@
+{
+  "usageKey": 8562913,
+  "scientificName": "Giardia duodenalis (Davaine) Deschiens, 1921",
+  "canonicalName": "Giardia duodenalis",
+  "rank": "SPECIES",
+  "status": "ACCEPTED",
+  "confidence": 96,
+  "matchType": "FUZZY",
+  "kingdom": "Protozoa",
+  "phylum": "Metamonada",
+  "order": "Distomatida",
+  "family": "Hexamitidae",
+  "genus": "Giardia",
+  "species": "Giardia duodenalis",
+  "kingdomKey": 7,
+  "phylumKey": 7813133,
+  "classKey": 7636249,
+  "orderKey": 7375606,
+  "familyKey": 5858,
+  "genusKey": 11048345,
+  "speciesKey": 8562913,
+  "class": "Trepomonadea"
+}

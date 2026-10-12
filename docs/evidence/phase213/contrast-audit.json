@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-11T18:23:39.691Z",
+  "report": [
+    {
+      "path": "/admin",
+      "viewport": "1440",
+      "checked": 0,
+      "failing": []
+    },
+    {
+      "path": "/admin/posts/6a273222-09d5-444c-b9e4-c6f8a80fb75e/edit",
+      "viewport": "1440",
+      "checked": 2,
+      "failing": []
+    },
+    {
+      "path": "/admin/posts/new",
+      "viewport": "1440",
+      "checked": 2,
+      "failing": []
+    },
+    {
+      "path": "/admin",
+      "viewport": "390",
+      "checked": 0,
+      "failing": []
+    },
+    {
+      "path": "/admin/posts/6a273222-09d5-444c-b9e4-c6f8a80fb75e/edit",
+      "viewport": "390",
+      "checked": 2,
+      "failing": []
+    },
+    {
+      "path": "/admin/posts/new",
+      "viewport": "390",
+      "checked": 2,
+      "failing": []
+    }
+  ]
+}

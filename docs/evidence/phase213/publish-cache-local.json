@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-11T22:30:08.812Z",
+  "total": 11,
+  "failed": 0,
+  "results": [
+    {
+      "name": "rascunho: artigo 404, fora de /diario e da home, mídia 404",
+      "ok": true,
+      "detail": "{\"article\":404,\"list\":false,\"home\":false,\"media\":404}"
+    },
+    {
+      "name": "Server Action publicar respondeu com redirecionamento",
+      "ok": true,
+      "detail": "HTTP 303 → /admin/posts/a0d74a25-8220-4cb9-b920-4fab324692a6/edit?published=1"
+    },
+    {
+      "name": "publicado: aparece imediatamente no artigo, /diario, home e mídia (sem rebuild)",
+      "ok": true,
+      "detail": "{\"article\":200,\"list\":true,\"home\":true,\"media\":307}"
+    },
+    {
+      "name": "Server Action retirar do ar respondeu com redirecionamento",
+      "ok": true,
+      "detail": "HTTP 303"
+    },
+    {
+      "name": "despublicado: some imediatamente (artigo 404, listas limpas, mídia 404)",
+      "ok": true,
+      "detail": "{\"article\":404,\"list\":false,\"home\":false,\"media\":404}"
+    },
+    {
+      "name": "republicado: volta imediatamente",
+      "ok": true,
+      "detail": "{\"article\":200,\"list\":true,\"home\":true,\"media\":307}"
+    },
+    {
+      "name": "exclusão sem a confirmação EXCLUIR é recusada",
+      "ok": true,
+      "detail": "status=published loc=/admin/posts/a0d74a25-8220-4cb9-b920-4fab324692a6/edit?error=confirmation"
+    },
+    {
+      "name": "excluído: some imediatamente de tudo",
+      "ok": true,
+      "detail": "{\"article\":404,\"list\":false,\"home\":false,\"media\":404}"
+    },
+    {
+      "name": "exclusão é lógica (linha preservada, status=deleted)",
+      "ok": true,
+      "detail": "{\"status\":\"deleted\",\"deleted_at\":\"2026-10-11T22:30:08.6404+00:00\"}"
+    },
+    {
+      "name": "home pública: cache compartilhado s-maxage=300",
+      "ok": true,
+      "detail": "s-maxage=300, stale-while-revalidate=31535700"
+    },
+    {
+      "name": "/admin/login: private, no-store e noindex",
+      "ok": true,
+      "detail": "private, no-store | noindex, nofollow, noarchive"
+    }
+  ]
+}

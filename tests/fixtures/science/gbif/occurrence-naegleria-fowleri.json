@@ -1,0 +1,1918 @@
+{
+  "offset": 0,
+  "limit": 300,
+  "endOfRecords": true,
+  "count": 8,
+  "results": [
+    {
+      "key": 3909866252,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:55.507+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:55.507+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 208217,
+      "relativeOrganismQuantity": 0.000004802681817526907,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00451998_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00451998_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00451998",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909866252",
+      "occurrenceID": "MGYA00451998_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00451998#taxonomic."
+    },
+    {
+      "key": 3909867206,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:57.468+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:57.468+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 56266,
+      "relativeOrganismQuantity": 0.000017772722425621158,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00443778_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00443778_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00443778",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909867206",
+      "occurrenceID": "MGYA00443778_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00443778#taxonomic."
+    },
+    {
+      "key": 3909868156,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:57.415+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:57.415+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 71339,
+      "relativeOrganismQuantity": 0.000014017578042865753,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00422803_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00422803_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00422803",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909868156",
+      "occurrenceID": "MGYA00422803_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00422803#taxonomic."
+    },
+    {
+      "key": 3909869204,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:58.292+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:58.292+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 76421,
+      "relativeOrganismQuantity": 0.00001308540846102511,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00425072_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00425072_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00425072",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909869204",
+      "occurrenceID": "MGYA00425072_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00425072#taxonomic."
+    },
+    {
+      "key": 3909870181,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:58.673+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:58.673+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 69428,
+      "relativeOrganismQuantity": 0.00001440341072766031,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00422250_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00422250_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00422250",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909870181",
+      "occurrenceID": "MGYA00422250_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00422250#taxonomic."
+    },
+    {
+      "key": 3909872196,
+      "datasetKey": "7bf578b3-5753-4c11-bde0-4370fddf2ce9",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:26:56.226+00:00",
+      "lastParsed": "2026-09-29T03:12:59.472+00:00",
+      "crawlId": 315,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 52.12,
+      "decimalLongitude": -1.36,
+      "continent": "EUROPE",
+      "gadm": {
+        "level0": {
+          "gid": "GBR",
+          "name": "United Kingdom"
+        },
+        "level1": {
+          "gid": "GBR.1_1",
+          "name": "England"
+        },
+        "level2": {
+          "gid": "GBR.1.69_1",
+          "name": "Oxfordshire"
+        },
+        "level3": {
+          "gid": "GBR.1.69.1_1",
+          "name": "Cherwell"
+        }
+      },
+      "year": 2014,
+      "month": 1,
+      "day": 1,
+      "eventDate": "2014-01-01",
+      "startDayOfYear": 1,
+      "endDayOfYear": 1,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:12:59.472+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 65765,
+      "relativeOrganismQuantity": 0.00001520565650421957,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00424661_Mitochondria:::::::Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "GB",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "EUROPE",
+      "country": "United Kingdom of Great Britain and Northern Ireland",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00424661_Mitochondria:::::::Naegleria_fowleri",
+      "eventID": "MGYA00424661",
+      "http://unknown.org/crawl_attempt": "315",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"-1.36\",\"geographic location (country and/or sea,region)\":\"United Kingdom: Warwickshire\",\"collection date\":\"2014-01-01\",\"geographic location (latitude)\":\"52.12\"}",
+      "locality": "Warwickshire",
+      "http://unknown.org/status": "not_reviewed",
+      "eventRemarks": "River water and sediment samples fresh from the river and after being incubated with pesticide in laboratory microcosms. Sampling carried out 8 times between 2014 to 2016 to analyse seasonal variation.",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS2925719",
+      "gbifID": "3909872196",
+      "occurrenceID": "MGYA00424661_Mitochondria:::::::Naegleria_fowleri",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "identificationRemarks": "LSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: LSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00424661#taxonomic."
+    },
+    {
+      "key": 2442246200,
+      "datasetKey": "72704e74-30b1-424b-97ab-01d082884142",
+      "publishingOrgKey": "ab733144-7043-4e88-bd4f-fca7bf858880",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "fb5e4c2a-579c-434b-a446-3a665dd732ad",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "DWC_ARCHIVE",
+      "lastCrawled": "2026-09-29T02:49:17.109+00:00",
+      "lastParsed": "2026-09-29T03:21:12.254+00:00",
+      "crawlId": 330,
+      "extensions": {},
+      "basisOfRecord": "MATERIAL_SAMPLE",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "VJYQG",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "VJYQG",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "PROVISIONALLY_ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "6236G",
+              "name": "Schizopyrenida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "VJYQD",
+              "name": "Vahlkampfiidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "VJYQF",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "VJYQG",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": []
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 39.5117,
+      "decimalLongitude": 118.1992,
+      "continent": "ASIA",
+      "gadm": {
+        "level0": {
+          "gid": "CHN",
+          "name": "China"
+        },
+        "level1": {
+          "gid": "CHN.10_1",
+          "name": "Hebei"
+        },
+        "level2": {
+          "gid": "CHN.10.9_1",
+          "name": "Tangshan"
+        },
+        "level3": {
+          "gid": "CHN.10.9.1_1",
+          "name": "Fengnan"
+        }
+      },
+      "year": 2013,
+      "month": 5,
+      "day": 10,
+      "eventDate": "2013-05-10",
+      "startDayOfYear": 130,
+      "endDayOfYear": 130,
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES"
+      ],
+      "lastInterpreted": "2026-09-29T03:21:12.254+00:00",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "organismQuantity": 1,
+      "organismQuantityType": "DNA sequence reads",
+      "sampleSizeUnit": "DNA sequence reads",
+      "sampleSizeValue": 9205015,
+      "relativeOrganismQuantity": 1.0863643350934246e-7,
+      "isSequenced": false,
+      "identifiers": [
+        {
+          "identifier": "MGYA00357645_Eukaryota:::Heterolobosea:Schizopyrenida:Vahlkampfiidae:Naegleria:Naegleria_fowleri"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "CN",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "ASIA",
+      "country": "China",
+      "publishedByGbifRegion": "EUROPE",
+      "identificationReferences": "https://www.ebi.ac.uk/metagenomics/pipelines/4.1",
+      "identifier": "MGYA00357645_Eukaryota:::Heterolobosea:Schizopyrenida:Vahlkampfiidae:Naegleria:Naegleria_fowleri",
+      "eventID": "MGYA00357645",
+      "http://unknown.org/crawl_attempt": "330",
+      "dynamicProperties": "{\"geographic location (longitude)\":\"118.1992\",\"geographic location (country and/or sea,region)\":\"China\",\"collection date\":\"2013-05-10\",\"geographic location (latitude)\":\"39.51171\",\"instrument model\":\"Ion Torrent Proton\",\"last update date\":\"2017-01-04\"}",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "http://unknown.org/status": "not_reviewed",
+      "identificationRemarks": "SSU rRNA annotated using the taxonomic reference database described here: https://www.ebi.ac.uk/metagenomics/pipelines/4.1. This occurrence appeared in following analyses: SSU taxonomy from analyses https://www.ebi.ac.uk/metagenomics/analyses/MGYA00357645#taxonomic.",
+      "eventRemarks": "BohaiSeaV3",
+      "materialSampleID": "https://www.ebi.ac.uk/metagenomics/samples/SRS1886135",
+      "gbifID": "2442246200",
+      "occurrenceID": "MGYA00357645_Eukaryota:::Heterolobosea:Schizopyrenida:Vahlkampfiidae:Naegleria:Naegleria_fowleri"
+    },
+    {
+      "key": 3818018115,
+      "datasetKey": "d8cd16ba-bb74-4420-821e-083f2bac17c2",
+      "publishingOrgKey": "ada9d123-ddb4-467d-8891-806ea8d94230",
+      "datasetCategory": [
+        "eDNA"
+      ],
+      "installationKey": "17a83780-3060-4851-9d6f-029d5fcb81c9",
+      "hostingOrganizationKey": "fbca90e3-8aed-48b1-84e3-369afbd000ce",
+      "publishingCountry": "GB",
+      "protocol": "EML",
+      "lastCrawled": "2026-09-26T12:05:00.250+00:00",
+      "lastParsed": "2026-09-26T12:17:16.305+00:00",
+      "crawlId": 296,
+      "extensions": {},
+      "basisOfRecord": "PRESERVED_SPECIMEN",
+      "occurrenceStatus": "PRESENT",
+      "classifications": {
+        "7ddf754f-d193-4cc9-b351-99906754a03b": {
+          "usage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "QL344",
+            "name": "Naegleria fowleri Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "CS5HF",
+              "name": "Eukaryota",
+              "rank": "DOMAIN"
+            },
+            {
+              "key": "Z",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "622B2",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "DW",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "NZ",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "HRF",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "5X2J",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "QL344",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": [
+            "TAXON_ID_NOT_FOUND",
+            "TAXON_CONCEPT_ID_NOT_FOUND"
+          ]
+        },
+        "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+          "usage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "acceptedUsage": {
+            "key": "3210448",
+            "name": "Naegleria fowleri R.F.Carter, 1970",
+            "rank": "SPECIES",
+            "code": "ZOOLOGICAL",
+            "authorship": "R.F.Carter, 1970",
+            "genericName": "Naegleria",
+            "specificEpithet": "fowleri",
+            "formattedName": "<i>Naegleria</i> <i>fowleri</i> R.F.Carter, 1970"
+          },
+          "taxonomicStatus": "ACCEPTED",
+          "classification": [
+            {
+              "key": "7",
+              "name": "Protozoa",
+              "rank": "KINGDOM"
+            },
+            {
+              "key": "7509337",
+              "name": "Amoebozoa",
+              "rank": "PHYLUM"
+            },
+            {
+              "key": "116",
+              "name": "Lobosa",
+              "rank": "CLASS"
+            },
+            {
+              "key": "761",
+              "name": "Amoebida",
+              "rank": "ORDER"
+            },
+            {
+              "key": "5860",
+              "name": "Vahlkampfidae",
+              "rank": "FAMILY"
+            },
+            {
+              "key": "3210443",
+              "name": "Naegleria",
+              "rank": "GENUS"
+            },
+            {
+              "key": "3210448",
+              "name": "Naegleria fowleri",
+              "rank": "SPECIES"
+            }
+          ],
+          "issues": [
+            "TAXON_ID_NOT_FOUND",
+            "TAXON_CONCEPT_ID_NOT_FOUND"
+          ]
+        }
+      },
+      "taxonKey": 3210448,
+      "kingdomKey": 7,
+      "phylumKey": 7509337,
+      "classKey": 116,
+      "orderKey": 761,
+      "familyKey": 5860,
+      "genusKey": 3210443,
+      "speciesKey": 3210448,
+      "acceptedTaxonKey": 3210448,
+      "scientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "scientificNameAuthorship": "R.F.Carter, 1970",
+      "acceptedScientificName": "Naegleria fowleri R.F.Carter, 1970",
+      "kingdom": "Protozoa",
+      "phylum": "Amoebozoa",
+      "order": "Amoebida",
+      "family": "Vahlkampfidae",
+      "genus": "Naegleria",
+      "species": "Naegleria fowleri",
+      "genericName": "Naegleria",
+      "specificEpithet": "fowleri",
+      "taxonRank": "SPECIES",
+      "taxonomicStatus": "ACCEPTED",
+      "decimalLatitude": 24.86,
+      "decimalLongitude": 67,
+      "continent": "ASIA",
+      "gadm": {
+        "level0": {
+          "gid": "PAK",
+          "name": "Pakistan"
+        },
+        "level1": {
+          "gid": "PAK.8_1",
+          "name": "Sindh"
+        },
+        "level2": {
+          "gid": "PAK.8.2_1",
+          "name": "Karachi"
+        },
+        "level3": {
+          "gid": "PAK.8.2.3_1",
+          "name": "Karachi South"
+        }
+      },
+      "issues": [
+        "GEODETIC_DATUM_ASSUMED_WGS84",
+        "CONTINENT_DERIVED_FROM_COORDINATES",
+        "RECORDED_DATE_INVALID",
+        "TAXON_CONCEPT_ID_NOT_FOUND",
+        "TAXON_ID_NOT_FOUND"
+      ],
+      "lastInterpreted": "2026-09-26T12:17:16.305+00:00",
+      "references": "https://www.ebi.ac.uk/ena/browser/view/MZ461463",
+      "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+      "isSequenced": true,
+      "associatedSequences": "https://www.ebi.ac.uk/ena/browser/api/embl/MZ461463",
+      "identifiers": [
+        {
+          "identifier": "MZ461463"
+        }
+      ],
+      "media": [],
+      "facts": [],
+      "relations": [],
+      "isInCluster": false,
+      "recordedBy": "Muhammad Aurangzeb",
+      "dnaSequenceID": [],
+      "nucleotideSequence": [],
+      "geodeticDatum": "WGS84",
+      "class": "Lobosa",
+      "countryCode": "PK",
+      "recordedByIDs": [],
+      "identifiedByIDs": [],
+      "gbifRegion": "ASIA",
+      "country": "Pakistan",
+      "publishedByGbifRegion": "EUROPE",
+      "identifier": "MZ461463",
+      "catalogNumber": "CSF-JRCS-AY27",
+      "http://unknown.org/crawl_attempt": "296",
+      "taxonConceptID": "https://www.ebi.ac.uk/ena/browser/view/Taxon:5763",
+      "http://unknown.org/datasetCategory.gbif.org": "eDNA",
+      "occurrenceRemarks": "Naegleria fowleri isolate AY27 voucher CSF-JRCS-AY27 mitochondrion, complete genome.",
+      "gbifID": "3818018115",
+      "occurrenceID": "MZ461463",
+      "taxonID": "ASV:887dc08d88576ab674cea752e5d35e33"
+    }
+  ],
+  "facets": []
+}

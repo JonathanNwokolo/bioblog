@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-11T18:44:11.471Z",
+  "note": "server response + body, 7 samples after warm-up, localhost production build, local Supabase (no WAN latency)",
+  "rows": [
+    {
+      "path": "/admin",
+      "medianMs": 63,
+      "maxMs": 66,
+      "htmlKB": 76.5
+    },
+    {
+      "path": "/admin/posts/new",
+      "medianMs": 72,
+      "maxMs": 102,
+      "htmlKB": 58.5
+    },
+    {
+      "path": "/admin/posts/<id>/edit",
+      "medianMs": 61,
+      "maxMs": 66,
+      "htmlKB": 64.5
+    },
+    {
+      "path": "/admin/posts/<id>/preview",
+      "medianMs": 60,
+      "maxMs": 67,
+      "htmlKB": 57.2
+    },
+    {
+      "path": "/",
+      "medianMs": 6,
+      "maxMs": 6,
+      "htmlKB": 200.8
+    },
+    {
+      "path": "/diario",
+      "medianMs": 5,
+      "maxMs": 5,
+      "htmlKB": 132.4
+    }
+  ]
+}

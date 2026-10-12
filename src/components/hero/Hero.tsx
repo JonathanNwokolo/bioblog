@@ -56,7 +56,7 @@ export function Hero() {
               </span>
             </p>
 
-            <div className={styles.stats} aria-label="Métricas do projeto">
+            <div className={styles.stats} role="group" aria-label="Métricas do projeto">
               <div className={styles.statItem}>
                 <span className={styles.statNumber}>+100</span>
                 <span className={styles.statLabel}>pessoas inspiradas</span>
@@ -75,7 +75,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className={styles.stage} aria-label="Composição visual editorial com microscopia">
+        <div className={styles.stage} role="group" aria-label="Composição visual editorial com microscopia">
           {/* Halo luminoso mint suave de fundo */}
           <div className={styles.halo} aria-hidden="true" />
 
@@ -95,7 +95,7 @@ export function Hero() {
           <div className={`${styles.fragment} ${styles.fragA}`}>
             <LensField
               kind="cysts"
-              imageSrc="/images/hero/microscopy-cysts.jpg"
+              imageSrc="/images/hero/microscopy-cysts.webp"
               label="Campo microscópico: cistos e corpos celulares corados em violeta brilhante."
               credit={CREDIT}
               style={{ "--delay": "120ms" } as React.CSSProperties}
@@ -120,7 +120,7 @@ export function Hero() {
           <div className={`${styles.fragment} ${styles.fragB}`}>
             <LensField
               kind="nematode"
-              imageSrc="/images/hero/microscopy-larva.jpg"
+              imageSrc="/images/hero/microscopy-larva.webp"
               label="Campo microscópico: larva alongada de helminto com anatomia interna."
               credit={CREDIT}
               style={{ "--delay": "260ms" } as React.CSSProperties}
@@ -146,7 +146,7 @@ export function Hero() {
           <div className={`${styles.fragment} ${styles.fragC}`}>
             <LensField
               kind="giardia"
-              imageSrc="/images/hero/microscopy-giardia.jpg"
+              imageSrc="/images/hero/microscopy-giardia.webp"
               label="Campo microscópico: Giardia lamblia trofozoíto corado em magenta com discos e flagelos."
               credit={CREDIT}
               style={{ "--delay": "400ms" } as React.CSSProperties}

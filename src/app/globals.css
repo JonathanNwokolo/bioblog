@@ -19,9 +19,14 @@
   --night: #090912; /* única seção escura */
   --like: #c8223b; /* só a curtida ativa; 5,6:1 sobre branco */
   --like-wash: #fdecef;
+  --surface-warm: #faf8f5;
+  --surface-cream: #f4f2ed;
+  --lilac-wash: #f4efff;
+  --mint-wash: #e6fbf2;
 
   /* Tipografia */
   --font-sans: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), "Newsreader", "Playfair Display", "Cormorant Garamond", Georgia, serif;
   --font-note: var(--font-caveat), "Segoe Script", cursive;
 
   --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.86rem);

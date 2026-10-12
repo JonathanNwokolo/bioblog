@@ -1,0 +1,85 @@
+{
+  "note": "Cópias sem alteração de micrografias do CDC DPDx (Division of Parasitic Diseases and Malaria). Fonte: CDC. Uso sem implicar endosso do CDC/HHS. Base de uso e legendas: src/lib/science/dpdx/registry.ts.",
+  "files": [
+    {
+      "id": "giardia-cyst-iodine",
+      "file": "giardia-cyst-iodine.jpg",
+      "bytes": 4311,
+      "sha256": "aba3db7ff5ce69db49fdeb49ab407161efdbd4c34f87943ecedd90ff9a2bfc7a",
+      "sourceUrl": "https://www.cdc.gov/dpdx/giardiasis/images/1/Giardia_cyst_wtmt.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 14:11:39 GMT",
+      "modified": false
+    },
+    {
+      "id": "giardia-trophozoite-trichrome",
+      "file": "giardia-trophozoite-trichrome.jpg",
+      "bytes": 14758,
+      "sha256": "3f4d5f5ffcfe484ee28f731c10b87b9d0b225e72733b9159d37a48382fa7fbc9",
+      "sourceUrl": "https://www.cdc.gov/dpdx/giardiasis/images/5/Giardia_troph_tric.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 14:11:40 GMT",
+      "modified": false
+    },
+    {
+      "id": "pfalciparum-rings-thin",
+      "file": "pfalciparum-rings-thin.jpg",
+      "bytes": 67405,
+      "sha256": "fdc376ba5c42c76c502f4d15925000518aab592b411ba74e5b058a5955ea8b32",
+      "sourceUrl": "https://www.cdc.gov/dpdx/malaria/images/1/Pf_rings_thinA.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Thu, 16 May 2024 17:49:30 GMT",
+      "modified": false
+    },
+    {
+      "id": "pfalciparum-gametocyte-thin",
+      "file": "pfalciparum-gametocyte-thin.jpg",
+      "bytes": 46242,
+      "sha256": "72165caf6dab5cbda4788bae3eeba13c0ab24411d98a4cfae0b16f6932d310be",
+      "sourceUrl": "https://www.cdc.gov/dpdx/malaria/images/4/Pf_gametocyte_thinB.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Thu, 16 May 2024 18:02:05 GMT",
+      "modified": false
+    },
+    {
+      "id": "tcruzi-trypomastigote-giemsa",
+      "file": "tcruzi-trypomastigote-giemsa.jpg",
+      "bytes": 13018,
+      "sha256": "6729c59916fc61491a903aeb2486605628f2b3a41cfe2d5d3b3e0597f742e66e",
+      "sourceUrl": "https://www.cdc.gov/dpdx/trypanosomiasisamerican/images/2/Tcruzi_thin_giemsa.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 14:27:05 GMT",
+      "modified": false
+    },
+    {
+      "id": "tcruzi-amastigotes-heart",
+      "file": "tcruzi-amastigotes-heart.jpg",
+      "bytes": 15653,
+      "sha256": "2c107f2dcebed0d21b0a32a792958f2178e5b96fd7ff3e4acaf3625c9caa6a4c",
+      "sourceUrl": "https://www.cdc.gov/dpdx/trypanosomiasisamerican/images/5/Tcruzi_tissue_he.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 14:27:07 GMT",
+      "modified": false
+    },
+    {
+      "id": "ehistolytica-cyst-trichrome",
+      "file": "ehistolytica-cyst-trichrome.jpg",
+      "bytes": 14667,
+      "sha256": "3a8943d3f5ca4625cfb9c1e6c06da6d2874be5f456f9296db1b46ea225b26eee",
+      "sourceUrl": "https://www.cdc.gov/dpdx/amebiasis/images/2/Ehistdisp_cyst_tric.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 12:13:14 GMT",
+      "modified": false
+    },
+    {
+      "id": "ehistolytica-trophozoite-trichrome",
+      "file": "ehistolytica-trophozoite-trichrome.jpg",
+      "bytes": 12576,
+      "sha256": "4eff45aa0e702d2752c4f03163ca516ce3d8c96f4e0b736dcc65be9a6aa0e380",
+      "sourceUrl": "https://www.cdc.gov/dpdx/amebiasis/images/6/Ehisto_troph_tric3.jpg",
+      "retrievedAt": "2026-10-11",
+      "upstreamLastModified": "Fri, 17 May 2024 12:18:15 GMT",
+      "modified": false
+    }
+  ]
+}

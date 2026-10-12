@@ -1,0 +1,61 @@
+Output format is unaligned.
+ANON_COLUMN_SELECT|categories|active,created_at,id,label,slug,sort_order
+ANON_COLUMN_SELECT|media_assets|alt_text,created_at,credit,deleted_at,height,id,mime_type,object_key,state,width
+ANON_COLUMN_SELECT|posts|body_json,category_id,created_at,deleted_at,excerpt,first_published_at,hero_media_id,id,published_at,slug,status,title,updated_at
+AUTH_NONOWNER_TABLE_PRIV_REFERENCES_TRIGGER_TRUNCATE|0
+--- anon / authenticated attempts (each must error with permission denied)
+BEGIN
+SET
+psql:<stdin>:10: ERROR:  permission denied for table posts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:11: ERROR:  permission denied for table posts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:12: ERROR:  permission denied for table media_assets
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:13: ERROR:  permission denied for table owner_accounts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:14: ERROR:  permission denied for table objects
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:15: ERROR:  permission denied for table posts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:16: ERROR:  permission denied for table posts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:17: ERROR:  must be owner of table posts
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:18: ERROR:  permission denied for function is_active_owner
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:19: ERROR:  permission denied for function record_post_revision
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:20: ERROR:  permission denied for table posts
+HINT:  Grant the required privileges to the current role with: GRANT UPDATE ON public.posts TO anon;
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:21: ERROR:  permission denied for table owner_accounts
+HINT:  Grant the required privileges to the current role with: GRANT UPDATE ON public.owner_accounts TO authenticated;
+ROLLBACK
+BEGIN
+SET
+psql:<stdin>:22: ERROR:  permission denied for table audit_events
+HINT:  Grant the required privileges to the current role with: GRANT DELETE ON public.audit_events TO authenticated;
+ROLLBACK

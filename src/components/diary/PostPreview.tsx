@@ -10,6 +10,10 @@ interface PostPreviewProps {
   post: Post;
   /** `lead`: destaque em grande escala. `entry`: entrada compacta do índice. */
   variant: "lead" | "entry";
+  /** Nível do título. Padrão: h3 (lead) / h4 (entry), para uso sob o h2 da seção da homepage. */
+  headingLevel?: 2 | 3 | 4;
+  /** Primeira imagem visível da página (LCP): carrega sem lazy e com prioridade alta. */
+  priority?: boolean;
 }
 
 /**
@@ -20,15 +24,15 @@ interface PostPreviewProps {
  * principal; o card inteiro é clicável por área estendida, e os controles de
  * interação ficam acima dela.
  */
-export function PostPreview({ post, variant }: PostPreviewProps) {
+export function PostPreview({ post, variant, headingLevel, priority = false }: PostPreviewProps) {
   const href = `/diario/${post.slug}`;
   const isPlaceholder = post.status !== "verified";
-  const TitleTag = variant === "lead" ? "h3" : "h4";
+  const TitleTag = `h${headingLevel ?? (variant === "lead" ? 3 : 4)}` as "h2" | "h3" | "h4";
 
   return (
     <article className={`${styles.post} ${styles[variant]}`}>
       <div className={styles.media}>
-        <Media media={post.media} loading={variant === "lead" ? "eager" : "lazy"} />
+        <Media media={post.media} loading={priority || variant === "lead" ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} />
         {isPlaceholder && <span className={styles.chip}>Ilustração de exemplo</span>}
       </div>
 

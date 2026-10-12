@@ -1,0 +1,151 @@
+{
+  "at": "2026-10-11T18:35:39.228Z",
+  "note": "Lighthouse lab data, localhost production build, simulated throttling (mobile preset: Slow 4G / 4x CPU). Not field data.",
+  "rows": [
+    {
+      "page": "applied-mobile-home",
+      "form": "mobile",
+      "throttling": "devtools",
+      "perf": 93,
+      "a11y": 0,
+      "bestPractices": 0,
+      "seo": 0,
+      "fcpMs": 1682,
+      "lcpMs": 2447,
+      "tbtMs": 230,
+      "cls": 0,
+      "ttfbMs": 4,
+      "transferKB": 505,
+      "jsKB": 151,
+      "lcpElement": "<img class=\"uyHV-q_photo\" src=\"http://localhost:3100/images/hero/hero-portrait-c",
+      "failedAudits": [],
+      "opportunities": [
+        "uses-responsive-images(300ms)"
+      ]
+    },
+    {
+      "page": "desktop-diario",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 100,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 227,
+      "lcpMs": 584,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 4,
+      "transferKB": 313,
+      "jsKB": 154,
+      "lcpElement": "<img class=\"JF2Awq_photo \" src=\"/api/media/6f46c50e-9a40-467e-9d69-c35700f7db96\"",
+      "failedAudits": [],
+      "opportunities": []
+    },
+    {
+      "page": "desktop-diario_qa-publicado-d75dfa",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 100,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 263,
+      "lcpMs": 560,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 14,
+      "transferKB": 300,
+      "jsKB": 158,
+      "lcpElement": "<h1 class=\"ULvV9G_title\">",
+      "failedAudits": [],
+      "opportunities": []
+    },
+    {
+      "page": "desktop-home",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 99,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 333,
+      "lcpMs": 839,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 4,
+      "transferKB": 527,
+      "jsKB": 151,
+      "lcpElement": "<img class=\"uyHV-q_photo\" src=\"http://localhost:3100/images/hero/hero-portrait-c",
+      "failedAudits": [],
+      "opportunities": [
+        "uses-responsive-images(130ms)"
+      ]
+    },
+    {
+      "page": "mobile-diario",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 98,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 847,
+      "lcpMs": 2470,
+      "tbtMs": 45,
+      "cls": 0,
+      "ttfbMs": 4,
+      "transferKB": 313,
+      "jsKB": 154,
+      "lcpElement": "<p class=\"xgfoGq_lede\">",
+      "failedAudits": [],
+      "opportunities": [
+        "unused-javascript(150ms)"
+      ]
+    },
+    {
+      "page": "mobile-diario_qa-publicado-d75dfa",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 97,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 814,
+      "lcpMs": 2378,
+      "tbtMs": 106,
+      "cls": 0,
+      "ttfbMs": 52,
+      "transferKB": 300,
+      "jsKB": 158,
+      "lcpElement": "<img class=\"JF2Awq_photo \" src=\"/api/media/6f46c50e-9a40-467e-9d69-c35700f7db96\"",
+      "failedAudits": [],
+      "opportunities": [
+        "unused-javascript(150ms)"
+      ]
+    },
+    {
+      "page": "mobile-home",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 88,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1212,
+      "lcpMs": 3827,
+      "tbtMs": 40,
+      "cls": 0,
+      "ttfbMs": 9,
+      "transferKB": 525,
+      "jsKB": 151,
+      "lcpElement": "<img class=\"uyHV-q_photo\" src=\"http://localhost:3100/images/hero/hero-portrait-c",
+      "failedAudits": [],
+      "opportunities": [
+        "unused-javascript(290ms)",
+        "uses-responsive-images(150ms)",
+        "legacy-javascript(150ms)"
+      ]
+    }
+  ]
+}

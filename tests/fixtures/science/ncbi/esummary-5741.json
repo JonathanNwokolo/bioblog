@@ -1,0 +1,26 @@
+{
+  "header": {
+    "type": "esummary",
+    "version": "0.3"
+  },
+  "result": {
+    "5741": {
+      "uid": "5741",
+      "status": "active",
+      "rank": "species",
+      "division": "diplomonads",
+      "scientificname": "Giardia duodenalis",
+      "commonname": "",
+      "taxid": 5741,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2025/06/09 00:00",
+      "genbankdivision": "Invertebrates"
+    },
+    "uids": [
+      "5741"
+    ]
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "target": "local",
+  "at": "2026-10-11T22:30:02.480Z",
+  "total": 61,
+  "failed": 0,
+  "results": [
+    {
+      "name": "login real do não-proprietário (Auth)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "is_active_owner() = false para o não-proprietário",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "owner_accounts: nenhuma linha visível",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "conteúdo publicado legível",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "post publicado da fixture visível",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "somente posts publicados são visíveis (sem rascunho/despublicado/excluído)",
+      "ok": true,
+      "detail": "n=21"
+    },
+    {
+      "name": "post rascunho inacessível por id",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "post rascunho inacessível por slug",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mídia de rascunho inacessível",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "post despublicado inacessível por id",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "post despublicado inacessível por slug",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mídia de despublicado inacessível",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "coluna sensível posts.author_user_id negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "coluna sensível media_assets.owner_id negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "coluna sensível media_assets.sha256 negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "coluna sensível media_assets.bytes negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "coluna sensível media_assets.storage_bucket negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "post_revisions sem leitura",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "audit_events sem leitura",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "INSERT em posts rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "UPDATE em post alheio não altera nada",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "UPDATE de status do rascunho não altera nada",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "DELETE em posts rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "INSERT em media_assets rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "INSERT em audit_events rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "auto-promoção a proprietário rejeitada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC publish_post recusada ao não-proprietário",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC unpublish_post recusada ao não-proprietário",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC soft_delete_post recusada ao não-proprietário",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC save_post_changes recusada ao não-proprietário",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "signed URL de objeto em rascunho negada",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "download de objeto em rascunho negado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "listagem do bucket não revela pastas de rascunho/despublicado",
+      "ok": true,
+      "detail": "itens=21"
+    },
+    {
+      "name": "upload no bucket rejeitado",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "remoção de objeto alheio não tem efeito",
+      "ok": true,
+      "detail": "removidos=0"
+    },
+    {
+      "name": "objeto continua existindo após tentativa de remoção",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "objeto publicado pode ser assinado (conteúdo público)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "objeto de post despublicado não pode ser assinado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "cadastro público fechado (signup recusado)",
+      "ok": true,
+      "detail": "HTTP 422"
+    },
+    {
+      "name": "cookie de sessão SSR gerado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "app acessível em http://localhost:3100",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "/admin → login para não-proprietário autenticado",
+      "ok": true,
+      "detail": "HTTP 307"
+    },
+    {
+      "name": "/admin/posts/new → login para não-proprietário autenticado",
+      "ok": true,
+      "detail": "HTTP 307"
+    },
+    {
+      "name": "/admin/posts/5d557941-36f4-48fa-9e7e-67d6288fd89f/edit → login para não-proprietário autenticado",
+      "ok": true,
+      "detail": "HTTP 307"
+    },
+    {
+      "name": "/admin/posts/5d557941-36f4-48fa-9e7e-67d6288fd89f/preview → login para não-proprietário autenticado",
+      "ok": true,
+      "detail": "HTTP 307"
+    },
+    {
+      "name": "/admin/login renderiza o formulário (sem redirecionar ao painel)",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "POST /api/admin/media sem papel de proprietário → 401",
+      "ok": true,
+      "detail": "HTTP 401"
+    },
+    {
+      "name": "POST /api/admin/media com Origin externo → 403",
+      "ok": true,
+      "detail": "HTTP 403"
+    },
+    {
+      "name": "POST /api/admin/media com Sec-Fetch-Site cross-site → 403",
+      "ok": true,
+      "detail": "HTTP 403"
+    },
+    {
+      "name": "POST /api/admin/media anônimo → 401",
+      "ok": true,
+      "detail": "HTTP 401"
+    },
+    {
+      "name": "GET /api/admin/media/<rascunho> → 404 para não-proprietário",
+      "ok": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "GET /api/media/<rascunho> → 404",
+      "ok": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "GET /api/media/<despublicado> → 404",
+      "ok": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "página pública do rascunho → 404",
+      "ok": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "listagem pública não contém rascunho nem despublicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "GET /api/media/<publicado> → redireciona para URL assinada",
+      "ok": true,
+      "detail": "HTTP 307"
+    },
+    {
+      "name": "proprietário vê o editor (referência positiva)",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "ids de Server Action extraídos do HTML do proprietário",
+      "ok": true,
+      "detail": "ids=2"
+    },
+    {
+      "name": "replay de Server Actions como não-proprietário não altera o post",
+      "ok": true,
+      "detail": "status=published"
+    },
+    {
+      "name": "post publicado segue no ar após replay",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "controle positivo: o mesmo replay com cookie do proprietário surte efeito",
+      "ok": true,
+      "detail": "status=deleted"
+    }
+  ]
+}

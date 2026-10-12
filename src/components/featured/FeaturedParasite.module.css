@@ -160,3 +160,22 @@
     margin-top: 24px;
   }
 }
+
+/* Atalhos para as experiências científicas: discretos, não competem com o CTA. */
+.science {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.science a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}

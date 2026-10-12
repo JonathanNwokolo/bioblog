@@ -6,13 +6,9 @@ import { EngagementBar } from "@/components/diary/EngagementBar";
 import { ArrowRight } from "@/components/ui/icons";
 import { Media } from "@/components/ui/Media";
 import { featuredOrganism } from "@/content/featured-organism";
-import { getPost, posts } from "@/content/posts";
+import { safelyGetPublishedPost } from "@/lib/cms/repository";
 import { formatDate } from "@/lib/format";
 import styles from "./post.module.css";
-
-export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
-}
 
 export async function generateMetadata({
   params,
@@ -20,13 +16,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPost(slug);
+  const { post } = await safelyGetPublishedPost(slug);
   return post ? { title: post.title, description: post.excerpt } : {};
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPost(slug);
+  const { post, error } = await safelyGetPublishedPost(slug);
+  if (error) throw new Error(error);
   if (!post) notFound();
 
   const isPlaceholder = post.status !== "verified";
@@ -51,7 +48,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         <figure className={styles.figure}>
           <div className={styles.media}>
-            <Media media={post.media} loading="eager" />
+            <Media media={post.media} loading="eager" fetchPriority="high" />
           </div>
           <figcaption>{post.media.credit}</figcaption>
         </figure>

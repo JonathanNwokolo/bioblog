@@ -219,7 +219,8 @@
   box-shadow: 0 6px 16px -4px rgba(98, 40, 170, 0.45);
   pointer-events: none;
   z-index: 3;
-  animation: floatOrb 7s ease-in-out infinite alternate;
+  /* WCAG 2.2.2: movimento automático dura no máximo 5 s (2 × 2 s + atraso ≤ 0,6 s) e então para. */
+  animation: floatOrb 2s ease-in-out 2 alternate both;
 }
 
 .orbA {
@@ -235,7 +236,7 @@
   top: 5%;
   width: 2.8%;
   aspect-ratio: 1;
-  animation-delay: 1.8s;
+  animation-delay: 0.3s;
 }
 
 .orbC {
@@ -243,7 +244,7 @@
   top: 40%;
   width: 3.2%;
   aspect-ratio: 1;
-  animation-delay: 3.4s;
+  animation-delay: 0.6s;
 }
 
 .orbD {
@@ -251,7 +252,7 @@
   bottom: 30%;
   width: 2.4%;
   aspect-ratio: 1;
-  animation-delay: 2.1s;
+  animation-delay: 0.2s;
 }
 
 .orbE {
@@ -259,7 +260,7 @@
   bottom: 1%;
   width: 2.6%;
   aspect-ratio: 1;
-  animation-delay: 4.6s;
+  animation-delay: 0.5s;
 }
 
 @keyframes floatOrb {
@@ -271,7 +272,7 @@
   }
 }
 
-/* Selo circular giratório */
+/* Selo circular: gira uma vez ao carregar */
 .badgeWrapper {
   position: absolute;
   right: 8%;
@@ -290,7 +291,8 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.05em;
-  animation: rotateBadge 32s linear infinite;
+  /* Uma volta suave em 5 s e para (WCAG 2.2.2); antes: rotação infinita de 32 s. */
+  animation: rotateBadge 5s ease-out 1 both;
 }
 
 @keyframes rotateBadge {

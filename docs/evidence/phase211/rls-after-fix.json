@@ -1,0 +1,251 @@
+{
+  "ran_at": "2026-10-11T03:27:06.401Z",
+  "target": "http://127.0.0.1:54321",
+  "results": [
+    {
+      "name": "login do proprietário",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload + registro de mídia (owner)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "criação de rascunho",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê rascunho (sem erro)",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon lista publicados sem erro com rascunho existente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê mídia em rascunho (sem erro)",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon NÃO assina URL de objeto em rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "publish_post (owner)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon lê post publicado por slug",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê posts.author_user_id",
+      "ok": true,
+      "detail": "erro: permission denied for table posts"
+    },
+    {
+      "name": "anon NÃO lê media_assets.owner_id",
+      "ok": true,
+      "detail": "erro: permission denied for table media_assets"
+    },
+    {
+      "name": "object_key público não revela o UUID do proprietário",
+      "ok": true,
+      "detail": "key=00cebf88…"
+    },
+    {
+      "name": "anon lê colunas públicas de mídia publicada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "projeção pública com embeds (consulta do site)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon assina URL de objeto publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "listagem anônima do bucket não revela o UUID do proprietário",
+      "ok": true,
+      "detail": "itens=1"
+    },
+    {
+      "name": "anon NÃO baixa objeto em rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon baixa objeto publicado (esperado)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO envia objetos",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "anon: select * em posts é negado (não vaza colunas privadas)",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon NÃO acessa owner_accounts",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "anon NÃO acessa post_revisions",
+      "ok": true,
+      "detail": "permission denied for table post_revisions"
+    },
+    {
+      "name": "anon NÃO acessa audit_events",
+      "ok": true,
+      "detail": "permission denied for table audit_events"
+    },
+    {
+      "name": "anon NÃO insere posts",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"posts\""
+    },
+    {
+      "name": "anon NÃO executa publish_post",
+      "ok": true,
+      "detail": "permission denied for function publish_post"
+    },
+    {
+      "name": "post publicado NÃO aceita remover hero",
+      "ok": true,
+      "detail": "hero_media_required"
+    },
+    {
+      "name": "post publicado NÃO fica com hero invisível ao público",
+      "ok": true,
+      "detail": "rejeitado: hero_media_not_public"
+    },
+    {
+      "name": "save_post_changes troca hero de post publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon vê título e novo hero imediatamente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "hero antigo volta a ser privado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "save_post_changes recusa publicado sem hero",
+      "ok": true,
+      "detail": "hero_media_required"
+    },
+    {
+      "name": "anon NÃO executa save_post_changes",
+      "ok": true,
+      "detail": "permission denied for function save_post_changes"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO lê post alheio",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "autenticado não-proprietário NÃO publica",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO edita",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO envia mídia",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO lê author_user_id",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "segundo proprietário NÃO enxerga post do primeiro",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "segundo proprietário NÃO executa publish_post em post alheio",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "segundo proprietário NÃO executa unpublish_post em post alheio",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "segundo proprietário NÃO executa soft_delete_post em post alheio",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "segundo proprietário NÃO altera mídia alheia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "segundo proprietário NÃO apaga objeto alheio",
+      "ok": true,
+      "detail": "removidos=0"
+    },
+    {
+      "name": "mídia de post publicado não pode ser tornada privada",
+      "ok": true,
+      "detail": "media_in_use_by_published_post"
+    },
+    {
+      "name": "unpublish_post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO vê post despublicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "mídia volta a ser privada após despublicar",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "soft_delete_post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon lista categorias com uma inativa (sem erro)",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

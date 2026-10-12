@@ -97,3 +97,36 @@ Skill `microcosmos-art-direction` consultada; composição preservada (destaque 
 - **Removido**: botão "Ver todos os posts" da seção da home (continua removido). A rota `/diario` permanece como arquivo editorial completo.
 - **Aceite final (2026-10-10)**: único ponto de entrada visível para `/diario` é um link discreto "Arquivo do diário" na navegação do rodapé (peso 500, `--ink-soft`, alvo de 44 px). Não é CTA e não há botão nem destaque na seção do Diário. Sem mudança de tokens, tipografia ou composição. Skill `microcosmos-art-direction` consultada: o link herda o estilo dos links do rodapé, apenas mais quieto.
 - **Dados de exemplo**: as três datas demonstrativas deixaram de ser idênticas (10, 9 e 8 de out.) para que a ordem seja determinística sem depender de desempate; continuam rotuladas como exemplo.
+
+## 2026-10-11 — Fase 2.1.3: endurecimento do CMS (acessibilidade e desempenho)
+
+Skill `microcosmos-art-direction` consultada. Composição, ordem das seis seções, paleta (creme/cinza, preto, menta, lilás) e tipografia **preservadas**. Mudanças, todas sem alteração de identidade:
+
+- **Imagens do hero**: versões WebP equivalentes (`scripts/optimize-hero-images.mjs`) no lugar dos PNG/JPEG de ~700–900 KB; originais mantidos em `public/images/hero`. Diferença visual média 0,32/255 (≤ 0,05 % dos canais com Δ > 24) em 1440/768/390 com movimento reduzido.
+- **Movimento automático (WCAG 2.2.2)**: o código tinha rotação infinita do selo (32 s) e flutuação infinita das esferas, o que contradiz a decisão registrada na Fase 1 ("sem animação ambiente, sem rotação do selo") e exige mecanismo de pausa. Agora o selo gira **uma volta em 5 s** e as esferas fazem **uma oscilação suave (≤ 5 s)** ao carregar, depois ficam estáticos. `prefers-reduced-motion` segue removendo tudo. **Decisão para a proprietária**: manter assim (alinhado ao aprovado), restaurar o loop (exigiria controle de pausa visível) ou remover totalmente o movimento do selo.
+- **Painel editorial**: bordas de campos em `#767274` (≈ 4,6:1 sobre branco; antes ≈ 2:1), alvos de 44 px, mensagens de erro por campo em vermelho `#a4152b` com prefixo "Erro:" (cor nunca é o único sinal), estados em português. Mesma família tipográfica e botões `.btn` existentes.
+- **Semântica**: `role="group"` nos dois `div` rotulados do hero; entradas de `/diario` em `h2` (antes h4 logo após o h1).
+- **Foco**: o anel do cartão do Diário continua desenhado em `::after` do link esticado (decisão da Fase 1); verificado visível em todas as paradas de Tab.
+
+## 2026-10-11 — Fase 2.2: experiências científicas (Atlas, Laboratório, Onde vivem?)
+
+Plugin `frontend-design` e skill `microcosmos-art-direction` consultados; sem mudança de identidade. Composição da homepage e ordem das seis seções **preservadas** (`tests/science-security.test.ts` falha se a ordem mudar ou se a homepage importar código científico). Mudanças visíveis na homepage: uma entrada "Ciência interativa" no menu (rota própria `/ciencia`; as demais continuam âncoras) e uma linha discreta de três atalhos sob o botão da seção "Parasita em destaque".
+
+### Superfícies e tokens
+- Fundo `--paper` (cinza claro) com painéis `--white`; o creme `#F7F5F1` já usado no painel editorial fica como variável local das páginas científicas. Nenhuma cor nova de marca.
+- Menta = estado/ação verificada ("Dado do NCBI Taxonomy", botões primários, registro atual na hierarquia). Lilás = marca de dado (categoria taxonômica, pontos do mapa). Ameixa (`--plum`) = agrupamentos do mapa e barras. Vermelho `#A4152B` (já aprovado na Fase 2.1.3) = só erro.
+- Controles com borda `#767274` (≈ 4,6:1) como no painel editorial; alvos mínimos de 44–48 px; foco `--ink` de 3 px herdado.
+- Tipografia: a mesma família da interface. Nome científico em itálico por convenção, com `lang="la"`.
+
+### Decisões de visualização
+- **Atlas**: a hierarquia taxonômica é um "zoom de lente" (anéis concêntricos, do táxon mais amplo ao registro, disco menta no centro) ao lado da lista numerada equivalente. O SVG é `aria-hidden` e só responde a mouse/toque; teclado e leitor de tela usam a lista. Motivo: o gesto reforça a identidade microscópica e mostra "profundidade" de classificação sem perder a leitura.
+- **Laboratório**: moldura de lente (anel duplo) é função, não enfeite: delimita a área de zoom. Estágio diagnóstico e espécie em rótulos separados; legenda literal do CDC em inglês e tradução marcada "a revisar".
+- **Mapa**: mapa SVG próprio (Natural Earth 1:110m, domínio público), sem tiles, token ou terceiros; agrupamentos com contagem; lista de registros como equivalente em texto. O aviso de limitações é sempre visível (não só em controle expansível).
+- **Estados**: carregando, vazio, erro, ambíguo e insuficiente são blocos explícitos (tracejado = lacuna/provisório, sólido vermelho = erro). Nenhum estado preenche a lacuna com conteúdo.
+
+### Movimento
+- Sem animação ambiente. Única transição: zoom da imagem do Laboratório (140 ms), removida em `prefers-reduced-motion`. Esqueleto de carregamento sem cintilação em movimento reduzido.
+
+### Pendências para a proprietária
+- Aprovar o rótulo "Ciência interativa" no menu e a linha de atalhos na seção do parasita.
+- Confirmar se `Giardia lamblia` (nome da referência) deve ser exibido como "Giardia duodenalis (nome aceito no NCBI)" na seção em destaque. O Atlas já resolve o sinônimo.

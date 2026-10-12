@@ -1,0 +1,230 @@
+{
+  "key": "393b8c26-e4e0-4dd0-a218-93fc074ebf4e",
+  "installationKey": "17a83780-3060-4851-9d6f-029d5fcb81c9",
+  "publishingOrganizationKey": "ada9d123-ddb4-467d-8891-806ea8d94230",
+  "doi": "10.15468/e97kmy",
+  "version": "1.194",
+  "external": false,
+  "numConstituents": 0,
+  "type": "OCCURRENCE",
+  "title": "INSDC Host Organism Sequences",
+  "description": "<p>This dataset contains INSDC sequences associated with host organisms. The dataset is prepared periodically using the public ENA API (https://www.ebi.ac.uk/ena/portal/api/) using the methods described below.EMBL-EBI also publishes other records in separate datasets (https://www.gbif.org/publisher/ada9d123-ddb4-467d-8891-806ea8d94230).The data was then processed as follows:1. Human sequences were excluded.2. For non-CONTIG records, the sample accession number (when available) along with the scientific name were used to identify sequence records corresponding to the same individuals (or group of organism of the same species in the same sample). Only one record was kept for each scientific name/sample accession number.3. Contigs and whole genome shotgun (WGS) records were added individually.4. The records that were missing some information were excluded. Only records associated with a specimen voucher or records containing both a location AND a date were kept.5. The records associated with the same vouchers are aggregated together.6. A lot of records left corresponded to individual sequences or reads corresponding to the same organisms. In practise, these were &#34;duplicate&#34; occurrence records that weren&#39;t filtered out in STEP 2 because the sample accession sample was missing. To identify those potential duplicates, we grouped all the remaining records by &#96;scientific_name&#96;, &#96;collection_date&#96;, &#96;location&#96;, &#96;country&#96;, &#96;identified_by&#96;, &#96;collected_by&#96; and &#96;sample_accession&#96; (when available). Then we excluded the groups that contained more than 50 records. The rationale behind the choice of threshold is explained here: https://github.com/gbif/embl-adapter/issues/10#issuecomment-8557579787. To improve the matching of the EBI scientific name to the GBIF backbone taxonomy, we incorporated the ENA taxonomic information. The kingdom, Phylum, Class, Order, Family, and genus were obtained from the ENA taxonomy checklist available here: http://ftp.ebi.ac.uk/pub/databases/ena/taxonomy/sdwca.zipMore information available here: https://github.com/gbif/embl-adapter#readmeYou can find the mapping used to format the EMBL data to Darwin Core Archive here: https://github.com/gbif/embl-adapter/blob/master/DATAMAPPING.md</p>",
+  "language": "eng",
+  "citation": {
+    "text": "European Bioinformatics Institute (EMBL-EBI), GBIF Helpdesk (2026). INSDC Host Organism Sequences. Version 1.194. European Nucleotide Archive (EMBL-EBI). Occurrence dataset https://doi.org/10.15468/e97kmy accessed via GBIF.org on 2026-10-11.",
+    "citationProvidedBySource": false
+  },
+  "contactsCitation": [
+    {
+      "key": 7642379,
+      "abbreviatedName": "European Bioinformatics Institute (EMBL-EBI)",
+      "lastName": "European Bioinformatics Institute (EMBL-EBI)",
+      "roles": [
+        "ORIGINATOR"
+      ],
+      "userId": []
+    },
+    {
+      "key": 7642380,
+      "abbreviatedName": "GBIF Helpdesk",
+      "lastName": "GBIF Helpdesk",
+      "roles": [
+        "METADATA_AUTHOR"
+      ],
+      "userId": []
+    }
+  ],
+  "lockedForAutoUpdate": false,
+  "createdBy": "trobertson",
+  "modifiedBy": "crawler.gbif.org",
+  "created": "2021-09-13T14:03:21.377+00:00",
+  "modified": "2026-10-10T12:02:54.955+00:00",
+  "contacts": [
+    {
+      "key": 7642379,
+      "type": "ORIGINATOR",
+      "primary": true,
+      "userId": [],
+      "lastName": "European Bioinformatics Institute (EMBL-EBI)",
+      "position": [],
+      "email": [
+        "datasubs@ebi.ac.uk"
+      ],
+      "phone": [],
+      "homepage": [
+        "http://www.ebi.ac.uk"
+      ],
+      "address": [],
+      "createdBy": "crawler.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2026-10-10T12:02:54.919+00:00",
+      "modified": "2026-10-10T12:02:54.919+00:00"
+    },
+    {
+      "key": 7642380,
+      "type": "METADATA_AUTHOR",
+      "primary": true,
+      "userId": [],
+      "lastName": "GBIF Helpdesk",
+      "position": [],
+      "email": [
+        "helpdesk@gbif.org"
+      ],
+      "phone": [],
+      "homepage": [],
+      "address": [],
+      "createdBy": "crawler.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2026-10-10T12:02:54.922+00:00",
+      "modified": "2026-10-10T12:02:54.922+00:00"
+    },
+    {
+      "key": 7642381,
+      "type": "ADMINISTRATIVE_POINT_OF_CONTACT",
+      "primary": true,
+      "userId": [],
+      "lastName": "European Bioinformatics Institute (EMBL-EBI)",
+      "position": [],
+      "email": [
+        "datasubs@ebi.ac.uk"
+      ],
+      "phone": [],
+      "homepage": [
+        "http://www.ebi.ac.uk"
+      ],
+      "address": [],
+      "createdBy": "crawler.gbif.org",
+      "modifiedBy": "crawler.gbif.org",
+      "created": "2026-10-10T12:02:54.924+00:00",
+      "modified": "2026-10-10T12:02:54.924+00:00"
+    }
+  ],
+  "endpoints": [
+    {
+      "key": 1329838,
+      "type": "DWC_ARCHIVE",
+      "url": "https://cloud.gbif.org/eca/archive.do?r=insdc-host-organism-sequences",
+      "createdBy": "ada9d123-ddb4-467d-8891-806ea8d94230",
+      "modifiedBy": "ada9d123-ddb4-467d-8891-806ea8d94230",
+      "created": "2026-10-10T12:01:38.785+00:00",
+      "modified": "2026-10-10T12:01:38.785+00:00",
+      "machineTags": []
+    },
+    {
+      "key": 1329837,
+      "type": "EML",
+      "url": "https://cloud.gbif.org/eca/eml.do?r=insdc-host-organism-sequences",
+      "createdBy": "ada9d123-ddb4-467d-8891-806ea8d94230",
+      "modifiedBy": "ada9d123-ddb4-467d-8891-806ea8d94230",
+      "created": "2026-10-10T12:01:38.733+00:00",
+      "modified": "2026-10-10T12:01:38.733+00:00",
+      "machineTags": []
+    }
+  ],
+  "machineTags": [
+    {
+      "key": 33140323,
+      "namespace": "crawler.gbif.org",
+      "name": "crawl_attempt",
+      "value": "300",
+      "createdBy": "crawler.gbif.org",
+      "created": "2026-10-10T12:02:38.832+00:00"
+    },
+    {
+      "key": 26974462,
+      "namespace": "datasetCategory.gbif.org",
+      "name": "datasetCategory.gbif.org",
+      "value": "eDNA",
+      "createdBy": "jwaller",
+      "created": "2025-09-16T00:46:55.752+00:00"
+    },
+    {
+      "key": 33130540,
+      "namespace": "pipelines.gbif.org",
+      "name": "allowCoordinatesFlipping",
+      "value": "true",
+      "createdBy": "MattBlissett",
+      "created": "2026-10-08T14:18:41.748+00:00"
+    }
+  ],
+  "tags": [],
+  "identifiers": [
+    {
+      "key": 325197,
+      "type": "URL",
+      "identifier": "https://cloud.gbif.org/eca/resource?r=insdc-host-organism-sequences",
+      "createdBy": "crawler.gbif.org",
+      "created": "2022-12-02T22:32:00.627+00:00",
+      "primary": false
+    },
+    {
+      "key": 325196,
+      "type": "UUID",
+      "identifier": "393b8c26-e4e0-4dd0-a218-93fc074ebf4e",
+      "createdBy": "crawler.gbif.org",
+      "created": "2022-12-02T22:32:00.626+00:00",
+      "primary": false
+    }
+  ],
+  "comments": [
+    {
+      "key": 46445,
+      "content": "https://github.com/gbif/dataset-category-management/issues/276",
+      "createdBy": "jwaller",
+      "modifiedBy": "jwaller",
+      "created": "2026-03-12T08:17:11.132+00:00",
+      "modified": "2026-03-12T08:17:11.132+00:00"
+    },
+    {
+      "key": 40203,
+      "content": "https://github.com/gbif/dataset-category-management/issues/276",
+      "createdBy": "jwaller",
+      "modifiedBy": "jwaller",
+      "created": "2025-09-23T09:18:17.627+00:00",
+      "modified": "2025-09-23T09:18:17.627+00:00"
+    }
+  ],
+  "bibliographicCitations": [],
+  "curatorialUnits": [],
+  "taxonomicCoverages": [],
+  "geographicCoverages": [
+    {
+      "description": "Worldwide",
+      "boundingBox": {
+        "minLatitude": -90,
+        "maxLatitude": 90,
+        "minLongitude": -180,
+        "maxLongitude": 180,
+        "globalCoverage": true
+      }
+    }
+  ],
+  "temporalCoverages": [],
+  "keywordCollections": [
+    {
+      "thesaurus": "GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type_2015-07-10.xml",
+      "keywords": [
+        "Metadata"
+      ]
+    }
+  ],
+  "countryCoverage": [],
+  "collections": [],
+  "dataDescriptions": [],
+  "dataLanguage": "eng",
+  "pubDate": "2026-10-10T00:00:00.000+00:00",
+  "maintenanceUpdateFrequency": "WEEKLY",
+  "maintenanceDescription": "",
+  "license": "http://creativecommons.org/licenses/by/4.0/legalcode",
+  "dwca": {
+    "coreType": "http://rs.tdwg.org/dwc/terms/Occurrence",
+    "extensions": [],
+    "modified": "2026-10-10T12:02:54.839+00:00"
+  },
+  "category": [
+    "eDNA"
+  ],
+  "approximateCounts": {
+    "occurrenceCount": 2270941
+  }
+}

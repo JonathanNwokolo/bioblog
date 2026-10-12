@@ -29,5 +29,6 @@ export const primaryNav: NavItem[] = [
   { label: "Trajetória", href: "/#trajetoria" },
   { label: "Diário de Bancada", href: "/#diario" },
   { label: "Parasita em destaque", href: "/#parasita" },
+  { label: "Ciência interativa", href: "/ciencia" },
   { label: "Contato", href: "/#contato" },
 ];

@@ -132,6 +132,8 @@ export function LensField({ kind, imageSrc, label, credit, zoom = 2.6, className
     setActive(true);
   };
 
+  // Widget personalizado: grupo focável cuja lente se move com ponteiro e setas (ver `hintId`).
+  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */
   return (
     <div
       ref={rootRef}
@@ -156,7 +158,7 @@ export function LensField({ kind, imageSrc, label, credit, zoom = 2.6, className
       <span className={styles.frame}>
         {imageSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={imageSrc} alt="" className={styles.photo} />
+          <img src={imageSrc} alt="" className={styles.photo} width={960} height={717} decoding="async" />
         ) : (
           <Specimen kind={kind} className={styles.art} title={label} />
         )}
@@ -166,7 +168,7 @@ export function LensField({ kind, imageSrc, label, credit, zoom = 2.6, className
         <span ref={layerRef} className={styles.layer}>
           {imageSrc ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={imageSrc} alt="" className={styles.photoDetail} />
+            <img src={imageSrc} alt="" className={styles.photoDetail} width={960} height={717} decoding="async" loading="lazy" />
           ) : (
             <Specimen kind={kind} detail className={styles.art} />
           )}

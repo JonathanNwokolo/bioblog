@@ -68,7 +68,14 @@ describe("site", () => {
     assert.equal(site.email, null);
   });
 
-  it("navegação usa âncoras absolutas da homepage", () => {
-    for (const item of primaryNav) assert.match(item.href, /^\/#[a-z]+$/);
+  it("navegação usa âncoras absolutas da homepage, mais a entrada da ciência interativa", () => {
+    // As seções da homepage continuam como âncoras; a Fase 2.2 acrescenta uma única rota própria.
+    const anchors = primaryNav.filter((item) => item.href !== "/ciencia");
+    for (const item of anchors) assert.match(item.href, /^\/#[a-z]+$/);
+    assert.equal(primaryNav.length - anchors.length, 1);
+    assert.deepEqual(
+      anchors.map((item) => item.href),
+      ["/#topo", "/#trajetoria", "/#diario", "/#parasita", "/#contato"],
+    );
   });
 });

@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Plus_Jakarta_Sans } from "next/font/google";
+import { Caveat, Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import { SiteFooter } from "@/components/footer/SiteFooter";
 import { SiteHeader } from "@/components/header/SiteHeader";
 import "./globals.css";
 
 /**
- * Uma família para toda a interface (Plus Jakarta Sans, variável 200–800) e
- * Caveat só para anotações de bancada, o gesto manuscrito da referência.
+ * Tipografia:
+ * - Plus Jakarta Sans (interface e leitura funcional)
+ * - Newsreader (serifa editorial científica para títulos e nomes de táxons)
+ * - Caveat (anotações de bancada)
  */
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -14,10 +16,19 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
   display: "swap",
+  // Só anotações decorativas: não disputa banda com a fonte principal no carregamento crítico.
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -37,7 +48,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${jakarta.variable} ${caveat.variable}`}>
+    <html lang="pt-BR" className={`${jakarta.variable} ${newsreader.variable} ${caveat.variable}`}>
       <body>
         <a className="skip-link" href="#conteudo">
           Pular para o conteúdo

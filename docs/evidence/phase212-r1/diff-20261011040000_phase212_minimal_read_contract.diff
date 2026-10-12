@@ -1,0 +1,295 @@
+diff --git a/supabase/migrations/20261011040000_phase212_minimal_read_contract.sql b/supabase/migrations/20261011040000_phase212_minimal_read_contract.sql
+new file mode 100644
+index 0000000..9d56584
+--- /dev/null
++++ b/supabase/migrations/20261011040000_phase212_minimal_read_contract.sql
+@@ -0,0 +1,289 @@
++-- MICROCosmos Phase 2.1.2 (owner decision R1): minimal public read contract.
++-- See docs/phase212-prepush-report.md.
++--
++-- Problem: migration 20261011030000 let `authenticated` read published rows, but the role kept
++-- table-wide SELECT, so any logged-in user could read posts.author_user_id and
++-- media_assets.owner_id / bytes / sha256. The owner is the same database role (`authenticated`)
++-- as every other logged-in user, so the only way to hide those columns from ordinary users
++-- without SECURITY DEFINER is to take them away from the role completely and make sure no
++-- code path needs them.
++--
++-- Contract after this migration (identical for anon and authenticated):
++--   posts         SELECT: id, slug, title, excerpt, body_json, category_id, hero_media_id,
++--                         status, first_published_at, published_at, created_at, updated_at, deleted_at
++--   media_assets  SELECT: id, object_key, state, mime_type, width, height, alt_text, credit,
++--                         created_at, deleted_at
++--   Never selectable by an API role: posts.author_user_id; media_assets.owner_id,
++--   storage_bucket, bytes, sha256. They stay writable on INSERT (the server sets them) and are
++--   still enforced by RLS policies, which are evaluated by the engine and do not require the
++--   caller to hold SELECT on the column.
++--   Row scope is unchanged: published rows for everybody, everything else only for the active owner.
++--
++-- Consequences handled here:
++--   * `select *` / `returning *` / `where author_user_id = ...` in the lifecycle RPCs would now
++--     fail with "permission denied". They are rewritten (still SECURITY INVOKER) to use explicit
++--     columns, to rely on RLS for ownership, and to return a minimal composite type instead of
++--     the whole `public.posts` row.
++--   * UPDATE is restricted to the columns the CMS legitimately edits, so identity/integrity
++--     columns (slug, object_key, sha256, owner_id, author_user_id, ...) cannot be rewritten
++--     through the API.
++--
++-- No data is read, changed or deleted. No SECURITY DEFINER object is introduced.
++
++-- ------------------------------------------------------------ 1. column privileges
++revoke select on public.posts, public.media_assets from authenticated;
++
++grant select (id, slug, title, excerpt, body_json, category_id, hero_media_id, status,
++              first_published_at, published_at, created_at, updated_at, deleted_at)
++  on public.posts to authenticated;
++grant select (id, object_key, state, mime_type, width, height, alt_text, credit, created_at, deleted_at)
++  on public.media_assets to authenticated;
++
++revoke update on public.posts, public.media_assets from authenticated;
++grant update (title, excerpt, body_json, category_id, hero_media_id, status,
++              first_published_at, published_at, updated_at, deleted_at)
++  on public.posts to authenticated;
++grant update (state, deleted_at, alt_text, credit) on public.media_assets to authenticated;
++
++-- ------------------------------------------------------------ 2. lifecycle RPCs
++create type public.post_lifecycle_result as (
++  id uuid,
++  slug text,
++  status public.post_status,
++  published_at timestamptz,
++  updated_at timestamptz
++);
++
++drop function if exists public.publish_post(uuid);
++drop function if exists public.unpublish_post(uuid);
++drop function if exists public.soft_delete_post(uuid);
++drop function if exists public.save_post_changes(uuid, text, text, jsonb, uuid, uuid);
++
++-- Ownership is enforced twice: is_active_owner() up front, and the owner-only UPDATE/SELECT
++-- policies on posts/media_assets (author_user_id / owner_id = auth.uid()). A row that does not
++-- belong to the caller is invisible and not updatable, so it surfaces as post_not_found.
++create function public.publish_post(target_post_id uuid)
++returns public.post_lifecycle_result
++language plpgsql
++security invoker
++set search_path = ''
++as $$
++declare
++  v_hero uuid;
++  v_body jsonb;
++  v_id uuid;
++  v_slug text;
++  v_status public.post_status;
++  v_published timestamptz;
++  v_updated timestamptz;
++begin
++  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
++
++  select p.hero_media_id, p.body_json into v_hero, v_body
++  from public.posts p
++  where p.id = target_post_id and p.deleted_at is null
++  for update;
++  if not found then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++  if v_hero is null then raise exception 'hero_media_required' using errcode = '23514'; end if;
++  if jsonb_array_length(v_body) = 0 then raise exception 'body_required' using errcode = '23514'; end if;
++
++  update public.media_assets m set state = 'published', deleted_at = null
++  where m.id = v_hero and m.deleted_at is null;
++  if not found then raise exception 'media_not_found' using errcode = '23514'; end if;
++
++  update public.posts p set
++    status = 'published',
++    first_published_at = coalesce(p.first_published_at, now()),
++    published_at = coalesce(p.first_published_at, now()),
++    deleted_at = null,
++    updated_at = now()
++  where p.id = target_post_id
++  returning p.id, p.slug, p.status, p.published_at, p.updated_at
++  into v_id, v_slug, v_status, v_published, v_updated;
++  if v_id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++
++  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
++  values (auth.uid(), 'publish', 'post', target_post_id);
++  return (v_id, v_slug, v_status, v_published, v_updated)::public.post_lifecycle_result;
++end;
++$$;
++
++create function public.unpublish_post(target_post_id uuid)
++returns public.post_lifecycle_result
++language plpgsql
++security invoker
++set search_path = ''
++as $$
++declare
++  v_hero uuid;
++  v_id uuid;
++  v_slug text;
++  v_status public.post_status;
++  v_published timestamptz;
++  v_updated timestamptz;
++begin
++  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
++
++  update public.posts p set status = 'unpublished', updated_at = now()
++  where p.id = target_post_id and p.deleted_at is null and p.status = 'published'
++  returning p.id, p.slug, p.status, p.published_at, p.updated_at, p.hero_media_id
++  into v_id, v_slug, v_status, v_published, v_updated, v_hero;
++  if v_id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++
++  update public.media_assets m set state = 'draft'
++  where m.id = v_hero
++    and not exists (
++      select 1 from public.posts p
++      where p.hero_media_id = v_hero
++        and p.status = 'published' and p.deleted_at is null and p.id <> target_post_id
++    );
++  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
++  values (auth.uid(), 'unpublish', 'post', target_post_id);
++  return (v_id, v_slug, v_status, v_published, v_updated)::public.post_lifecycle_result;
++end;
++$$;
++
++create function public.soft_delete_post(target_post_id uuid)
++returns public.post_lifecycle_result
++language plpgsql
++security invoker
++set search_path = ''
++as $$
++declare
++  v_hero uuid;
++  v_id uuid;
++  v_slug text;
++  v_status public.post_status;
++  v_published timestamptz;
++  v_updated timestamptz;
++begin
++  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
++
++  update public.posts p set status = 'deleted', deleted_at = now(), updated_at = now()
++  where p.id = target_post_id and p.deleted_at is null
++  returning p.id, p.slug, p.status, p.published_at, p.updated_at, p.hero_media_id
++  into v_id, v_slug, v_status, v_published, v_updated, v_hero;
++  if v_id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++
++  update public.media_assets m set state = 'draft'
++  where m.id = v_hero
++    and not exists (
++      select 1 from public.posts p
++      where p.hero_media_id = v_hero and p.status = 'published' and p.deleted_at is null
++    );
++  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
++  values (auth.uid(), 'delete', 'post', target_post_id);
++  return (v_id, v_slug, v_status, v_published, v_updated)::public.post_lifecycle_result;
++end;
++$$;
++
++create function public.save_post_changes(
++  target_post_id uuid,
++  new_title text,
++  new_excerpt text,
++  new_body jsonb,
++  new_category uuid,
++  new_hero uuid
++)
++returns public.post_lifecycle_result
++language plpgsql
++security invoker
++set search_path = ''
++as $$
++declare
++  v_cur_status public.post_status;
++  v_cur_hero uuid;
++  v_id uuid;
++  v_slug text;
++  v_status public.post_status;
++  v_published timestamptz;
++  v_updated timestamptz;
++begin
++  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
++
++  select p.status, p.hero_media_id into v_cur_status, v_cur_hero
++  from public.posts p
++  where p.id = target_post_id and p.deleted_at is null
++  for update;
++  if not found then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++
++  if not exists (select 1 from public.categories c where c.id = new_category and c.active) then
++    raise exception 'category_not_found' using errcode = '23514';
++  end if;
++
++  -- Ownership of the hero is proven by the owner-only UPDATE policy: the no-op update only
++  -- matches a media row that belongs to the caller. owner_id is never read.
++  if new_hero is not null then
++    update public.media_assets m set deleted_at = m.deleted_at
++    where m.id = new_hero and m.deleted_at is null;
++    if not found then raise exception 'media_not_found' using errcode = '23514'; end if;
++  end if;
++
++  if v_cur_status = 'published' then
++    if new_hero is null then raise exception 'hero_media_required' using errcode = '23514'; end if;
++    if jsonb_typeof(new_body) <> 'array' or jsonb_array_length(new_body) = 0 then
++      raise exception 'body_required' using errcode = '23514';
++    end if;
++    update public.media_assets m set state = 'published' where m.id = new_hero and m.state <> 'published';
++  end if;
++
++  update public.posts p set
++    title = new_title,
++    excerpt = new_excerpt,
++    body_json = new_body,
++    category_id = new_category,
++    hero_media_id = new_hero,
++    updated_at = now()
++  where p.id = target_post_id
++  returning p.id, p.slug, p.status, p.published_at, p.updated_at
++  into v_id, v_slug, v_status, v_published, v_updated;
++  if v_id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
++
++  if v_cur_status = 'published'
++     and v_cur_hero is not null
++     and v_cur_hero is distinct from new_hero then
++    update public.media_assets m set state = 'draft'
++    where m.id = v_cur_hero
++      and not exists (
++        select 1 from public.posts p
++        where p.hero_media_id = v_cur_hero
++          and p.status = 'published' and p.deleted_at is null
++      );
++  end if;
++
++  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
++  values (auth.uid(), 'update', 'post', target_post_id);
++  return (v_id, v_slug, v_status, v_published, v_updated)::public.post_lifecycle_result;
++end;
++$$;
++
++-- Fresh functions inherit Supabase's default EXECUTE for anon/authenticated: close that again.
++revoke all on function public.publish_post(uuid), public.unpublish_post(uuid), public.soft_delete_post(uuid),
++  public.save_post_changes(uuid, text, text, jsonb, uuid, uuid) from public, anon;
++grant execute on function public.publish_post(uuid), public.unpublish_post(uuid), public.soft_delete_post(uuid),
++  public.save_post_changes(uuid, text, text, jsonb, uuid, uuid) to authenticated;
++
++-- ------------------------------------------------------------ 3. self-check
++-- Fails the migration (and rolls it back) if an internal column is still reachable.
++do $$
++declare
++  r text;
++  c record;
++begin
++  for r in select unnest(array['anon', 'authenticated']) loop
++    for c in
++      select * from (values
++        ('public.posts', 'author_user_id'),
++        ('public.media_assets', 'owner_id'),
++        ('public.media_assets', 'storage_bucket'),
++        ('public.media_assets', 'bytes'),
++        ('public.media_assets', 'sha256')
++      ) as t(rel, col)
++    loop
++      if has_column_privilege(r, c.rel, c.col, 'SELECT') then
++        raise exception 'internal column % of % is selectable by %', c.col, c.rel, r;
++      end if;
++    end loop;
++  end loop;
++end;
++$$;

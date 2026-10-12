@@ -1,0 +1,260 @@
+-- MICROCosmos Phase 2.1.1: hardening confirmed by real RLS probes on a local stack
+-- (see docs/phase211-local-verification.md and docs/evidence/phase211/).
+--
+-- Fixes:
+--  1. anon policies called is_active_owner(), which anon cannot execute against
+--     owner_accounts -> "permission denied" instead of an empty result.
+--  2. posts.author_user_id / media_assets.owner_id / object_key (owner uuid folder)
+--     were readable by anon. Public reads now go through column grants.
+--  3. A published post could be edited to have no hero or a non-public hero,
+--     which makes the whole public diary throw. Enforced in SQL + atomic RPC.
+--  4. unpublish turned drafts into 'unpublished'; soft delete did not return the slug.
+
+-- ---------------------------------------------------------------- policies
+drop policy if exists public_reads_categories on public.categories;
+create policy anon_reads_active_categories on public.categories for select to anon
+using (active);
+create policy owner_reads_categories on public.categories for select to authenticated
+using (active or public.is_active_owner());
+
+drop policy if exists public_reads_published_media on public.media_assets;
+create policy anon_reads_published_media on public.media_assets for select to anon
+using (state = 'published' and deleted_at is null);
+create policy owner_reads_media on public.media_assets for select to authenticated
+using (owner_id = (select auth.uid()) and public.is_active_owner());
+
+drop policy if exists public_reads_published_posts on public.posts;
+create policy anon_reads_published_posts on public.posts for select to anon
+using (status = 'published' and deleted_at is null);
+create policy owner_reads_posts on public.posts for select to authenticated
+using (author_user_id = (select auth.uid()) and public.is_active_owner());
+
+-- ------------------------------------------------- public / admin column split
+revoke select on public.posts, public.media_assets from anon;
+grant select (id, slug, title, excerpt, body_json, category_id, hero_media_id, status,
+              first_published_at, published_at, created_at, updated_at, deleted_at)
+  on public.posts to anon;
+grant select (id, object_key, state, mime_type, width, height, alt_text, credit, created_at, deleted_at)
+  on public.media_assets to anon;
+
+-- ------------------------------------------------------------------ storage
+-- Object keys no longer need to embed the owner id: ownership is storage.objects.owner_id.
+drop policy if exists owner_uploads_private_media on storage.objects;
+drop policy if exists owner_reads_private_media on storage.objects;
+drop policy if exists owner_deletes_private_media on storage.objects;
+drop policy if exists public_reads_published_objects on storage.objects;
+
+create policy owner_uploads_private_media on storage.objects for insert to authenticated
+with check (
+  bucket_id = 'post-media'
+  and owner_id = (select auth.uid())::text
+  and public.is_active_owner()
+);
+create policy owner_reads_private_media on storage.objects for select to authenticated
+using (
+  bucket_id = 'post-media'
+  and owner_id = (select auth.uid())::text
+  and public.is_active_owner()
+);
+create policy owner_deletes_private_media on storage.objects for delete to authenticated
+using (
+  bucket_id = 'post-media'
+  and owner_id = (select auth.uid())::text
+  and public.is_active_owner()
+);
+create policy anon_reads_published_objects on storage.objects for select to anon
+using (
+  bucket_id = 'post-media'
+  and exists (
+    select 1 from public.media_assets m
+    where m.object_key = name and m.state = 'published' and m.deleted_at is null
+  )
+);
+
+-- --------------------------------------------------------------- invariants
+create or replace function public.enforce_published_post_invariants()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+begin
+  if new.status = 'published' and new.deleted_at is null then
+    if new.hero_media_id is null then
+      raise exception 'hero_media_required' using errcode = '23514';
+    end if;
+    if jsonb_array_length(new.body_json) = 0 then
+      raise exception 'body_required' using errcode = '23514';
+    end if;
+    if not exists (
+      select 1 from public.media_assets m
+      where m.id = new.hero_media_id and m.state = 'published' and m.deleted_at is null
+    ) then
+      raise exception 'hero_media_not_public' using errcode = '23514';
+    end if;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists posts_enforce_published_invariants on public.posts;
+create trigger posts_enforce_published_invariants
+before insert or update on public.posts
+for each row execute function public.enforce_published_post_invariants();
+
+create or replace function public.protect_in_use_media()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+begin
+  if old.state = 'published' and (new.state <> 'published' or new.deleted_at is not null)
+     and exists (
+       select 1 from public.posts p
+       where p.hero_media_id = old.id and p.status = 'published' and p.deleted_at is null
+     ) then
+    raise exception 'media_in_use_by_published_post' using errcode = '23514';
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists media_assets_protect_in_use on public.media_assets;
+create trigger media_assets_protect_in_use
+before update on public.media_assets
+for each row execute function public.protect_in_use_media();
+
+-- ---------------------------------------------------------------- functions
+create or replace function public.unpublish_post(target_post_id uuid)
+returns public.posts
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare selected_post public.posts;
+begin
+  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
+  update public.posts set status = 'unpublished', updated_at = now()
+  where id = target_post_id and author_user_id = auth.uid()
+    and deleted_at is null and status = 'published'
+  returning * into selected_post;
+  if selected_post.id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
+
+  update public.media_assets set state = 'draft'
+  where id = selected_post.hero_media_id
+    and not exists (
+      select 1 from public.posts p
+      where p.hero_media_id = selected_post.hero_media_id
+        and p.status = 'published' and p.deleted_at is null and p.id <> target_post_id
+    );
+  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
+  values (auth.uid(), 'unpublish', 'post', target_post_id);
+  return selected_post;
+end;
+$$;
+
+drop function if exists public.soft_delete_post(uuid);
+create function public.soft_delete_post(target_post_id uuid)
+returns public.posts
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare selected_post public.posts;
+begin
+  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
+  update public.posts set status = 'deleted', deleted_at = now(), updated_at = now()
+  where id = target_post_id and author_user_id = auth.uid() and deleted_at is null
+  returning * into selected_post;
+  if selected_post.id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
+  update public.media_assets set state = 'draft'
+  where id = selected_post.hero_media_id
+    and not exists (
+      select 1 from public.posts p where p.hero_media_id = selected_post.hero_media_id
+        and p.status = 'published' and p.deleted_at is null
+    );
+  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
+  values (auth.uid(), 'delete', 'post', target_post_id);
+  return selected_post;
+end;
+$$;
+
+-- Atomic edit. Returns the persisted row so the server revalidates from stored slugs only.
+create or replace function public.save_post_changes(
+  target_post_id uuid,
+  new_title text,
+  new_excerpt text,
+  new_body jsonb,
+  new_category uuid,
+  new_hero uuid
+)
+returns public.posts
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare
+  current_post public.posts;
+  saved_post public.posts;
+begin
+  if not public.is_active_owner() then raise exception 'not_authorized' using errcode = '42501'; end if;
+
+  select * into current_post from public.posts
+  where id = target_post_id and author_user_id = auth.uid() and deleted_at is null
+  for update;
+  if current_post.id is null then raise exception 'post_not_found' using errcode = 'P0002'; end if;
+
+  if not exists (select 1 from public.categories where id = new_category and active) then
+    raise exception 'category_not_found' using errcode = '23514';
+  end if;
+
+  if new_hero is not null and not exists (
+    select 1 from public.media_assets
+    where id = new_hero and owner_id = auth.uid() and deleted_at is null
+  ) then
+    raise exception 'media_not_found' using errcode = '23514';
+  end if;
+
+  if current_post.status = 'published' then
+    if new_hero is null then raise exception 'hero_media_required' using errcode = '23514'; end if;
+    if jsonb_typeof(new_body) <> 'array' or jsonb_array_length(new_body) = 0 then
+      raise exception 'body_required' using errcode = '23514';
+    end if;
+    update public.media_assets set state = 'published' where id = new_hero and state <> 'published';
+  end if;
+
+  update public.posts set
+    title = new_title,
+    excerpt = new_excerpt,
+    body_json = new_body,
+    category_id = new_category,
+    hero_media_id = new_hero,
+    updated_at = now()
+  where id = target_post_id
+  returning * into saved_post;
+
+  if current_post.status = 'published'
+     and current_post.hero_media_id is not null
+     and current_post.hero_media_id is distinct from new_hero then
+    update public.media_assets set state = 'draft'
+    where id = current_post.hero_media_id
+      and not exists (
+        select 1 from public.posts p
+        where p.hero_media_id = current_post.hero_media_id
+          and p.status = 'published' and p.deleted_at is null
+      );
+  end if;
+
+  insert into public.audit_events(actor_user_id, action, entity_type, entity_id)
+  values (auth.uid(), 'update', 'post', target_post_id);
+  return saved_post;
+end;
+$$;
+
+revoke all on function public.unpublish_post(uuid), public.soft_delete_post(uuid) from public, anon;
+revoke all on function public.save_post_changes(uuid, text, text, jsonb, uuid, uuid) from public, anon;
+revoke all on function public.is_active_owner(uuid) from public, anon;
+grant execute on function public.unpublish_post(uuid), public.soft_delete_post(uuid) to authenticated;
+grant execute on function public.save_post_changes(uuid, text, text, jsonb, uuid, uuid) to authenticated;
+grant execute on function public.is_active_owner(uuid) to authenticated;

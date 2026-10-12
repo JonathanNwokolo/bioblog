@@ -1,0 +1,148 @@
+{
+  "at": "2026-10-11T22:30:19.083Z",
+  "project": "oetwoiuzoniwwtrdnohr",
+  "total": 28,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Auth: cadastro público desativado (disable_signup)",
+      "ok": true,
+      "detail": "disable_signup=true"
+    },
+    {
+      "name": "Auth: logins anônimos desativados",
+      "ok": true,
+      "detail": "anonymous=false"
+    },
+    {
+      "name": "Auth: provedores sociais/telefone desativados",
+      "ok": true,
+      "detail": "[[\"email\",true]]"
+    },
+    {
+      "name": "posts: leitura publicada sem erro",
+      "ok": true,
+      "detail": "n=0"
+    },
+    {
+      "name": "posts: somente publicados visíveis",
+      "ok": true,
+      "detail": "n=0"
+    },
+    {
+      "name": "posts.author_user_id negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "media_assets.owner_id negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "media_assets.sha256 negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "media_assets.bytes negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "media_assets.storage_bucket negada",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "owner_accounts: sem leitura anônima",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "audit_events: sem leitura anônima",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "post_revisions: sem leitura anônima",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "categories: leitura pública",
+      "ok": true,
+      "detail": "n=4"
+    },
+    {
+      "name": "posts: INSERT anônimo rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "owner_accounts: INSERT anônimo rejeitado",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "posts: UPDATE anônimo não altera linhas",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "posts: DELETE anônimo não remove linhas",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC publish_post negada ao anônimo",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC unpublish_post negada ao anônimo",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC soft_delete_post negada ao anônimo",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "RPC is_active_owner negada ao anônimo",
+      "ok": true,
+      "detail": "42501"
+    },
+    {
+      "name": "Storage: signed URL de objeto privado negada (64735f74…)",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "Storage: download anônimo negado (64735f74…)",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "Storage: signed URL de objeto privado negada (f65424d0…)",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "Storage: download anônimo negado (f65424d0…)",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "Storage: listagem anônima vazia",
+      "ok": true,
+      "detail": "n=0"
+    },
+    {
+      "name": "Storage: URL pública direta não serve objeto (bucket privado)",
+      "ok": true,
+      "detail": "HTTP 400"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "header": {
+    "type": "esummary",
+    "version": "0.3"
+  },
+  "result": {
+    "5740": {
+      "uid": "5740",
+      "status": "active",
+      "rank": "genus",
+      "division": "diplomonads",
+      "scientificname": "Giardia",
+      "commonname": "",
+      "taxid": 5740,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2002/05/08 00:00",
+      "genbankdivision": "Invertebrates"
+    },
+    "2876047": {
+      "uid": "2876047",
+      "status": "active",
+      "rank": "genus",
+      "division": "gastropods",
+      "scientificname": "Anceyoconcha",
+      "commonname": "",
+      "taxid": 2876047,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2023/01/10 00:00",
+      "genbankdivision": "Invertebrates"
+    },
+    "uids": [
+      "2876047",
+      "5740"
+    ]
+  }
+}

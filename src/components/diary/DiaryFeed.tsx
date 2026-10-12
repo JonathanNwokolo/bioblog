@@ -142,8 +142,12 @@ export function DiaryFeed({ count, children }: DiaryFeedProps) {
           className={styles.scroller}
           role="region"
           aria-label={`Feed com ${count} ${count === 1 ? "publicação anterior" : "publicações anteriores"}`}
+          // Região rolável precisa ser focável para o teclado alcançar o conteúdo fora da vista.
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
           tabIndex={0}
         >
+          {/* role="list" explícito: `list-style: none` remove a semântica de lista no Safari/VoiceOver. */}
+          {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
           <ol className={styles.list} role="list">
             {children}
           </ol>

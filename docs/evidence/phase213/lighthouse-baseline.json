@@ -1,0 +1,141 @@
+{
+  "at": "2026-10-11T18:26:48.103Z",
+  "note": "Lighthouse lab data, localhost production build, simulated throttling (mobile preset: Slow 4G / 4x CPU). Not field data.",
+  "rows": [
+    {
+      "page": "desktop-diario",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 100,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 255,
+      "lcpMs": 806,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 3,
+      "transferKB": 1201,
+      "jsKB": 154,
+      "lcpElement": "<img class=\"JF2Awq_photo \" src=\"/api/media/6f46c50e-9a40-467e-9d69-c35700f7db96\"",
+      "failedAudits": [],
+      "opportunities": [
+        "prioritize-lcp-image(182ms)",
+        "unused-javascript(120ms)"
+      ]
+    },
+    {
+      "page": "desktop-diario_qa-publicado-d75dfa",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 100,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 250,
+      "lcpMs": 564,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 12,
+      "transferKB": 1183,
+      "jsKB": 157,
+      "lcpElement": "<h1 class=\"ULvV9G_title\">",
+      "failedAudits": [],
+      "opportunities": []
+    },
+    {
+      "page": "desktop-home",
+      "form": "desktop",
+      "throttling": "simulate",
+      "perf": 99,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 293,
+      "lcpMs": 997,
+      "tbtMs": 0,
+      "cls": 0,
+      "ttfbMs": 7,
+      "transferKB": 3348,
+      "jsKB": 151,
+      "lcpElement": "<img class=\"uyHV-q_photo\" src=\"/images/hero/hero-portrait-cutout.png\" alt=\"Ynara",
+      "failedAudits": [],
+      "opportunities": [
+        "modern-image-formats(630ms)",
+        "uses-responsive-images(520ms)"
+      ]
+    },
+    {
+      "page": "mobile-diario",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 96,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 912,
+      "lcpMs": 2765,
+      "tbtMs": 38,
+      "cls": 0,
+      "ttfbMs": 5,
+      "transferKB": 1202,
+      "jsKB": 154,
+      "lcpElement": "<p class=\"xgfoGq_lede\">",
+      "failedAudits": [],
+      "opportunities": [
+        "render-blocking-resources(243ms)",
+        "unused-javascript(280ms)",
+        "legacy-javascript(150ms)"
+      ]
+    },
+    {
+      "page": "mobile-diario_qa-publicado-d75dfa",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 97,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 909,
+      "lcpMs": 2676,
+      "tbtMs": 32,
+      "cls": 0,
+      "ttfbMs": 52,
+      "transferKB": 1183,
+      "jsKB": 157,
+      "lcpElement": "<img class=\"JF2Awq_photo \" src=\"/api/media/6f46c50e-9a40-467e-9d69-c35700f7db96\"",
+      "failedAudits": [],
+      "opportunities": [
+        "render-blocking-resources(222ms)",
+        "unused-javascript(120ms)",
+        "legacy-javascript(120ms)"
+      ]
+    },
+    {
+      "page": "mobile-home",
+      "form": "mobile",
+      "throttling": "simulate",
+      "perf": 75,
+      "a11y": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1078,
+      "lcpMs": 17353,
+      "tbtMs": 74,
+      "cls": 0,
+      "ttfbMs": 22,
+      "transferKB": 3347,
+      "jsKB": 151,
+      "lcpElement": "<img class=\"uyHV-q_photo\" src=\"/images/hero/hero-portrait-cutout.png\" alt=\"Ynara",
+      "failedAudits": [],
+      "opportunities": [
+        "render-blocking-resources(280ms)",
+        "unused-javascript(150ms)",
+        "modern-image-formats(10460ms)",
+        "uses-optimized-images(5100ms)",
+        "uses-responsive-images(10350ms)",
+        "legacy-javascript(150ms)"
+      ]
+    }
+  ]
+}

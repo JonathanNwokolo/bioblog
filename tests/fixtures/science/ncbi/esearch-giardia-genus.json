@@ -1,0 +1,26 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "2",
+    "retmax": "2",
+    "retstart": "0",
+    "idlist": [
+      "2876047",
+      "5740"
+    ],
+    "translationset": [],
+    "translationstack": [
+      {
+        "term": "\"Giardia\"[All Names]",
+        "field": "All Names",
+        "count": "2",
+        "explode": "N"
+      },
+      "GROUP"
+    ],
+    "querytranslation": "\"Giardia\"[All Names]"
+  }
+}

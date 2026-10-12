@@ -4,7 +4,9 @@ Site autoral premium da biomédica Ynara Raíssa Nwokolo. Marca: Microcosmos. As
 
 Estado: Fase 1 implementada (veredito PARTIAL, ver `docs/phase1-qa-report.md`). Next.js 16 (App Router) + TypeScript, CSS Modules, sem dependências de UI/animação. A referência visual está em `docs/reference/homepage-reference.png`. Dependências de conteúdo em aberto: retrato real, microscopias reais, dados da trajetória, escolha do parasita, decisão sobre as três tensões da referência. Cinematográfico (WebGL) ainda não iniciado; fronteira em `src/cinematic/README.md`.
 
-Comandos: `npm run dev` · `npm run build` · `npm run typecheck` · `npm test`.
+Comandos: `npm run dev` · `npm run build` · `npm run typecheck` · `npm run lint` · `npm test`.
+CMS (Fase 2/2.1.3): ver `docs/phase213-cms-hardening-report.md`. Testes reais de Auth/E2E rodam contra o Supabase **local** (`scripts/e2e-local-setup.mjs`); nunca criar dados de teste no projeto remoto sem plano de limpeza.
+Integrações científicas (Fase 2.2, rotas `/ciencia`, `/atlas`, `/laboratorio`, `/onde-vivem`): ver `docs/phase22-scientific-api-integration-report.md`. Servidor apenas; provedores são dependências não confiáveis; imagens do CDC só com direitos revisados em `src/lib/science/dpdx/registry.ts`; o diário/CMS nunca importa `src/lib/science`.
 
 ## Regras permanentes
 

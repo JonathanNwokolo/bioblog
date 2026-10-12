@@ -1,0 +1,970 @@
+{
+  "at": "2026-10-11T22:32:11.189Z",
+  "app": "http://localhost:3100",
+  "total": 170,
+  "failed": 0,
+  "results": [
+    {
+      "name": "público · home desktop-1440 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · home desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · home desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · home desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · home desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · diario desktop-1440 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · diario desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · diario desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · diario desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · diario desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · artigo desktop-1440 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · artigo desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · artigo desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · artigo desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · artigo desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "artigo · desktop-1440 · imagem de capa carregada com alt",
+      "ok": true,
+      "detail": "{\"loaded\":true,\"w\":1200,\"alt\":\"Campo microscópico verde com um retângulo lilás ao centro\"}"
+    },
+    {
+      "name": "console · público desktop-1440 · sem erros",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "teclado · home · ordem percorrida sem armadilha (89 paradas)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "foco visível · home · todos os elementos focados exibem indicador",
+      "ok": true,
+      "detail": "0 sem indicador: "
+    },
+    {
+      "name": "teclado · artigo · ordem percorrida sem armadilha (22 paradas)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "foco visível · artigo · todos os elementos focados exibem indicador",
+      "ok": true,
+      "detail": "0 sem indicador: "
+    },
+    {
+      "name": "público · home tablet-768 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · home tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · home tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · home tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · home tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · diario tablet-768 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · diario tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · diario tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · diario tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · diario tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · artigo tablet-768 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · artigo tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · artigo tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · artigo tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · artigo tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "artigo · tablet-768 · imagem de capa carregada com alt",
+      "ok": true,
+      "detail": "{\"loaded\":true,\"w\":1200,\"alt\":\"Campo microscópico verde com um retângulo lilás ao centro\"}"
+    },
+    {
+      "name": "console · público tablet-768 · sem erros",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · home mobile-390 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · home mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · home mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · home mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · home mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · diario mobile-390 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · diario mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · diario mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · diario mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · diario mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · artigo mobile-390 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · artigo mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · artigo mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · artigo mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · artigo mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "artigo · mobile-390 · imagem de capa carregada com alt",
+      "ok": true,
+      "detail": "{\"loaded\":true,\"w\":1200,\"alt\":\"Campo microscópico verde com um retângulo lilás ao centro\"}"
+    },
+    {
+      "name": "console · público mobile-390 · sem erros",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "público · home reflow-320 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · home reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · home reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · home reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "público · diario reflow-320 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · diario reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · diario reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · diario reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "público · artigo reflow-320 · HTTP 200",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "layout · artigo reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · artigo reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · artigo reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · artigo reflow-320 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "artigo · reflow-320 · imagem de capa carregada com alt",
+      "ok": true,
+      "detail": "{\"loaded\":true,\"w\":1200,\"alt\":\"Campo microscópico verde com um retângulo lilás ao centro\"}"
+    },
+    {
+      "name": "console · público reflow-320 · sem erros",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced-motion · sem animações infinitas em execução",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "reduced-motion · scroll-behavior automático",
+      "ok": true,
+      "detail": "auto"
+    },
+    {
+      "name": "reduced-motion · transições/animações reduzidas a ~0",
+      "ok": true,
+      "detail": "0 elementos ainda animam"
+    },
+    {
+      "name": "movimento automático · nenhuma animação passa de 5 s nem é infinita",
+      "ok": true,
+      "detail": "9 animações; mais longa 5000 ms"
+    },
+    {
+      "name": "admin anônimo · desktop-1440 · /admin redireciona ao login",
+      "ok": true,
+      "detail": "http://localhost:3100/admin/login"
+    },
+    {
+      "name": "layout · login desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · login desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · login desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · login desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "login · credenciais inválidas → alerta em português",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "login · e-mail digitado é preservado após erro",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "login · foco vai para a mensagem de erro",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "teclado · login · ordem percorrida sem armadilha (9 paradas)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "foco visível · login · todos os elementos focados exibem indicador",
+      "ok": true,
+      "detail": "0 sem indicador: "
+    },
+    {
+      "name": "login · e-mail vazio → erro por campo associado (aria-describedby)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "admin anônimo · tablet-768 · /admin redireciona ao login",
+      "ok": true,
+      "detail": "http://localhost:3100/admin/login"
+    },
+    {
+      "name": "layout · login tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · login tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · login tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · login tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "admin anônimo · mobile-390 · /admin redireciona ao login",
+      "ok": true,
+      "detail": "http://localhost:3100/admin/login"
+    },
+    {
+      "name": "layout · login mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · login mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · login mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · login mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "admin anônimo · reflow-320 · /admin redireciona ao login",
+      "ok": true,
+      "detail": "http://localhost:3100/admin/login"
+    },
+    {
+      "name": "layout · login reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · login reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · login reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · login reflow-320 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "login do proprietário → painel",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · painel desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · painel desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · painel desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · painel desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · novo-rascunho desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · novo-rascunho desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · novo-rascunho desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "validação · erro por campo em português (título, resumo, categoria, conteúdo)",
+      "ok": true,
+      "detail": "O título precisa ter ao menos 3 caracteres. / O resumo precisa ter ao menos 10 caracteres. / Selecione uma categoria. / Escreva o conteúdo da publicação (ao menos 10 caracteres)."
+    },
+    {
+      "name": "validação · texto digitado NÃO é descartado após erro",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "validação · campo inválido marcado com aria-invalid",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "editor · prévia ao vivo mostra 2 parágrafos",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "criar rascunho · redireciona ao editor com aviso de sucesso",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "criar rascunho · duplo clique cria um único rascunho",
+      "ok": true,
+      "detail": "n=1"
+    },
+    {
+      "name": "layout · editor desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · editor desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · editor desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · editor desktop-1440 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · arquivo de texto com extensão .png é recusado com mensagem clara",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · arquivo >6 MB é recusado antes do envio",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · PNG corrompido é recusado pelo servidor sem expor detalhes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · sem texto alternativo → pedido de descrição e foco no campo",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · rede interrompida → mensagem de recuperação e botão reabilitado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · retry após reconexão publica a prévia privada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload · prévia privada carrega via rota autenticada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "editor · aviso de alterações não salvas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "salvar rascunho · feedback acessível (role=status)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "recarregar · título e imagem persistem",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · prévia desktop-1440 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · prévia desktop-1440 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · prévia desktop-1440 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "prévia privada · mostra título, imagem e estado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "sessão expirada · aviso claro e texto digitado preservado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "publicar · aviso de sucesso e link 'Ver no site'",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "publicar · artigo disponível no site sem rebuild",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "publicar · aparece em /diario",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "editar publicado · alteração visível imediatamente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "despublicar · artigo some imediatamente (404)",
+      "ok": true,
+      "detail": "HTTP 404"
+    },
+    {
+      "name": "republicar · volta ao ar",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "excluir · confirmação errada → mensagem e nada é excluído",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "excluir · volta ao painel com aviso",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "excluir · artigo 404 e linha preservada (exclusão lógica)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "sair · /admin volta a exigir login",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "console · fluxo do proprietário sem erros inesperados",
+      "ok": true,
+      "detail": "Failed to load resource: the server responded with a status of 415 (Unsupported Media Type) | Failed to load resource: the server responded with a status of 415 (Unsupported Media Type) | Failed to load resource: net::ERR_INTERNET_DISCONNECTED | Failed to load resource: the server responded with a s"
+    },
+    {
+      "name": "layout · painel tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · painel tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · painel tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · painel tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · editor tablet-768 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · editor tablet-768 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · editor tablet-768 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · editor tablet-768 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · painel mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · painel mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · painel mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · painel mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · editor mobile-390 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · editor mobile-390 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · editor mobile-390 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · editor mobile-390 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "teclado · editor mobile · ordem percorrida sem armadilha (26 paradas)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "foco visível · editor mobile · todos os elementos focados exibem indicador",
+      "ok": true,
+      "detail": "0 sem indicador: "
+    },
+    {
+      "name": "layout · painel reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · painel reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · painel reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · painel reflow-320 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "layout · editor reflow-320 · sem rolagem horizontal",
+      "ok": true,
+      "detail": "overflow=0px"
+    },
+    {
+      "name": "alvos · editor reflow-320 · nenhum controle <24px (exceto inline)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "semântica · editor reflow-320 · um h1, lang pt-BR, imagens com alt",
+      "ok": true,
+      "detail": "h1=1 lang=pt-BR semAlt=0"
+    },
+    {
+      "name": "axe · editor reflow-320 · sem violações sérias/críticas",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "findings": [
+    {
+      "page": "home desktop-1440",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 170
+        }
+      ]
+    },
+    {
+      "page": "artigo desktop-1440",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "page": "home tablet-768",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 154
+        }
+      ]
+    },
+    {
+      "page": "artigo tablet-768",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "page": "home mobile-390",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 154
+        }
+      ]
+    },
+    {
+      "page": "artigo mobile-390",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "page": "artigo reflow-320",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "page": "editor desktop-1440",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "page": "editor tablet-768",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "page": "editor mobile-390",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "page": "editor reflow-320",
+      "kind": "axe-incomplete(manual-review)",
+      "items": [
+        {
+          "id": "color-contrast",
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

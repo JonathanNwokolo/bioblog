@@ -1,0 +1,151 @@
+{
+  "ran_at": "2026-10-11T03:24:28.031Z",
+  "target": "http://127.0.0.1:54321",
+  "results": [
+    {
+      "name": "login do proprietário",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "upload + registro de mídia (owner)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "criação de rascunho",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê rascunho (sem erro)",
+      "ok": false,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "anon lista publicados sem erro com rascunho existente",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê mídia em rascunho (sem erro)",
+      "ok": false,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "anon NÃO assina URL de objeto em rascunho",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "publish_post (owner)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon lê post publicado por slug",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê posts.author_user_id",
+      "ok": false,
+      "detail": "VAZOU: {\"author_user_id\":\"dd15666c-c39f-4f2b-a0ce-053f45a02208\"}"
+    },
+    {
+      "name": "anon NÃO lê media_assets.owner_id",
+      "ok": false,
+      "detail": "VAZOU: {\"owner_id\":\"dd15666c-c39f-4f2b-a0ce-053f45a02208\"}"
+    },
+    {
+      "name": "object_key público não revela o UUID do proprietário",
+      "ok": false,
+      "detail": "key=dd15666c…"
+    },
+    {
+      "name": "anon lê colunas públicas de mídia publicada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "projeção pública com embeds (consulta do site)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon assina URL de objeto publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lista o bucket",
+      "ok": false,
+      "detail": "itens=1"
+    },
+    {
+      "name": "anon NÃO baixa direto do bucket privado",
+      "ok": false,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO acessa owner_accounts",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "anon NÃO acessa post_revisions",
+      "ok": true,
+      "detail": "permission denied for table post_revisions"
+    },
+    {
+      "name": "anon NÃO acessa audit_events",
+      "ok": true,
+      "detail": "permission denied for table audit_events"
+    },
+    {
+      "name": "anon NÃO insere posts",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"posts\""
+    },
+    {
+      "name": "anon NÃO executa publish_post",
+      "ok": true,
+      "detail": "permission denied for function publish_post"
+    },
+    {
+      "name": "post publicado NÃO aceita remover hero",
+      "ok": false,
+      "detail": "ACEITOU (diário quebra)"
+    },
+    {
+      "name": "post publicado NÃO fica com hero invisível ao público",
+      "ok": false,
+      "detail": "media=undefined"
+    },
+    {
+      "name": "unpublish_post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO vê post despublicado",
+      "ok": false,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "mídia volta a ser privada após despublicar",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "soft_delete_post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon lista categorias com uma inativa (sem erro)",
+      "ok": false,
+      "detail": "permission denied for table owner_accounts"
+    }
+  ]
+}

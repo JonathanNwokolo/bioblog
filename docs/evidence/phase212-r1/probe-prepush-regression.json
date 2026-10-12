@@ -1,0 +1,231 @@
+{
+  "ran_at": "2026-10-11T17:20:04.019Z",
+  "target": "http://127.0.0.1:54321",
+  "results": [
+    {
+      "name": "não-proprietário autenticado lê post publicado (com categoria e hero)",
+      "ok": true,
+      "detail": "sem linha"
+    },
+    {
+      "name": "lista do não-proprietário contém SOMENTE o publicado",
+      "ok": true,
+      "detail": "[\"prepush-publicado-6fbffde3\"]"
+    },
+    {
+      "name": "não-proprietário NÃO lê rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO lê post despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário lê metadados de mídia publicada",
+      "ok": true,
+      "detail": "rows=1"
+    },
+    {
+      "name": "não-proprietário NÃO lê mídia de rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO lê mídia de post despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO lê mídia órfã/privada",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário assina URL de objeto publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "não-proprietário NÃO assina URL de objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "não-proprietário NÃO baixa objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "não-proprietário NÃO assina URL de objeto despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "não-proprietário NÃO baixa objeto despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "não-proprietário NÃO assina URL de objeto órfão",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "não-proprietário NÃO baixa objeto órfão",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "listagem do bucket pelo não-proprietário não revela UUID do proprietário",
+      "ok": true,
+      "detail": "itens=1"
+    },
+    {
+      "name": "não-proprietário NÃO lê owner_accounts",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO lê post_revisions",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO lê audit_events",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário não vê categorias inativas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "não-proprietário NÃO insere post",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"posts\""
+    },
+    {
+      "name": "não-proprietário NÃO atualiza post publicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO apaga post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "não-proprietário NÃO altera mídia",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO altera categoria",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "não-proprietário NÃO se promove a proprietário",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "não-proprietário NÃO grava auditoria",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"audit_events\""
+    },
+    {
+      "name": "não-proprietário NÃO executa publish_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "não-proprietário NÃO executa unpublish_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "não-proprietário NÃO executa soft_delete_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "não-proprietário NÃO executa save_post_changes",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "não-proprietário NÃO envia mídia",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "não-proprietário NÃO apaga objeto",
+      "ok": true,
+      "detail": "removidos=0"
+    },
+    {
+      "name": "anon lê post publicado (consulta do site)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê rascunho",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon NÃO lê author_user_id",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon NÃO lê owner_id",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon NÃO atualiza post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon NÃO apaga post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário vê os 3 posts (rascunho, publicado, despublicado)",
+      "ok": true,
+      "detail": "rows=3"
+    },
+    {
+      "name": "proprietário edita rascunho via save_post_changes",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário publica rascunho",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "rascunho recém-publicado fica visível ao não-proprietário",
+      "ok": true,
+      "detail": "rows=1"
+    },
+    {
+      "name": "proprietário despublica",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "despublicado some para o não-proprietário",
+      "ok": true,
+      "detail": "rows=0"
+    }
+  ]
+}

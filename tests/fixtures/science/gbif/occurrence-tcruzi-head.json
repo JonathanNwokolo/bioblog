@@ -1,0 +1,145 @@
+{
+  "offset": 0,
+  "limit": 0,
+  "endOfRecords": false,
+  "count": 2088,
+  "results": [],
+  "facets": [
+    {
+      "field": "LICENSE",
+      "counts": [
+        {
+          "name": "CC_BY_NC_4_0",
+          "count": 1898
+        },
+        {
+          "name": "CC_BY_4_0",
+          "count": 180
+        },
+        {
+          "name": "CC0_1_0",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "field": "DATASET_KEY",
+      "counts": [
+        {
+          "name": "6f6df63f-6213-4874-8354-e8ae31b6b148",
+          "count": 838
+        },
+        {
+          "name": "09c2cb63-40d2-4f76-83ba-e07ac5d370e3",
+          "count": 774
+        },
+        {
+          "name": "5fc21358-01ab-4e2d-a1b6-7c1705f0ee7f",
+          "count": 282
+        },
+        {
+          "name": "393b8c26-e4e0-4dd0-a218-93fc074ebf4e",
+          "count": 173
+        },
+        {
+          "name": "78ff8409-15b9-456f-9793-291b030190a7",
+          "count": 4
+        },
+        {
+          "name": "efe230b2-0a42-41ec-b50a-f3c19ca4a99b",
+          "count": 3
+        },
+        {
+          "name": "13fdfab7-e281-428d-8c1f-e72eb7398e97",
+          "count": 2
+        },
+        {
+          "name": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+          "count": 2
+        },
+        {
+          "name": "c43384a9-8d9d-40c0-8cda-40ad47d2d69d",
+          "count": 2
+        },
+        {
+          "name": "d8cd16ba-bb74-4420-821e-083f2bac17c2",
+          "count": 2
+        },
+        {
+          "name": "040c5662-da76-4782-a48e-cdea1892d14c",
+          "count": 1
+        },
+        {
+          "name": "6ed43f52-25d1-4d56-a821-63a8564b81f6",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "field": "BASIS_OF_RECORD",
+      "counts": [
+        {
+          "name": "PRESERVED_SPECIMEN",
+          "count": 1627
+        },
+        {
+          "name": "LIVING_SPECIMEN",
+          "count": 282
+        },
+        {
+          "name": "MATERIAL_SAMPLE",
+          "count": 174
+        },
+        {
+          "name": "HUMAN_OBSERVATION",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "field": "COUNTRY",
+      "counts": [
+        {
+          "name": "CO",
+          "count": 1616
+        },
+        {
+          "name": "BR",
+          "count": 286
+        },
+        {
+          "name": "US",
+          "count": 153
+        },
+        {
+          "name": "BZ",
+          "count": 16
+        },
+        {
+          "name": "AU",
+          "count": 4
+        },
+        {
+          "name": "GT",
+          "count": 4
+        },
+        {
+          "name": "MX",
+          "count": 4
+        },
+        {
+          "name": "GF",
+          "count": 3
+        },
+        {
+          "name": "BO",
+          "count": 1
+        },
+        {
+          "name": "VE",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

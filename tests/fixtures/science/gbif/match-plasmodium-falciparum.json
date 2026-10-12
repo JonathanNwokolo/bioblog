@@ -1,0 +1,23 @@
+{
+  "usageKey": 10540993,
+  "scientificName": "Plasmodium falciparum Welch, 1897",
+  "canonicalName": "Plasmodium falciparum",
+  "rank": "SPECIES",
+  "status": "ACCEPTED",
+  "confidence": 99,
+  "matchType": "EXACT",
+  "kingdom": "Chromista",
+  "phylum": "Myzozoa",
+  "order": "Haemospororida",
+  "family": "Plasmodiidae",
+  "genus": "Plasmodium",
+  "species": "Plasmodium falciparum",
+  "kingdomKey": 4,
+  "phylumKey": 8770992,
+  "classKey": 9196674,
+  "orderKey": 8858586,
+  "familyKey": 8238467,
+  "genusKey": 8364053,
+  "speciesKey": 10540993,
+  "class": "Aconoidasida"
+}

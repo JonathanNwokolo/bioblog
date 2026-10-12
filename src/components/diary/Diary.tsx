@@ -1,4 +1,4 @@
-import { posts as publishedPosts, splitDiary } from "@/content/posts";
+import { splitDiary } from "@/content/posts";
 import type { Post } from "@/content/types";
 import { DiaryFeed } from "./DiaryFeed";
 import { PostPreview } from "./PostPreview";
@@ -10,7 +10,8 @@ interface DiaryProps {
    * pode entregar a mesma forma (`Post[]`). Rascunhos são ignorados e a ordem é
    * derivada aqui, então a ordem de chegada não importa.
    */
-  posts?: readonly Post[];
+  posts: readonly Post[];
+  error?: string | null;
 }
 
 /**
@@ -23,7 +24,7 @@ interface DiaryProps {
  * Destaque e feed derivam da mesma coleção: o destaque é a publicação mais
  * recente e o feed contém todas as demais, sem limite e sem repetição.
  */
-export function Diary({ posts = publishedPosts }: DiaryProps) {
+export function Diary({ posts, error = null }: DiaryProps) {
   const { lead, archive } = splitDiary(posts);
   const hasPlaceholder = [lead, ...archive].some((post) => post && post.status !== "verified");
 
@@ -51,7 +52,9 @@ export function Diary({ posts = publishedPosts }: DiaryProps) {
           </div>
         </header>
 
-        {lead ? (
+        {error ? (
+          <p className={styles.empty} role="status">{error}</p>
+        ) : lead ? (
           <div className={styles.layout}>
             <div className={styles.lead}>
               <PostPreview post={lead} variant="lead" />

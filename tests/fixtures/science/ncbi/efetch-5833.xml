@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<!DOCTYPE TaxaSet PUBLIC "-//NLM//DTD Taxon, 14th January 2002//EN" "https://www.ncbi.nlm.nih.gov/entrez/query/DTD/taxon.dtd">
+<TaxaSet><Taxon>
+    <TaxId>5833</TaxId>
+    <ScientificName>Plasmodium falciparum</ScientificName>
+    <OtherNames>
+        <GenbankCommonName>malaria parasite P. falciparum</GenbankCommonName>
+        <Synonym>Plasmodium (Laverania) falciparum</Synonym>
+        <Name>
+            <ClassCDE>authority</ClassCDE>
+            <DispName>Plasmodium falciparum (Welch, 1897)</DispName>
+        </Name>
+    </OtherNames>
+    <ParentTaxId>418107</ParentTaxId>
+    <Rank>species</Rank>
+    <Division>Invertebrates</Division>
+    <GeneticCode>
+        <GCId>1</GCId>
+        <GCName>Standard</GCName>
+    </GeneticCode>
+    <MitoGeneticCode>
+        <MGCId>4</MGCId>
+        <MGCName>Mold Mitochondrial; Protozoan Mitochondrial; Coelenterate Mitochondrial; Mycoplasma; Spiroplasma</MGCName>
+    </MitoGeneticCode>
+    <Lineage>cellular organisms; Eukaryota; Sar; Alveolata; Apicomplexa; Aconoidasida; Haemosporida; Plasmodiidae; Plasmodium; Laverania</Lineage>
+    <LineageEx>
+        <Taxon>
+            <TaxId>131567</TaxId>
+            <ScientificName>cellular organisms</ScientificName>
+            <Rank>cellular root</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2759</TaxId>
+            <ScientificName>Eukaryota</ScientificName>
+            <Rank>domain</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>2698737</TaxId>
+            <ScientificName>Sar</ScientificName>
+            <Rank>clade</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>33630</TaxId>
+            <ScientificName>Alveolata</ScientificName>
+            <Rank>clade</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>5794</TaxId>
+            <ScientificName>Apicomplexa</ScientificName>
+            <Rank>phylum</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>422676</TaxId>
+            <ScientificName>Aconoidasida</ScientificName>
+            <Rank>class</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>5819</TaxId>
+            <ScientificName>Haemosporida</ScientificName>
+            <Rank>order</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>1639119</TaxId>
+            <ScientificName>Plasmodiidae</ScientificName>
+            <Rank>family</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>5820</TaxId>
+            <ScientificName>Plasmodium</ScientificName>
+            <Rank>genus</Rank>
+        </Taxon>
+        <Taxon>
+            <TaxId>418107</TaxId>
+            <ScientificName>Laverania</ScientificName>
+            <Rank>subgenus</Rank>
+        </Taxon>
+    </LineageEx>
+    <Properties>
+        <Property>
+            <PropName>pgcode</PropName>
+            <PropValueInt>11</PropValueInt>
+        </Property>
+    </Properties>
+    <CreateDate>1995/02/27 09:24:00</CreateDate>
+    <UpdateDate>2025/01/30 15:22:34</UpdateDate>
+    <PubDate>1992/05/26 01:00:00</PubDate>
+</Taxon>
+
+</TaxaSet>

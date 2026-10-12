@@ -1,0 +1,25 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "1",
+    "retmax": "1",
+    "retstart": "0",
+    "idlist": [
+      "5741"
+    ],
+    "translationset": [],
+    "translationstack": [
+      {
+        "term": "\"Giardia lamblia\"[All Names]",
+        "field": "All Names",
+        "count": "1",
+        "explode": "N"
+      },
+      "GROUP"
+    ],
+    "querytranslation": "\"Giardia lamblia\"[All Names]"
+  }
+}

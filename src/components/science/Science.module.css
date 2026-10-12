@@ -1,0 +1,415 @@
+/* ==========================================================================
+   Experiências científicas (Atlas, Laboratório, Onde vivem?): base compartilhada.
+   Só tokens existentes (globals.css). `--cream` é o creme já usado no painel editorial.
+   ========================================================================== */
+
+.page {
+  --cream: #f7f5f1;
+  --field-border: #767274; /* ≈ 4,6:1 sobre branco (decisão da Fase 2.1.3 para controles) */
+  background: var(--paper);
+  padding-block: clamp(28px, 4vw, 56px) var(--section-pad);
+}
+
+.pageCinematic {
+  --cream: #f7f5f1;
+  --field-border: #767274;
+  background: var(--surface-warm, #faf8f5);
+  min-height: 100vh;
+  padding-bottom: var(--section-pad);
+}
+
+.subnavBar {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding-block: 2px;
+}
+
+.subnavClean ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(14px, 2.8vw, 32px);
+}
+
+.subnavClean a {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  min-height: 44px;
+  padding: 6px 4px;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.subnavClean a:hover {
+  color: var(--ink);
+}
+
+.subnavClean a[aria-current="page"] {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.subnavClean a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #10b981;
+  background: var(--mint);
+  border-radius: 999px;
+}
+
+.cinematicContent {
+  padding-top: clamp(24px, 4vw, 44px);
+}
+
+.top {
+  display: grid;
+  gap: clamp(20px, 3vw, 36px);
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+.subnav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.subnav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1em;
+  border: 1.5px solid var(--field-border);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: var(--step--1);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.subnav a:hover {
+  background: var(--lilac);
+  border-color: var(--lilac);
+}
+
+.subnav a[aria-current="page"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+}
+
+.heading {
+  display: grid;
+  gap: 14px;
+  max-width: 52rem;
+}
+
+.title {
+  font-size: var(--step-4);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 54ch;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+}
+
+/* ---------- Superfícies ---------- */
+
+.panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: clamp(20px, 3vw, 36px);
+}
+
+.panelTitle {
+  font-size: var(--step-1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+/* ---------- Busca ---------- */
+
+.search {
+  display: grid;
+  gap: 12px;
+  max-width: 44rem;
+}
+
+.search label {
+  font-weight: 700;
+  font-size: var(--step--1);
+}
+
+.searchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.searchRow input {
+  flex: 1 1 16rem;
+  min-height: 52px;
+  padding: 0 18px;
+  border: 1.5px solid var(--field-border);
+  border-radius: 999px;
+  background: var(--white);
+  font-size: var(--step-0);
+}
+
+.searchRow input::placeholder {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.examples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.examples a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.9em;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-style: italic;
+  text-decoration: none;
+}
+
+.examples a:hover {
+  background: var(--lilac);
+  border-color: var(--lilac);
+}
+
+/* ---------- Marcas de dado ---------- */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  background: var(--lilac);
+  color: var(--plum);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.chipPlain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--white);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+
+.verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.missing {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- Estados ---------- */
+
+.note {
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: var(--radius-m);
+  background: var(--white);
+  border: 1.5px dashed var(--field-border);
+}
+
+.noteTitle {
+  font-weight: 800;
+}
+
+.noteBody {
+  color: var(--ink-soft);
+}
+
+.noteError {
+  border-style: solid;
+  border-color: #a4152b;
+  background: #fff7f8;
+}
+
+.noteError .noteTitle {
+  color: #a4152b;
+}
+
+.skeleton {
+  display: grid;
+  gap: 12px;
+}
+
+.skeletonBar {
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e4e4e4, #efefef, #e4e4e4);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonBar {
+    animation: none;
+  }
+}
+
+/* ---------- Fonte e limitações ---------- */
+
+.source {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-m);
+  background: var(--white);
+}
+
+.source summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.source summary::-webkit-details-marker {
+  display: none;
+}
+
+.source summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.source[open] summary::after {
+  content: "–";
+}
+
+.sourceBody {
+  display: grid;
+  gap: 12px;
+  padding: 0 18px 18px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.sourceBody dl {
+  display: grid;
+  gap: 8px 16px;
+  grid-template-columns: minmax(7rem, max-content) 1fr;
+}
+
+.sourceBody dt {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.sourceBody dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.sourceBody a {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 479px) {
+  .sourceBody dl {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .sourceBody dd {
+    margin-bottom: 8px;
+  }
+}
+
+.disclaimer {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+/* ---------- Utilitários ---------- */
+
+.sciName {
+  font-style: italic;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkPlain {
+  color: var(--ink);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}

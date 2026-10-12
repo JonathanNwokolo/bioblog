@@ -1,0 +1,661 @@
+{
+  "startedAt": "2026-10-11T23:28:33.157Z",
+  "rows": [
+    {
+      "query": "Giardia lamblia",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "accepted_synonym",
+        "taxId": "5741",
+        "scientificName": "Giardia duodenalis",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 8,
+        "synonyms": [
+          "Giardia intestinalis",
+          "Giardia lamblia",
+          "Lamblia intestinalis"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5741"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 8562913,
+        "usageKey": 5425222,
+        "acceptedName": "Giardia duodenalis",
+        "rank": "SPECIES",
+        "isSynonym": true,
+        "matchType": "EXACT",
+        "confidence": 98,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 489,
+          "evaluated": 205,
+          "shown": 205,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 2,
+          "topCountries": [
+            "CO:281",
+            "EG:73",
+            "CN:36"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "dpdx": {
+        "shown": 2,
+        "withheld": 1
+      },
+      "ms": 7267
+    },
+    {
+      "query": "Giardia duodenalis",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5741",
+        "scientificName": "Giardia duodenalis",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 8,
+        "synonyms": [
+          "Giardia intestinalis",
+          "Giardia lamblia",
+          "Lamblia intestinalis"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5741"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 8562913,
+        "usageKey": 8562913,
+        "acceptedName": "Giardia duodenalis",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 489,
+          "evaluated": 205,
+          "shown": 205,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 2,
+          "topCountries": [
+            "CO:281",
+            "EG:73",
+            "CN:36"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "dpdx": {
+        "shown": 2,
+        "withheld": 1
+      },
+      "ms": 776
+    },
+    {
+      "query": "Plasmodium falciparum",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5833",
+        "scientificName": "Plasmodium falciparum",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 10,
+        "synonyms": [
+          "Plasmodium (Laverania) falciparum"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5833"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 10540993,
+        "usageKey": 10540993,
+        "acceptedName": "Plasmodium falciparum",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 7245,
+          "evaluated": 300,
+          "shown": 300,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 0,
+          "topCountries": [
+            "BJ:6374",
+            "IN:161",
+            "VU:134"
+          ],
+          "datasetsCited": 4
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "dpdx": {
+        "shown": 2,
+        "withheld": 1
+      },
+      "ms": 6632
+    },
+    {
+      "query": "Plasmodium vivax",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5855",
+        "scientificName": "Plasmodium vivax",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 10,
+        "synonyms": [
+          "Haemamoeba vivax"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5855"
+      },
+      "gbif": {
+        "status": "not_found"
+      },
+      "crosswalk": {
+        "agreement": "single_source",
+        "linked": false
+      },
+      "ms": 1519
+    },
+    {
+      "query": "Trypanosoma cruzi",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5693",
+        "scientificName": "Trypanosoma cruzi",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 10,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5693"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 8205154,
+        "usageKey": 8205154,
+        "acceptedName": "Trypanosoma cruzi",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 2088,
+          "evaluated": 241,
+          "shown": 241,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 2,
+          "topCountries": [
+            "CO:1616",
+            "BR:286",
+            "US:153"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "dpdx": {
+        "shown": 2,
+        "withheld": 0
+      },
+      "ms": 5209
+    },
+    {
+      "query": "Entamoeba histolytica",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5759",
+        "scientificName": "Entamoeba histolytica",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 8,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5759"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 3210505,
+        "usageKey": 3210505,
+        "acceptedName": "Entamoeba histolytica",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 5292,
+          "evaluated": 118,
+          "shown": 118,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 11,
+          "topCountries": [
+            "BJ:5247",
+            "US:23",
+            "NC:11"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "dpdx": {
+        "shown": 2,
+        "withheld": 1
+      },
+      "ms": 4231
+    },
+    {
+      "query": "Leishmania infantum",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5671",
+        "scientificName": "Leishmania infantum",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 12,
+        "synonyms": [
+          "Leishmania (Leishmania) infantum",
+          "Leishmania donovani infantum"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5671"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 9442158,
+        "usageKey": 9442158,
+        "acceptedName": "Leishmania infantum",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 477,
+          "evaluated": 141,
+          "shown": 140,
+          "excluded": {
+            "OCCURRENCE_QUALITY_FLAG_REJECTED": 1
+          },
+          "sampled": true,
+          "withUncertainty": 0,
+          "topCountries": [
+            "BR:384",
+            "CO:36",
+            "PY:17"
+          ],
+          "datasetsCited": 3
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 3655
+    },
+    {
+      "query": "Toxoplasma gondii",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5811",
+        "scientificName": "Toxoplasma gondii",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 11,
+        "synonyms": [
+          "Leishmania gondii"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5811"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 8014281,
+        "usageKey": 8014281,
+        "acceptedName": "Toxoplasma gondii",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 242,
+          "evaluated": 242,
+          "shown": 242,
+          "excluded": {},
+          "sampled": false,
+          "withUncertainty": 37,
+          "topCountries": [
+            "AU:120",
+            "SN:34",
+            "BJ:32"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 3695
+    },
+    {
+      "query": "Schistosoma mansoni",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "6183",
+        "scientificName": "Schistosoma mansoni",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 18,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=6183"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 5967489,
+        "usageKey": 5967489,
+        "acceptedName": "Schistosoma mansoni",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 5583,
+          "evaluated": 300,
+          "shown": 300,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 0,
+          "topCountries": [
+            "UG:2396",
+            "TZ:1791",
+            "BJ:691"
+          ],
+          "datasetsCited": 4
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 6187
+    },
+    {
+      "query": "Ascaris lumbricoides",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "6252",
+        "scientificName": "Ascaris lumbricoides",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 16,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=6252"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 4558786,
+        "usageKey": 4558786,
+        "acceptedName": "Ascaris lumbricoides",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 496,
+          "evaluated": 266,
+          "shown": 266,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 7,
+          "topCountries": [
+            "BR:93",
+            "CO:83",
+            "US:75"
+          ],
+          "datasetsCited": 6
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 5387
+    },
+    {
+      "query": "Aedes aegypti",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "7159",
+        "scientificName": "Aedes aegypti",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 32,
+        "synonyms": [
+          "Aedes (Stegomyia) aegypti",
+          "Aedes aegypti var. luciensis",
+          "Culex aegypti",
+          "Stegomyia aegypti",
+          "Stegomyia fasciata var. luciensis"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=7159"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 1651891,
+        "usageKey": 1651891,
+        "acceptedName": "Aedes aegypti",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "verified",
+          "totalGeoreferenced": 121379,
+          "evaluated": 300,
+          "shown": 300,
+          "excluded": {},
+          "sampled": true,
+          "withUncertainty": 145,
+          "topCountries": [
+            "GH:57989",
+            "US:16954",
+            "MX:15699"
+          ],
+          "datasetsCited": 5
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 5306
+    },
+    {
+      "query": "Naegleria fowleri",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5763",
+        "scientificName": "Naegleria fowleri",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 9,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5763"
+      },
+      "gbif": {
+        "status": "verified",
+        "acceptedKey": 3210448,
+        "usageKey": 3210448,
+        "acceptedName": "Naegleria fowleri",
+        "rank": "SPECIES",
+        "isSynonym": false,
+        "matchType": "EXACT",
+        "confidence": 99,
+        "occurrences": {
+          "status": "insufficient",
+          "totalGeoreferenced": 8,
+          "retained": 8,
+          "excluded": {},
+          "minRequired": 10
+        }
+      },
+      "crosswalk": {
+        "agreement": "name_match",
+        "linked": true
+      },
+      "ms": 2453
+    },
+    {
+      "query": "Trichomonas vaginalis",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5722",
+        "scientificName": "Trichomonas vaginalis",
+        "rank": "species",
+        "alsoMatched": [],
+        "lineageLength": 7,
+        "synonyms": [
+          "Tritrichomonas vaginalis"
+        ],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5722"
+      },
+      "gbif": {
+        "status": "ambiguous",
+        "kind": "higher_rank",
+        "suggestion": "Trichomonas"
+      },
+      "crosswalk": {
+        "agreement": "single_source",
+        "linked": false
+      },
+      "ms": 1537
+    },
+    {
+      "query": "Morganella",
+      "ncbi": {
+        "status": "ambiguous",
+        "candidates": [
+          "Morganella (108061; scale insects)",
+          "Morganella (90690; basidiomycete fungi)",
+          "Morganella (581; g-proteobacteria)"
+        ]
+      },
+      "gbif": {
+        "status": "not_found"
+      },
+      "crosswalk": {
+        "agreement": "single_source",
+        "linked": false
+      },
+      "ms": 779
+    },
+    {
+      "query": "Giardia",
+      "ncbi": {
+        "status": "verified",
+        "matchStatus": "exact",
+        "taxId": "5740",
+        "scientificName": "Giardia",
+        "rank": "genus",
+        "alsoMatched": [
+          "Anceyoconcha (2876047)"
+        ],
+        "lineageLength": 7,
+        "synonyms": [],
+        "division": "Invertebrates",
+        "sourceUrl": "https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=5740"
+      },
+      "gbif": {
+        "status": "not_found"
+      },
+      "crosswalk": {
+        "agreement": "single_source",
+        "linked": false
+      },
+      "ms": 1388
+    },
+    {
+      "query": "Xyzzyfoo bar",
+      "ncbi": {
+        "status": "not_found",
+        "suggestions": [
+          "Barycnellus",
+          "Barogaster",
+          "Barbulastrum",
+          "Bardizon",
+          "Barrojuba",
+          "Barroeuplectoides",
+          "Barbaxonella",
+          "Barrama"
+        ]
+      },
+      "gbif": {
+        "status": "not_found"
+      },
+      "crosswalk": {
+        "agreement": "single_source",
+        "linked": false
+      },
+      "ms": 1411
+    }
+  ],
+  "speciesBelowGiardia": {
+    "total": 55,
+    "shown": 40,
+    "complete": false
+  },
+  "finishedAt": "2026-10-11T23:29:31.163Z"
+}

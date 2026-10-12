@@ -1,0 +1,1458 @@
+/* ==========================================================================
+   Onde Vivem? — Fase 2.2.1
+   Visual Fidelity & Geographic Workspace Redesign
+   ========================================================================== */
+
+/* ---------- Hero Cinematográfico Planetário ---------- */
+
+.hero {
+  position: relative;
+  background-color: #050811;
+  background-image: url("/images/science/onde-vivem-hero.jpg");
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--white);
+  padding-block: clamp(48px, 6vw, 76px);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 8, 17, 0.96) 0%,
+    rgba(5, 8, 17, 0.88) 45%,
+    rgba(5, 8, 17, 0.35) 85%,
+    rgba(5, 8, 17, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .heroBackdrop {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 8, 17, 0.95) 0%,
+      rgba(5, 8, 17, 0.88) 60%,
+      rgba(5, 8, 17, 0.5) 100%
+    );
+  }
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.heroLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+@media (max-width: 960px) {
+  .heroLayout {
+    flex-direction: column;
+  }
+}
+
+.heroMain {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heroEyebrow {
+  color: var(--mint);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 1.8rem + 2.8vw, 4.4rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.heroTagline {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.heroDesc {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  max-width: 46ch;
+  margin: 0 0 6px 0;
+}
+
+/* Cápsula de Pesquisa Integrada no Hero */
+.searchCapsule {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 34rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 4px 6px 4px 16px;
+  margin-top: 4px;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+
+.searchCapsule:focus-within {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(128, 249, 199, 0.25);
+}
+
+.searchIcon {
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  min-width: 0;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.searchSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.searchSubmit:hover {
+  background: var(--mint);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+
+.heroExamples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+.examplesLabel {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.exampleLink {
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.exampleLink:hover {
+  color: var(--mint);
+}
+
+.exampleSep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Card Flutuante de Estatística Global */
+.heroStatBadge {
+  background: rgba(18, 22, 34, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-m);
+  padding: 22px 24px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statBadgeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statBadgeIcon {
+  color: var(--mint);
+}
+
+.statBadgeLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.statBadgeLink:hover {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.statBadgeNumber {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.statBadgeLabel {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---------- Grid do Workspace ---------- */
+
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3.2vw, 36px);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .workspaceGrid {
+    grid-template-columns: 310px minmax(0, 1fr);
+  }
+}
+
+/* ---------- Barra Lateral: Organismo e Filtros ---------- */
+
+.sidebarCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.organismCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardSectionTitle {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.changeBtn {
+  background: transparent;
+  border: none;
+  color: #059669;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.changeBtn:hover {
+  text-decoration: underline;
+}
+
+.organismThumbWrap {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  background: #10121a;
+}
+
+.organismThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.organismInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.organismName {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.organismCategory {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-transform: capitalize;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.badgeNcbi,
+.badgeGbif {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: #e6fbf2;
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.organismDesc {
+  font-size: 0.86rem;
+  color: #4b4849;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.atlasLink {
+  color: #6d28d9;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.atlasLink:hover {
+  text-decoration: underline;
+}
+
+/* Card: Filtros de Ocorrência */
+.filterCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.clearBtn {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clearBtn:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterGroupTitle {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.rangeInputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.rangeSlider {
+  width: 100%;
+  accent-color: #7c3aed;
+  cursor: pointer;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.checkboxItem input[type="checkbox"] {
+  accent-color: #7c3aed;
+  cursor: pointer;
+}
+
+.filterCount {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.selectInput {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  background: var(--surface-warm, #faf8f5);
+  font-size: 0.86rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.selectInput:focus {
+  border-color: #7c3aed;
+}
+
+.applyFilterBtn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background: #6d28d9;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.applyFilterBtn:hover {
+  background: #5b21b6;
+}
+
+/* ---------- Área Principal do Mapa e Painéis ---------- */
+
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tabsNav {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabList {
+  display: flex;
+  gap: clamp(12px, 2.4vw, 24px);
+  min-width: max-content;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  padding: 8px 4px 12px 4px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.tabBtn:hover {
+  color: var(--ink);
+}
+
+.tabBtnActive {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.tabBtnActive::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: #10b981;
+  border-radius: 999px;
+}
+
+/* Frame do Mapa Interativo com Tema Dark Satélite */
+
+.wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  border: 1px solid #2a3848;
+  background: #08101a;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.frame:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 639px) {
+  .frame {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ocean {
+  fill: #08101a;
+}
+
+.graticule line {
+  stroke: #80f9c7;
+  stroke-opacity: 0.07;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.land {
+  fill: #172333;
+  stroke: #2a3c50;
+  stroke-opacity: 0.6;
+  stroke-width: 0.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.borders {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.marker {
+  cursor: pointer;
+}
+
+.dot {
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.dotSelected {
+  fill: var(--mint) !important;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 6px rgba(128, 249, 199, 0.8));
+}
+
+.cluster {
+  fill: #2e1065;
+  fill-opacity: 0.9;
+  stroke: #a855f7;
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.clusterText {
+  fill: #ffffff;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.uncertainty {
+  fill: var(--mint);
+  fill-opacity: 0.22;
+  stroke: var(--mint);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+/* Overlays Flutuantes no Mapa */
+
+.mapControlsOverlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(18, 26, 38, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  z-index: 5;
+}
+
+.mapCtrlBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.mapCtrlBtn:last-child {
+  border-bottom: none;
+}
+
+.mapCtrlBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.mapLayerBadge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 6px 12px;
+  background: rgba(18, 26, 38, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-s);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+}
+
+.mapLegendOverlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(18, 26, 38, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-s);
+  padding: 10px 14px;
+  z-index: 5;
+}
+
+.legendTitle {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 6px;
+}
+
+.legendList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mapScaleOverlay {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.72rem;
+  font-weight: 600;
+  z-index: 5;
+}
+
+.scaleLine {
+  width: 72px;
+  height: 2px;
+  background: #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+}
+
+.attribution {
+  position: absolute;
+  right: 8px;
+  bottom: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(8, 16, 26, 0.75);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+/* Banner de Notificação e Incerteza GBIF */
+
+.noticeBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #f4efff;
+  border: 1px solid rgba(229, 203, 255, 0.8);
+  border-radius: var(--radius-m);
+}
+
+.noticeIcon {
+  color: #7c3aed;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.noticeContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.noticeTitle {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #4c1d95;
+  margin: 0;
+}
+
+.noticeText {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #5b21b6;
+  margin: 0;
+}
+
+.noticeLink {
+  color: #6d28d9;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.noticeLink:hover {
+  text-decoration: underline;
+}
+
+/* Grid de Métricas (4 Cards) */
+
+.metricCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.metricCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.metricIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f4efff;
+  color: #7c3aed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.metricBody {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metricLabel {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.metricNumber {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Grid de Distribuição e Ambientes (2 Cards) */
+
+.breakdownsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .breakdownsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.breakdownCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.breakdownTitle {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.barList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.barRow {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9.5rem) 1fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+}
+
+.barLabel {
+  color: var(--ink);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barTrack {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--surface-cream, #f4f2ed);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  background: #10b981;
+  border-radius: 999px;
+}
+
+.barNum {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.viewAllLink {
+  color: #059669;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+/* Linha Inferior com 3 Cards */
+
+.bottomRowGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 960px) {
+  .bottomRowGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.recentCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.recentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recentTitle {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.recentList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recentThumbWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1c1917;
+  flex-shrink: 0;
+}
+
+.recentThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.recentLocation {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recentMeta {
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+}
+
+/* Card: Contexto Hospedeiros e Vetores */
+
+.contextCard {
+  position: relative;
+  background-color: #0b0908;
+  background-image: url("/images/science/vector-triatoma.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  min-height: 200px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contextBackdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 7, 6, 0.92) 0%, rgba(8, 7, 6, 0.5) 60%, transparent 100%);
+  pointer-events: none;
+}
+
+.contextContent {
+  position: relative;
+  z-index: 1;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contextEyebrow {
+  color: var(--mint);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contextTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.contextDesc {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.contextLink {
+  color: var(--mint);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.contextLink:hover {
+  text-decoration: underline;
+}
+
+/* Card: Explorar Relações */
+
+.exploreCard {
+  background: #f4efff;
+  border: 1px solid rgba(229, 203, 255, 0.8);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.exploreHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exploreIcon {
+  color: #7c3aed;
+}
+
+.exploreEyebrow {
+  color: #6d28d9;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.exploreTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4c1d95;
+  margin: 0;
+}
+
+.exploreDesc {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: #5b21b6;
+  margin: 0;
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border: 1.5px solid #7c3aed;
+  border-radius: 999px;
+  background: var(--white);
+  color: #6d28d9;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.exploreBtn:hover {
+  background: #e9d5ff;
+}
+
+/* ---------- Classes de Compatibilidade com Código Existente ---------- */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn,
+.btnText {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1.5px solid #767274;
+  border-radius: 999px;
+  background: var(--white);
+  font-weight: 800;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.btnText {
+  padding-inline: 1.1em;
+  font-size: var(--step--1);
+}
+
+.btn:hover:not(:disabled),
+.btnText:hover:not(:disabled) {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+
+.btnText:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.zoomValue {
+  margin-left: auto;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  max-width: 70ch;
+}
+
+.detail {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: var(--radius-m);
+  background: var(--white);
+  border: 1.5px solid var(--ink);
+}
+
+.detailHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.detailHead h3 {
+  font-size: var(--step-1);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.facts {
+  display: grid;
+  margin: 0;
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: minmax(8rem, 11rem) 1fr;
+  gap: 4px 14px;
+  padding-block: 9px;
+  border-top: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 479px) {
+  .facts > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.missing {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.issues {
+  display: grid;
+  gap: 4px;
+  padding-left: 1.1em;
+  list-style: disc;
+  font-size: 0.88rem;
+}
+
+.records {
+  display: grid;
+  gap: 10px;
+  padding: clamp(16px, 2.4vw, 28px);
+  border-radius: var(--radius-l);
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.recordsTitle {
+  font-size: var(--step-1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.recordList {
+  display: grid;
+  margin: 0;
+  padding-left: 2.2em;
+}
+
+.recordList li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding: 10px 8px;
+  border-top: 1px solid var(--line);
+}
+
+.recordList li::marker {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.recordActive {
+  background: var(--paper);
+}
+
+.recordMeta {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.bars {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.bars li {
+  display: grid;
+  grid-template-columns: minmax(7rem, 11rem) 1fr auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.crosswalk {
+  display: grid;
+  gap: 12px;
+}
+
+.crossGrid {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .crossGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.crossCard {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: var(--radius-m);
+  background: var(--paper);
+}
+
+.crossCard h4 {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+}
+
+.exclusions li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 4px;
+  border-top: 1px solid var(--line);
+}
+
+.citations {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.1em;
+  list-style: disc;
+}

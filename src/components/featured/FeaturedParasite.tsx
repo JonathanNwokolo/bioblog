@@ -57,6 +57,13 @@ export function FeaturedParasite() {
             Ler o conteúdo relacionado
             <ArrowRight />
           </Link>
+
+          <p className={styles.science}>
+            <span>Ver em dados oficiais:</span>
+            <Link href={`/atlas?q=${encodeURIComponent(organism.scientificName)}`}>Classificação</Link>
+            <Link href="/laboratorio?organismo=giardia-duodenalis">Microscopia</Link>
+            <Link href={`/onde-vivem?q=${encodeURIComponent(organism.scientificName)}`}>Registros de ocorrência</Link>
+          </p>
         </div>
 
         <dl className={styles.facts}>

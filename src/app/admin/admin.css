@@ -1,0 +1,269 @@
+/* Área editorial. Tokens globais em globals.css; aqui só o que é específico do CMS. */
+.admin-shell {
+  --admin-border: #767274; /* 4,6:1 sobre branco — limite visível de campos (WCAG 1.4.11) */
+  --admin-danger: #a4152b;
+  min-height: 70vh;
+  padding: clamp(40px, 6vw, 80px) var(--gutter);
+  background: #f7f5f1;
+}
+
+.admin-wrap {
+  width: min(100%, 1080px);
+  margin: auto;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.admin-header h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.admin-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 20px;
+  max-width: 760px;
+}
+
+.admin-editor-form {
+  max-width: none;
+}
+
+.admin-fields {
+  display: grid;
+  gap: 20px;
+}
+
+.admin-field {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-field > label,
+.image-uploader legend {
+  font-weight: 700;
+}
+
+.admin-form input:not([type="hidden"]):not([type="file"]),
+.admin-form textarea,
+.admin-form select,
+.admin-danger input:not([type="hidden"]) {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 14px;
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+}
+
+.admin-form input[type="file"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px dashed var(--admin-border);
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+}
+
+.admin-form [aria-invalid="true"] {
+  border-color: var(--admin-danger);
+  box-shadow: 0 0 0 1px var(--admin-danger);
+}
+
+.admin-error {
+  padding: 12px 14px;
+  border-left: 4px solid var(--admin-danger);
+  background: #fdecef;
+}
+
+.admin-success {
+  padding: 12px 14px;
+  border-left: 4px solid #19704e;
+  background: #e7fff3;
+}
+
+.admin-field-error {
+  color: var(--admin-danger);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.admin-field-error::before {
+  content: "Erro: ";
+}
+
+.admin-help,
+.admin-muted {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.admin-feedback:empty {
+  display: none;
+}
+
+.admin-feedback:focus {
+  outline-offset: 4px;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.admin-list {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-list article {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  background: white;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+}
+
+.admin-list h2 {
+  font-size: 1.25rem;
+  overflow-wrap: anywhere;
+}
+
+.admin-status {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.editor-preview {
+  min-height: 300px;
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+
+.editor-preview p + p {
+  margin-top: 1em;
+}
+
+.image-uploader {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--admin-border);
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.image-uploader legend {
+  padding: 0 6px;
+}
+
+.admin-image-preview {
+  width: min(100%, 520px);
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.admin-actions,
+.admin-maintenance {
+  margin-top: 28px;
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.admin-actions h2,
+.admin-maintenance h2,
+.admin-danger h2 {
+  font-size: 1.25rem;
+}
+
+.admin-danger {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid var(--admin-danger);
+  border-radius: 12px;
+}
+
+.admin-danger .admin-field {
+  width: min(100%, 360px);
+}
+
+.admin-login {
+  width: min(100%, 520px);
+  margin: auto;
+}
+
+.admin-login .admin-form {
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+}
+
+.admin-config {
+  padding: 16px;
+  background: #fff5d9;
+  border-left: 4px solid #9b6b00;
+}
+
+/* Dirty-state hint and pending buttons must stay legible when motion is reduced. */
+.admin-form [aria-busy="true"] .btn {
+  opacity: 0.75;
+}
+
+@media (max-width: 760px) {
+  .editor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-actions .btn,
+  .admin-actions .btn {
+    width: 100%;
+  }
+}

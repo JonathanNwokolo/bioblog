@@ -8,6 +8,8 @@ interface MediaProps {
   emptyLabel?: string;
   className?: string;
   loading?: "lazy" | "eager";
+  /** `high` só para a imagem do LCP (primeira dobra). */
+  fetchPriority?: "high" | "auto";
 }
 
 /**
@@ -15,7 +17,7 @@ interface MediaProps {
  * fotografia real ou, na falta de ambas, um espaço reservado identificado.
  * Quem consome não precisa saber qual das três é.
  */
-export function Media({ media, emptyLabel = "Imagem a ser enviada", className, loading = "lazy" }: MediaProps) {
+export function Media({ media, emptyLabel = "Imagem a ser enviada", className, loading = "lazy", fetchPriority }: MediaProps) {
   if (!media) {
     return (
       <div className={`${styles.empty} ${className ?? ""}`} role="img" aria-label={emptyLabel}>
@@ -34,6 +36,8 @@ export function Media({ media, emptyLabel = "Imagem a ser enviada", className, l
         height={media.height}
         alt={media.alt}
         loading={loading}
+        decoding="async"
+        fetchPriority={fetchPriority}
       />
     );
   }

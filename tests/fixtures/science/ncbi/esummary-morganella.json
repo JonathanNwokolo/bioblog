@@ -1,0 +1,58 @@
+{
+  "header": {
+    "type": "esummary",
+    "version": "0.3"
+  },
+  "result": {
+    "581": {
+      "uid": "581",
+      "status": "active",
+      "rank": "genus",
+      "division": "g-proteobacteria",
+      "scientificname": "Morganella",
+      "commonname": "",
+      "taxid": 581,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2025/06/16 00:00",
+      "genbankdivision": "Bacteria"
+    },
+    "90690": {
+      "uid": "90690",
+      "status": "active",
+      "rank": "genus",
+      "division": "basidiomycete fungi",
+      "scientificname": "Morganella",
+      "commonname": "",
+      "taxid": 90690,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2025/06/16 00:00",
+      "genbankdivision": "Plants and Fungi"
+    },
+    "108061": {
+      "uid": "108061",
+      "status": "active",
+      "rank": "genus",
+      "division": "scale insects",
+      "scientificname": "Morganella",
+      "commonname": "",
+      "taxid": 108061,
+      "akataxid": "",
+      "genus": "",
+      "species": "",
+      "subsp": "",
+      "modificationdate": "2025/06/16 00:00",
+      "genbankdivision": "Invertebrates"
+    },
+    "uids": [
+      "108061",
+      "90690",
+      "581"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+Output format is unaligned.
+TABLE_PRIV|anon|categories|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|anon|media_assets|DELETE,INSERT,REFERENCES,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|anon|posts|DELETE,INSERT,REFERENCES,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|audit_events|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|categories|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|media_assets|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|owner_accounts|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|post_revisions|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+TABLE_PRIV|authenticated|posts|DELETE,INSERT,REFERENCES,SELECT,TRIGGER,TRUNCATE,UPDATE
+UNWANTED_COUNT|27
+FN_EXEC|anon|enforce_published_post_invariants|true
+FN_EXEC|anon|is_active_owner|false
+FN_EXEC|anon|protect_in_use_media|true
+FN_EXEC|anon|publish_post|false
+FN_EXEC|anon|record_post_revision|true
+FN_EXEC|anon|save_post_changes|false
+FN_EXEC|anon|soft_delete_post|false
+FN_EXEC|anon|unpublish_post|false
+FN_EXEC|authenticated|enforce_published_post_invariants|true
+FN_EXEC|authenticated|is_active_owner|true
+FN_EXEC|authenticated|protect_in_use_media|true
+FN_EXEC|authenticated|publish_post|true
+FN_EXEC|authenticated|record_post_revision|true
+FN_EXEC|authenticated|save_post_changes|true
+FN_EXEC|authenticated|soft_delete_post|true
+FN_EXEC|authenticated|unpublish_post|true

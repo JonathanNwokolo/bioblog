@@ -3,6 +3,7 @@ import { primaryNav } from "@/content/site";
 import { Brandmark } from "@/components/ui/Brandmark";
 import { ArrowRight } from "@/components/ui/icons";
 import { MobileNav } from "./MobileNav";
+import { NavLinks } from "./NavLinks";
 import styles from "./SiteHeader.module.css";
 
 export function SiteHeader() {
@@ -12,19 +13,7 @@ export function SiteHeader() {
         <Brandmark />
 
         <nav aria-label="Principal" className={styles.nav}>
-          <ul className={styles.list}>
-            {primaryNav.map((item, index) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={styles.link}
-                  aria-current={index === 0 ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <NavLinks items={primaryNav} />
         </nav>
 
         <Link href="/#contato" className={`btn btn--mint ${styles.cta}`}>

@@ -1,0 +1,74 @@
+[
+  {
+    "route": "/",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/home-desktop-1440.png"
+  },
+  {
+    "route": "/diario",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/diario-desktop-1440.png"
+  },
+  {
+    "route": "/admin/login",
+    "viewport": "desktop-1440",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/admin-login-desktop-1440.png"
+  },
+  {
+    "route": "/",
+    "viewport": "tablet-768",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/home-tablet-768.png"
+  },
+  {
+    "route": "/diario",
+    "viewport": "tablet-768",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/diario-tablet-768.png"
+  },
+  {
+    "route": "/admin/login",
+    "viewport": "tablet-768",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/admin-login-tablet-768.png"
+  },
+  {
+    "route": "/",
+    "viewport": "mobile-390",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/home-mobile-390.png"
+  },
+  {
+    "route": "/diario",
+    "viewport": "mobile-390",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/diario-mobile-390.png"
+  },
+  {
+    "route": "/admin/login",
+    "viewport": "mobile-390",
+    "status": 200,
+    "overflow": false,
+    "errors": [],
+    "screenshot": "docs/evidence/phase2-cms/admin-login-mobile-390.png"
+  }
+]

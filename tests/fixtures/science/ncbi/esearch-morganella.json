@@ -1,0 +1,27 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3",
+    "retmax": "3",
+    "retstart": "0",
+    "idlist": [
+      "108061",
+      "90690",
+      "581"
+    ],
+    "translationset": [],
+    "translationstack": [
+      {
+        "term": "\"Morganella\"[All Names]",
+        "field": "All Names",
+        "count": "3",
+        "explode": "N"
+      },
+      "GROUP"
+    ],
+    "querytranslation": "\"Morganella\"[All Names]"
+  }
+}

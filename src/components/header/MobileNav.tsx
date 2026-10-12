@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { NavItem } from "@/content/types";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { isCurrentNavItem } from "./NavLinks";
 import styles from "./SiteHeader.module.css";
 
 /** Menu em painel para telas estreitas. Fecha com Esc, clique em item ou fora. */
 export function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -49,9 +52,14 @@ export function MobileNav({ items }: { items: NavItem[] }) {
 
       <nav id="menu-mobile" aria-label="Menu principal" className={styles.panel} hidden={!open}>
         <ul>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <li key={item.href}>
-              <Link href={item.href} className={styles.panelLink} onClick={() => setOpen(false)}>
+              <Link
+                href={item.href}
+                className={styles.panelLink}
+                aria-current={isCurrentNavItem(item.href, index, pathname) ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
                 {item.label}
               </Link>
             </li>

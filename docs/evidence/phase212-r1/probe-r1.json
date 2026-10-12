@@ -1,0 +1,756 @@
+{
+  "ran_at": "2026-10-11T17:21:55.211Z",
+  "target": "http://127.0.0.1:54321",
+  "results": [
+    {
+      "name": "owner: publish_post devolve apenas {id,slug,status,published_at,updated_at}",
+      "ok": true,
+      "detail": "id,published_at,slug,status,updated_at"
+    },
+    {
+      "name": "owner: unpublish_post devolve a projeção mínima",
+      "ok": true,
+      "detail": "id,published_at,slug,status,updated_at"
+    },
+    {
+      "name": "anon: consulta pública do site retorna o post publicado",
+      "ok": true,
+      "detail": "sem linha"
+    },
+    {
+      "name": "anon: posts expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "body_json,category_id,created_at,deleted_at,excerpt,first_published_at,hero_media_id,id,published_at,slug,status,title,updated_at"
+    },
+    {
+      "name": "anon: media_assets expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "alt_text,created_at,credit,deleted_at,height,id,mime_type,object_key,state,width"
+    },
+    {
+      "name": "anon: posts.author_user_id negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: media_assets.sha256 negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: media_assets.bytes negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: media_assets.storage_bucket negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: posts select=* negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: media_assets select=* negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: embed de media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: filtrar por owner_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: filtrar por author_user_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "autenticado não-proprietário: consulta pública do site retorna o post publicado",
+      "ok": true,
+      "detail": "sem linha"
+    },
+    {
+      "name": "autenticado não-proprietário: posts expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "body_json,category_id,created_at,deleted_at,excerpt,first_published_at,hero_media_id,id,published_at,slug,status,title,updated_at"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "alt_text,created_at,credit,deleted_at,height,id,mime_type,object_key,state,width"
+    },
+    {
+      "name": "autenticado não-proprietário: posts.author_user_id negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets.sha256 negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets.bytes negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets.storage_bucket negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: posts select=* negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "autenticado não-proprietário: media_assets select=* negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: embed de media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: filtrar por owner_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "autenticado não-proprietário: filtrar por author_user_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário: consulta pública do site retorna o post publicado",
+      "ok": true,
+      "detail": "sem linha"
+    },
+    {
+      "name": "proprietário: posts expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "body_json,category_id,created_at,deleted_at,excerpt,first_published_at,hero_media_id,id,published_at,slug,status,title,updated_at"
+    },
+    {
+      "name": "proprietário: media_assets expõe exatamente as colunas do contrato",
+      "ok": true,
+      "detail": "alt_text,created_at,credit,deleted_at,height,id,mime_type,object_key,state,width"
+    },
+    {
+      "name": "proprietário: posts.author_user_id negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário: media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: media_assets.sha256 negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: media_assets.bytes negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: media_assets.storage_bucket negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: posts select=* negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário: media_assets select=* negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: embed de media_assets.owner_id negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: filtrar por owner_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário: filtrar por author_user_id (oráculo) negado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: lista contém SOMENTE o publicado",
+      "ok": true,
+      "detail": "[\"r1-publicado-d40ac022\"]"
+    },
+    {
+      "name": "anon: NÃO lê rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon: NÃO lê despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon: lê metadados da mídia publicada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon: NÃO lê mídia de rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon: NÃO assina objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: NÃO baixa objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: NÃO lê mídia de post despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon: NÃO assina objeto de post despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: NÃO baixa objeto de post despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: NÃO lê mídia órfã",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon: NÃO assina objeto órfã",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: NÃO baixa objeto órfã",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "anon: assina objeto publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon: listagem do bucket não revela UUID do proprietário",
+      "ok": true,
+      "detail": "itens=1"
+    },
+    {
+      "name": "autenticado não-proprietário: lista contém SOMENTE o publicado",
+      "ok": true,
+      "detail": "[\"r1-publicado-d40ac022\"]"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO lê rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO lê despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: lê metadados da mídia publicada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO lê mídia de rascunho",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO assina objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO baixa objeto de rascunho",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO lê mídia de post despublicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO assina objeto de post despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO baixa objeto de post despublicado",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO lê mídia órfã",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO assina objeto órfã",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO baixa objeto órfã",
+      "ok": true,
+      "detail": "Object not found"
+    },
+    {
+      "name": "autenticado não-proprietário: assina objeto publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "autenticado não-proprietário: listagem do bucket não revela UUID do proprietário",
+      "ok": true,
+      "detail": "itens=1"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO lê owner_accounts",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon NÃO lê owner_accounts",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO lê post_revisions",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon NÃO lê post_revisions",
+      "ok": true,
+      "detail": "permission denied for table post_revisions"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO lê audit_events",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "anon NÃO lê audit_events",
+      "ok": true,
+      "detail": "permission denied for table audit_events"
+    },
+    {
+      "name": "autenticado não-proprietário não vê categorias inativas",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "anon: NÃO insere post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: NÃO atualiza post publicado",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: NÃO apaga post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "anon: NÃO altera mídia",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "anon: NÃO altera categoria",
+      "ok": true,
+      "detail": "permission denied for table categories"
+    },
+    {
+      "name": "anon: NÃO se promove a proprietário",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "anon: NÃO grava auditoria",
+      "ok": true,
+      "detail": "permission denied for table audit_events"
+    },
+    {
+      "name": "anon: NÃO executa publish_post",
+      "ok": true,
+      "detail": "permission denied for function publish_post"
+    },
+    {
+      "name": "anon: NÃO executa unpublish_post",
+      "ok": true,
+      "detail": "permission denied for function unpublish_post"
+    },
+    {
+      "name": "anon: NÃO executa soft_delete_post",
+      "ok": true,
+      "detail": "permission denied for function soft_delete_post"
+    },
+    {
+      "name": "anon: NÃO executa save_post_changes",
+      "ok": true,
+      "detail": "permission denied for function save_post_changes"
+    },
+    {
+      "name": "anon: NÃO executa is_active_owner",
+      "ok": true,
+      "detail": "permission denied for function is_active_owner"
+    },
+    {
+      "name": "anon: NÃO executa record_post_revision",
+      "ok": true,
+      "detail": "Could not find the function public.record_post_revision without parameters in the schema cache"
+    },
+    {
+      "name": "anon: NÃO executa enforce_published_post_invariants",
+      "ok": true,
+      "detail": "Could not find the function public.enforce_published_post_invariants without parameters in the schema cache"
+    },
+    {
+      "name": "anon: NÃO executa protect_in_use_media",
+      "ok": true,
+      "detail": "Could not find the function public.protect_in_use_media without parameters in the schema cache"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO insere post",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"posts\""
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO atualiza post publicado",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO apaga post",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO altera mídia",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO altera categoria",
+      "ok": true,
+      "detail": "rows=0"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO se promove a proprietário",
+      "ok": true,
+      "detail": "permission denied for table owner_accounts"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO grava auditoria",
+      "ok": true,
+      "detail": "new row violates row-level security policy for table \"audit_events\""
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa publish_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa unpublish_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa soft_delete_post",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa save_post_changes",
+      "ok": true,
+      "detail": "not_authorized"
+    },
+    {
+      "name": "autenticado não-proprietário: is_active_owner(outro id) retorna false (sem oráculo)",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa record_post_revision",
+      "ok": true,
+      "detail": "Could not find the function public.record_post_revision without parameters in the schema cache"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa enforce_published_post_invariants",
+      "ok": true,
+      "detail": "Could not find the function public.enforce_published_post_invariants without parameters in the schema cache"
+    },
+    {
+      "name": "autenticado não-proprietário: NÃO executa protect_in_use_media",
+      "ok": true,
+      "detail": "Could not find the function public.protect_in_use_media without parameters in the schema cache"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO envia mídia",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO apaga objeto",
+      "ok": true,
+      "detail": "removidos=0"
+    },
+    {
+      "name": "anon NÃO envia mídia",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "anon NÃO apaga objeto publicado",
+      "ok": true,
+      "detail": "removidos=0"
+    },
+    {
+      "name": "anon NÃO sobrescreve objeto publicado",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "autenticado não-proprietário NÃO sobrescreve objeto publicado",
+      "ok": true,
+      "detail": "new row violates row-level security policy"
+    },
+    {
+      "name": "proprietário vê os 3 posts (publicado, rascunho, despublicado)",
+      "ok": true,
+      "detail": "rows=3"
+    },
+    {
+      "name": "proprietário lê mídia privada (rascunho, despublicado, órfã)",
+      "ok": true,
+      "detail": "rows=3"
+    },
+    {
+      "name": "proprietário assina objeto privado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário lê revisões",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário lê auditoria",
+      "ok": true,
+      "detail": "rows=1"
+    },
+    {
+      "name": "proprietário lê o próprio owner_accounts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário: is_active_owner() = true",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário edita rascunho (save_post_changes) com projeção mínima",
+      "ok": true,
+      "detail": "id,published_at,slug,status,updated_at"
+    },
+    {
+      "name": "proprietário publica rascunho",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "recém-publicado fica visível ao autenticado comum",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário troca a capa de post publicado",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "capa nova pública, capa antiga voltou a privada",
+      "ok": true,
+      "detail": "[{\"id\":\"c319491b-9599-4683-93c4-0de23e5fc604\"}]"
+    },
+    {
+      "name": "post publicado exige capa (hero_media_required)",
+      "ok": true,
+      "detail": "hero_media_required"
+    },
+    {
+      "name": "proprietário despublica",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "despublicado some para o autenticado comum",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário exclui (soft delete) com projeção mínima",
+      "ok": true,
+      "detail": "id,published_at,slug,status,updated_at"
+    },
+    {
+      "name": "post excluído não pode ser publicado",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "proprietário NÃO regrava posts.slug",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário NÃO regrava posts.author_user_id",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário NÃO regrava posts.created_at",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "proprietário NÃO regrava media_assets.object_key",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário NÃO regrava media_assets.owner_id",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário NÃO regrava media_assets.sha256",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário NÃO regrava media_assets.bytes",
+      "ok": true,
+      "detail": "permission denied for table media_assets"
+    },
+    {
+      "name": "proprietário ainda edita alt_text da mídia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "proprietário também não lê author_user_id (nenhum papel de API lê)",
+      "ok": true,
+      "detail": "permission denied for table posts"
+    },
+    {
+      "name": "owner2 vê só o publicado de owner (não rascunho/despublicado)",
+      "ok": true,
+      "detail": "published"
+    },
+    {
+      "name": "owner2 NÃO executa publish_post sobre post de outro proprietário",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "owner2 NÃO executa unpublish_post sobre post de outro proprietário",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "owner2 NÃO executa soft_delete_post sobre post de outro proprietário",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "owner2 NÃO executa save_post_changes sobre post de outro proprietário",
+      "ok": true,
+      "detail": "post_not_found"
+    },
+    {
+      "name": "owner2 NÃO usa mídia de outro proprietário como capa",
+      "ok": true,
+      "detail": "media_not_found"
+    },
+    {
+      "name": "owner2 NÃO usa mídia privada de outro proprietário",
+      "ok": true,
+      "detail": "media_not_found"
+    },
+    {
+      "name": "owner2 edita o próprio post com a própria mídia",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "owner2 publica o próprio post",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "owner2 NÃO baixa objeto privado de owner",
+      "ok": true,
+      "detail": "Object not found"
+    }
+  ]
+}
