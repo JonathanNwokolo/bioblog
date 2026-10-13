@@ -45,10 +45,16 @@ export function ExploreEntry() {
             </div>
           </dl>
 
-          <Link href="/#diario" className="btn btn--outline">
-            Enquanto isso, leia o diário
-            <ArrowRight />
-          </Link>
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+            <Link href="/explorar" className="btn btn--mint">
+              Iniciar jornada 3D
+              <ArrowRight />
+            </Link>
+            <Link href="/#diario" className="btn btn--outline">
+              Enquanto isso, leia o diário
+              <ArrowRight />
+            </Link>
+          </div>
         </div>
 
         <div className={styles.stage}>
