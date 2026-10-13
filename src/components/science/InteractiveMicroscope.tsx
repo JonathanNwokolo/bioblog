@@ -43,6 +43,7 @@ export function InteractiveMicroscope({
 
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [stageSize, setStageSize] = useState(0);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
 
   const zoomRef = useRef(1);
@@ -54,10 +55,22 @@ export function InteractiveMicroscope({
   const guide = useMemo(() => getMorphologicalGuide(currentImage.id), [currentImage.id]);
   const pins = guide?.pins ?? [];
 
-  const bounds = useCallback((z: number) => {
-    const size = stageRef.current?.clientWidth ?? 0;
-    return (size * (z - 1)) / 2;
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    setStageSize(el.clientWidth);
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setStageSize(entry.contentRect.width);
+      }
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
+
+  const bounds = useCallback((z: number) => {
+    return (stageSize * (z - 1)) / 2;
+  }, [stageSize]);
 
   const applyZoom = useCallback(
     (next: number) => {
@@ -370,12 +383,12 @@ export function InteractiveMicroscope({
           </div>
 
           {/* Campo Interativo do Microscópio */}
-          {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */}
+          {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex */}
           <div
             tabIndex={0}
             ref={stageRef}
             className={`${styles.stage} ${zoom > 1 ? styles.stageZoomed : ""}`}
-            role="application"
+            role="region"
             aria-roledescription="visualizador de microscopia"
             aria-label={`${currentImage.stage.pt} de ${organismName}. Ampliação óptica simulada.`}
             aria-describedby={`${hintId} ${captionId}`}

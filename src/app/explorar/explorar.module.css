@@ -1,0 +1,1663 @@
+/*
+ * /explorar — jornada guiada pela rolagem (Fase 2.3.2).
+ *
+ * Estrutura: uma trilha de rolagem alta (`.journey`) contém um palco `sticky`
+ * (`.stage`, 100dvh). A posição de rolagem real do documento governa o
+ * progresso; nada aqui é fixo à viewport nem trava a rolagem global. Depois da
+ * trilha o fluxo normal da página continua (rodapé do site).
+ */
+
+.root {
+  position: relative;
+  overflow-anchor: none;
+  background: #05080a;
+  color: #f4f2ed;
+  font-family: var(--font-sans);
+}
+
+/* ---- Trilha e palco ------------------------------------------------------ */
+
+.journey {
+  position: relative;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #05080a;
+}
+
+.canvasWrapper,
+.canvas,
+.opticalVignette,
+.fieldVignette,
+.opticalGlow,
+.opticalIris,
+.filmGrain {
+  position: absolute;
+  inset: 0;
+}
+
+/*
+ * Passagem óptica (Fase 2.3.8). As variáveis --optic-* são escritas a cada quadro a partir
+ * do progresso (sampleOptics): nada aqui transiciona por tempo.
+ *   --optic-r / --optic-f : raio e transição do limitador de campo (a ocular)
+ *   --optic-glow          : campo luminoso que cobre o corte entre instrumento e amostra
+ *   --optic-wash          : véu claro do estúdio (some antes do acoplamento)
+ */
+.fieldVignette {
+  pointer-events: none;
+  opacity: var(--optic-field-vignette, 0);
+  background: radial-gradient(circle at 52% 48%, transparent 34%, rgba(2, 8, 8, 0.22) 72%, rgba(2, 6, 6, 0.62) 118%);
+}
+
+.opticalGlow {
+  pointer-events: none;
+  opacity: var(--optic-glow, 0);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(244 253 248) 0,
+    rgb(196 236 224) calc(var(--optic-g, 480px) * 0.26),
+    rgb(112 178 164) calc(var(--optic-g, 480px) * 0.58),
+    rgb(42 96 92) calc(var(--optic-g, 480px) * 0.88),
+    rgb(12 38 40) calc(var(--optic-g, 480px) * 1.12),
+    rgb(6 22 24) 100%
+  );
+}
+
+.opticalIris {
+  pointer-events: none;
+  opacity: var(--optic-iris, 0);
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 0,
+    transparent calc(var(--optic-r, 2000px) * 0.72),
+    rgb(2 8 9 / 0.5) calc(var(--optic-r, 2000px) - var(--optic-f, 2px) * 0.5),
+    rgb(1 4 5 / 0.98) var(--optic-r, 2000px),
+    rgb(1 3 4) calc(var(--optic-r, 2000px) + 1px)
+  );
+}
+
+.canvasWrapper {
+  z-index: 0;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.opticalVignette {
+  pointer-events: none;
+  opacity: var(--optic-wash, 1);
+  background:
+    linear-gradient(90deg, rgba(233, 230, 222, 0.76) 0%, transparent 37%, transparent 80%, rgba(93, 96, 92, 0.08) 100%),
+    radial-gradient(circle at 68% 48%, transparent 26%, rgba(54, 58, 56, 0.06) 66%, rgba(15, 19, 19, 0.24) 125%);
+}
+
+.filmGrain {
+  opacity: 0.1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+/* ---- Barras -------------------------------------------------------------- */
+
+.topBar,
+.bottomBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.topBar {
+  top: 0;
+  padding: 22px clamp(20px, 3vw, 48px);
+  background: linear-gradient(180deg, rgba(3, 5, 7, 0.78), transparent);
+}
+
+.bottomBar {
+  bottom: 0;
+  gap: 16px;
+  padding: 18px clamp(20px, 3vw, 48px) 20px;
+  background: linear-gradient(0deg, rgba(3, 5, 7, 0.88), transparent);
+}
+
+.topBar > *,
+.bottomBar > * {
+  pointer-events: auto;
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brandLabel {
+  font-size: 1.02rem;
+  font-weight: 760;
+  letter-spacing: -0.035em;
+}
+
+.signature {
+  color: var(--mint);
+  font-size: 0.78rem;
+  font-weight: 540;
+}
+
+.navControls,
+.stepActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.techPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 4px;
+  background: rgba(9, 13, 15, 0.62);
+  color: rgba(244, 242, 237, 0.7);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
+.journey .techPill {
+  display: none;
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 10px rgba(128, 249, 199, 0.62);
+}
+
+.exitButton,
+.controlButton {
+  min-height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  background: rgba(9, 13, 15, 0.66);
+  color: #f4f2ed;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 620;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.exitButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.controlButton {
+  padding: 0 14px;
+}
+
+.exitButton:hover,
+.controlButton:hover {
+  border-color: rgba(128, 249, 199, 0.56);
+  background: rgba(19, 29, 27, 0.8);
+}
+
+.exitButton:focus-visible,
+.controlButton:focus-visible,
+.pathLink:focus-visible,
+.brandLink:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+.shortLabel {
+  display: none;
+}
+
+.controlButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ---- HUD de progresso ---------------------------------------------------- */
+
+.timelineStatus {
+  display: grid;
+  grid-template-columns: auto auto minmax(80px, 14vw);
+  align-items: center;
+  gap: 12px;
+}
+
+.stageNumber {
+  color: rgba(229, 203, 255, 0.78);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stageLabel {
+  color: var(--mint);
+  font-size: 0.72rem;
+  font-weight: 670;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.progressTrack {
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.progressFill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--mint);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.caption {
+  position: absolute;
+  left: clamp(20px, 3vw, 48px);
+  bottom: 82px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: min(48ch, calc(100vw - 40px));
+  margin: 0;
+  color: rgba(244, 242, 237, 0.78);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  pointer-events: none;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.7);
+}
+
+.caption::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--lilac);
+}
+
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: 84px;
+  z-index: 20;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin: 0;
+  color: rgba(244, 242, 237, 0.7);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.scrollHint::after {
+  content: "";
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, var(--mint), transparent);
+}
+
+.specimenContext {
+  position: absolute;
+  top: clamp(92px, 12vh, 128px);
+  left: clamp(20px, 3vw, 48px);
+  z-index: 19;
+  display: grid;
+  width: min(390px, calc(100vw - 40px));
+  padding-left: 15px;
+  border-left: 1px solid rgba(232, 240, 218, 0.5);
+  color: rgba(249, 247, 238, 0.84);
+  text-shadow: 0 2px 18px rgba(4, 7, 6, 0.9);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+  pointer-events: none;
+}
+
+.specimenContext[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.specimenContext > span {
+  color: rgba(220, 236, 204, 0.72);
+  font: 650 0.64rem/1.2 var(--font-sans);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.specimenContext > strong {
+  max-width: 27ch;
+  margin-top: 6px;
+  color: #fffdf5;
+  font: 620 clamp(1rem, 1.45vw, 1.35rem)/1.08 var(--font-sans);
+  letter-spacing: -0.025em;
+}
+
+.specimenContext > p {
+  max-width: 48ch;
+  margin: 8px 0 0;
+  color: rgba(244, 242, 233, 0.68);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+/* ---- Anotações parasitológicas ----------------------------------------- */
+
+.parasiteMarkers {
+  position: absolute;
+  inset: 0;
+  z-index: 24;
+  pointer-events: none;
+}
+
+.parasiteMarker {
+  position: absolute;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(244, 255, 250, 0.78);
+  border-radius: 50%;
+  background: rgba(9, 19, 18, 0.72);
+  color: #f4fff9;
+  font: 400 1.45rem/1 var(--font-sans);
+  box-shadow: 0 0 0 6px rgba(128, 249, 199, 0.08), 0 8px 30px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.72);
+  pointer-events: none;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.parasiteMarker[data-visible="true"] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.parasiteMarker:hover,
+.parasiteMarker:focus-visible {
+  border-color: var(--mint);
+  background: rgba(23, 55, 47, 0.94);
+  outline: none;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.parasiteMarker:focus-visible {
+  box-shadow: 0 0 0 3px #07100f, 0 0 0 6px var(--mint);
+}
+
+.root[data-panel-open="true"] .parasiteMarkers {
+  pointer-events: none;
+}
+
+.root[data-panel-open="true"] .parasiteMarker {
+  opacity: 0;
+}
+
+.observationPanel {
+  position: absolute;
+  top: 76px;
+  right: clamp(18px, 3vw, 48px);
+  bottom: 82px;
+  z-index: 50;
+  display: flex;
+  width: min(430px, calc(100vw - 36px));
+  flex-direction: column;
+  border: 1px solid rgba(206, 227, 218, 0.3);
+  border-radius: 5px;
+  background: rgba(9, 17, 16, 0.93);
+  color: #f4f2ed;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42), inset 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(22px) saturate(0.82);
+  animation: panel-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px 12px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panelKicker,
+.panelStage {
+  margin: 0;
+  color: var(--mint);
+  font-size: 0.68rem;
+  font-weight: 680;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.panelClose {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+  background: transparent;
+  color: #f4f2ed;
+  font: 300 1.7rem/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.panelClose:hover,
+.panelClose:focus-visible {
+  border-color: var(--mint);
+  outline: 2px solid transparent;
+  background: rgba(128, 249, 199, 0.08);
+}
+
+.panelScroll {
+  min-height: 0;
+  padding: 28px 30px 34px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panelTitle {
+  margin: 8px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 3.2vw, 3.4rem);
+  font-weight: 520;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.panelDescription {
+  margin: 24px 0 0;
+  color: rgba(244, 242, 237, 0.74);
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.panelSubheading {
+  margin: 30px 0 12px;
+  color: rgba(244, 242, 237, 0.58);
+  font-size: 0.7rem;
+  font-weight: 680;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.morphologyList {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.morphologyList li {
+  position: relative;
+  padding: 0 0 12px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(244, 242, 237, 0.9);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.morphologyList li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.panelCaveat {
+  margin: 26px 0 0;
+  padding-left: 14px;
+  border-left: 1px solid rgba(229, 203, 255, 0.48);
+  color: rgba(244, 242, 237, 0.55);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.panelLinks {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.panelLinks a {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+  color: #f4f2ed;
+  font-size: 0.78rem;
+  font-weight: 620;
+  text-decoration: none;
+}
+
+.panelLinks a:hover,
+.panelLinks a:focus-visible {
+  border-color: var(--mint);
+  outline: none;
+  background: rgba(128, 249, 199, 0.08);
+}
+
+/* ---- Convite e descoberta ------------------------------------------------ */
+
+.invitation,
+.discoveryOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.invitation {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.82fr) 1.18fr;
+  align-items: center;
+  padding: 96px clamp(28px, 7vw, 112px) 130px;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.invitationCopy {
+  width: min(100%, 620px);
+}
+
+.sectionMarker {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--mint);
+  font-size: 0.72rem;
+  font-weight: 670;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heroTitle,
+.discoveryTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 560;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.heroTitle {
+  max-width: 9.5ch;
+  font-size: clamp(3.1rem, 5vw, 5.8rem);
+  line-height: 0.92;
+  text-shadow: none;
+}
+
+.heroLead {
+  max-width: 38ch;
+  margin: 28px 0 0;
+  color: rgba(244, 242, 237, 0.74);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.55;
+}
+
+.root[data-stage="approach"] .brandLink,
+.root[data-stage="approach"] .heroTitle,
+.root[data-stage="approach"] .caption,
+.root[data-stage="approach"] .scrollHint,
+.root[data-stage="optical"] .brandLink,
+.root[data-stage="optical"] .caption {
+  color: #18201f;
+  text-shadow: none;
+}
+
+.root[data-stage="approach"] .heroLead,
+.root[data-stage="approach"] .heroMetadata,
+.root[data-stage="approach"] .instrumentCaption,
+.root[data-stage="optical"] .instrumentCaption {
+  color: rgba(24, 32, 31, 0.68);
+}
+
+.root[data-stage="approach"] .sectionMarker,
+.root[data-stage="approach"] .signature,
+.root[data-stage="approach"] .stageLabel,
+.root[data-stage="optical"] .signature,
+.root[data-stage="optical"] .stageLabel {
+  color: #256c59;
+}
+
+.root[data-stage="approach"] .topBar,
+.root[data-stage="optical"] .topBar {
+  background: linear-gradient(180deg, rgba(232, 229, 221, 0.9), transparent);
+}
+
+.root[data-stage="approach"] .bottomBar,
+.root[data-stage="optical"] .bottomBar {
+  background: linear-gradient(0deg, rgba(232, 229, 221, 0.94), transparent);
+}
+
+.heroMetadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  margin-top: 26px;
+  color: rgba(244, 242, 237, 0.5);
+  font-size: 0.72rem;
+}
+
+.heroMetadata span:not(:last-child)::after {
+  content: "·";
+  margin-left: 18px;
+  color: rgba(128, 249, 199, 0.5);
+}
+
+.instrumentCaption {
+  position: absolute;
+  right: clamp(28px, 5vw, 76px);
+  bottom: 120px;
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  color: rgba(244, 242, 237, 0.5);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  text-align: right;
+}
+
+.instrumentCaption span {
+  color: rgba(229, 203, 255, 0.78);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.1em;
+}
+
+.discoveryOverlay {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(420px, 1.3fr);
+  align-items: center;
+  gap: clamp(42px, 8vw, 132px);
+  padding: 100px clamp(28px, 6vw, 96px) 112px;
+  background:
+    linear-gradient(90deg, rgba(3, 7, 7, 0.86) 0%, rgba(3, 7, 7, 0.55) 32%, transparent 56%),
+    linear-gradient(270deg, rgba(3, 7, 7, 0.7) 0%, rgba(3, 7, 7, 0.42) 34%, transparent 62%);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+.discoveryOverlay[data-active="true"] {
+  pointer-events: none;
+}
+
+.discoveryOverlay[data-active="true"] .pathLink {
+  pointer-events: auto;
+}
+
+.discoveryIntro {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+}
+
+.discoveryTitle {
+  max-width: 9ch;
+  font-size: clamp(3rem, 5.1vw, 5.9rem);
+  line-height: 0.92;
+}
+
+.discoveryLead {
+  max-width: 43ch;
+  margin: 26px 0 0;
+  color: rgba(244, 242, 237, 0.74);
+  font-size: clamp(0.94rem, 1.2vw, 1.08rem);
+  line-height: 1.58;
+}
+
+.artisticNote {
+  margin: 24px 0 0;
+  padding-left: 14px;
+  border-left: 1px solid rgba(229, 203, 255, 0.44);
+  color: rgba(244, 242, 237, 0.5);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.discoveryPaths {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 0;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.discoveryPath {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.discoveryPath:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.discoveryPath:nth-child(2) {
+  margin-left: clamp(0px, 3vw, 44px);
+}
+
+.pathLink {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  gap: 18px;
+  min-height: 132px;
+  padding: 16px 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: padding 220ms ease, background 220ms ease;
+}
+
+.pathLink:hover,
+.pathLink:focus-visible {
+  padding-inline: 18px 10px;
+  background: linear-gradient(90deg, rgba(128, 249, 199, 0.1), transparent 82%);
+}
+
+.pathIndex {
+  align-self: start;
+  padding-top: 7px;
+  color: rgba(229, 203, 255, 0.78);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+}
+
+.pathCopy {
+  display: grid;
+}
+
+.pathCategory {
+  margin-bottom: 6px;
+  color: var(--mint);
+  font-size: 0.64rem;
+  font-weight: 690;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pathTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.3vw, 2.32rem);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.pathSubtitle {
+  margin-top: 7px;
+  color: rgba(244, 242, 237, 0.62);
+  font-size: 0.78rem;
+}
+
+.pathProvenance {
+  width: max-content;
+  margin-top: 12px;
+  color: rgba(244, 242, 237, 0.46);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+}
+
+.pathArrow {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  font-size: 1.05rem;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.pathLink:hover .pathArrow,
+.pathLink:focus-visible .pathArrow {
+  border-color: var(--mint);
+  background: var(--mint);
+  color: #07100d;
+}
+
+/* Linhas-guia entre os marcadores 3D e os destinos HTML. */
+.leaders {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.leader {
+  fill: none;
+  stroke: rgba(128, 249, 199, 0.55);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+/* ---- Acessibilidade ------------------------------------------------------ */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Versão estática (movimento reduzido, sem WebGL, escolha do visitante) -- */
+
+.staticView {
+  position: relative;
+  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 42%, rgba(91, 124, 113, 0.2), transparent 28%),
+    radial-gradient(circle at 28% 74%, rgba(129, 101, 143, 0.16), transparent 30%),
+    #05090a;
+}
+
+.staticBody {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(420px, 1.28fr);
+  align-items: start;
+  gap: clamp(42px, 8vw, 132px);
+  padding: 120px clamp(28px, 7vw, 112px) 96px;
+}
+
+.staticMovements {
+  display: grid;
+  gap: 10px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(244, 242, 237, 0.7);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.staticMovements strong {
+  display: block;
+  color: var(--mint);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.staticSpecimen {
+  position: absolute;
+  right: -8vw;
+  bottom: -24vh;
+  width: min(68vw, 850px);
+  aspect-ratio: 1;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.staticMicroscope {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 10, 0.94) 0%, rgba(5, 9, 10, 0.72) 42%, rgba(5, 9, 10, 0.14) 72%, rgba(5, 9, 10, 0.5) 100%),
+    url("/images/explore/microscope-opening.webp") 68% center / cover no-repeat;
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+.staticGiardia,
+.staticTrypanosoma,
+.staticTrichuris {
+  position: absolute;
+  display: block;
+}
+
+.staticGiardia {
+  left: 5%;
+  top: 11%;
+  width: 30%;
+  height: 43%;
+  border-radius: 52% 52% 46% 46% / 42% 42% 65% 65%;
+  border: 1px solid rgba(128, 249, 199, 0.24);
+  background:
+    radial-gradient(circle at 35% 34%, rgba(229, 203, 255, 0.62) 0 5%, transparent 6%),
+    radial-gradient(circle at 65% 34%, rgba(229, 203, 255, 0.62) 0 5%, transparent 6%),
+    radial-gradient(ellipse at 50% 52%, transparent 0 27%, rgba(128, 249, 199, 0.28) 28% 30%, transparent 31%),
+    rgba(61, 88, 79, 0.12);
+  box-shadow: inset 12px -18px 50px rgba(229, 203, 255, 0.1);
+  transform: rotate(-11deg);
+}
+
+.staticGiardia::before,
+.staticGiardia::after {
+  content: "";
+  position: absolute;
+  left: 42%;
+  top: 80%;
+  width: 1px;
+  height: 58%;
+  background: linear-gradient(rgba(128, 249, 199, 0.65), transparent);
+  transform: rotate(13deg);
+  transform-origin: top;
+}
+
+.staticGiardia::after {
+  left: 58%;
+  transform: rotate(-16deg);
+}
+
+.staticTrypanosoma {
+  left: 29%;
+  top: 47%;
+  width: 43%;
+  height: 10%;
+  border: 1px solid rgba(229, 203, 255, 0.38);
+  border-radius: 80% 18% 78% 22%;
+  background: linear-gradient(165deg, rgba(161, 126, 171, 0.48), rgba(62, 102, 90, 0.12));
+  box-shadow: 0 -8px 0 -6px rgba(128, 249, 199, 0.42);
+  transform: rotate(-20deg) skewX(-18deg);
+}
+
+.staticTrypanosoma::after {
+  content: "";
+  position: absolute;
+  left: 94%;
+  top: 28%;
+  width: 60%;
+  height: 130%;
+  border-top: 1px solid rgba(128, 249, 199, 0.58);
+  border-radius: 50%;
+  transform: rotate(18deg);
+}
+
+.staticTrichuris {
+  right: 4%;
+  top: 18%;
+  width: 23%;
+  height: 34%;
+  border: 3px double rgba(204, 157, 92, 0.58);
+  border-radius: 48% 48% 46% 46% / 18% 18% 18% 18%;
+  background: radial-gradient(ellipse, rgba(158, 111, 54, 0.3), rgba(80, 55, 23, 0.12) 62%, transparent 64%);
+  box-shadow: inset 0 0 34px rgba(219, 176, 111, 0.12);
+  transform: rotate(24deg);
+}
+
+.staticTrichuris::before,
+.staticTrichuris::after {
+  content: "";
+  position: absolute;
+  left: 31%;
+  width: 38%;
+  height: 9%;
+  border-radius: 50%;
+  background: rgba(211, 181, 126, 0.5);
+}
+
+.staticTrichuris::before {
+  top: -5%;
+}
+
+.staticTrichuris::after {
+  bottom: -5%;
+}
+
+/* Seleção de modo: CSS decide antes da hidratação, sem flash para movimento reduzido. */
+.root[data-mode="static"] .journey {
+  display: none;
+}
+
+.root[data-mode="static"] .staticView {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey {
+    display: none;
+  }
+
+  .staticView {
+    display: block;
+  }
+
+  .exitButton,
+  .controlButton,
+  .pathLink,
+  .pathArrow {
+    transition: none;
+  }
+
+  .observationPanel {
+    animation: none;
+  }
+}
+
+/* ---- Responsivo ---------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .invitation {
+    grid-template-columns: minmax(280px, 0.86fr) 1.14fr;
+    padding-inline: 44px;
+  }
+
+  .heroTitle {
+    font-size: clamp(3.4rem, 8vw, 5.4rem);
+  }
+
+  .discoveryOverlay {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 36px;
+    padding-inline: 34px;
+  }
+
+  .staticBody {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 40px;
+    padding-inline: 38px;
+  }
+
+  .discoveryPath:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .leaders,
+  .instrumentCaption {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .topBar {
+    align-items: flex-start;
+    padding: 14px 16px;
+  }
+
+  .signature,
+  .techPill {
+    display: none;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 16px 12px;
+  }
+
+  .longLabel {
+    display: none;
+  }
+
+  .shortLabel {
+    display: inline;
+  }
+
+  .topBar .controlButton,
+  .exitButton {
+    min-height: 40px;
+    padding-inline: 12px;
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+
+  .brandLabel {
+    font-size: 0.95rem;
+  }
+
+  .timelineStatus {
+    grid-template-columns: auto 1fr;
+    gap: 6px 10px;
+    min-width: 0;
+  }
+
+  .stepActions {
+    justify-content: flex-start;
+  }
+
+  .progressTrack {
+    grid-column: 1 / -1;
+  }
+
+  .stepActions .controlButton {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 10px;
+  }
+
+  .stepLabel {
+    display: none;
+  }
+
+  .invitation {
+    grid-template-columns: 1fr;
+    align-items: end;
+    padding: 84px 20px 150px;
+    background: linear-gradient(0deg, rgba(232, 229, 221, 0.94) 0%, rgba(232, 229, 221, 0.66) 52%, transparent 86%);
+  }
+
+  .sectionMarker {
+    margin-bottom: 12px;
+    font-size: 0.64rem;
+  }
+
+  .heroTitle {
+    max-width: 9.5ch;
+    font-size: clamp(2.9rem, 13.5vw, 4.2rem);
+  }
+
+  .heroLead {
+    margin-top: 16px;
+    font-size: 0.92rem;
+  }
+
+  .heroMetadata,
+  .instrumentCaption {
+    display: none;
+  }
+
+  /* A legenda da etapa fica só no rótulo da barra inferior e na região `status`. */
+  .caption {
+    display: none;
+  }
+
+  .scrollHint {
+    top: 74px;
+    bottom: auto;
+    font-size: 0.62rem;
+  }
+
+  .scrollHint::after {
+    height: 22px;
+  }
+
+  .specimenContext {
+    top: 76px;
+    left: 16px;
+    width: min(285px, calc(100vw - 32px));
+    padding-left: 10px;
+  }
+
+  .specimenContext > strong {
+    font-size: 0.9rem;
+  }
+
+  .specimenContext > p {
+    display: none;
+  }
+
+  .parasiteMarker {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Folha inferior: o espécime fica visível na faixa acima dela (inspeção real em telas estreitas). */
+  .observationPanel {
+    top: auto;
+    right: 12px;
+    bottom: 94px;
+    left: 12px;
+    height: min(46dvh, 400px);
+    width: auto;
+    background: rgba(7, 15, 14, 0.985);
+    backdrop-filter: none;
+  }
+
+  .panelHeader {
+    padding: 10px 10px 8px 18px;
+  }
+
+  .panelScroll {
+    padding: 20px 20px 26px;
+  }
+
+  .panelTitle {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  .discoveryOverlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 14px;
+    padding: 76px 16px 150px;
+    background: linear-gradient(180deg, rgba(3, 7, 7, 0.25), rgba(3, 7, 7, 0.86) 36%);
+  }
+
+  .discoveryIntro {
+    max-width: none;
+  }
+
+  .discoveryTitle {
+    max-width: 11ch;
+    font-size: clamp(2.2rem, 10.5vw, 3.2rem);
+  }
+
+  .discoveryLead,
+  .artisticNote {
+    display: none;
+  }
+
+  .discoveryPaths {
+    max-width: none;
+    margin: 0;
+  }
+
+  .pathLink {
+    grid-template-columns: 26px 1fr 32px;
+    gap: 10px;
+    min-height: 74px;
+    padding-block: 10px;
+  }
+
+  .pathCategory {
+    margin-bottom: 3px;
+    font-size: 0.56rem;
+  }
+
+  .pathTitle {
+    font-size: clamp(1.25rem, 6vw, 1.7rem);
+  }
+
+  .pathSubtitle,
+  .pathProvenance {
+    display: none;
+  }
+
+  .pathArrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .staticBody {
+    display: block;
+    padding: 92px 18px 56px;
+  }
+
+  .staticView .discoveryIntro {
+    max-width: none;
+    margin-bottom: 30px;
+  }
+
+  .staticView .discoveryLead,
+  .staticView .artisticNote {
+    display: block;
+  }
+
+  .staticView .pathLink {
+    min-height: 108px;
+  }
+
+  .staticView .pathSubtitle,
+  .staticView .pathProvenance {
+    display: block;
+  }
+
+  .staticSpecimen {
+    right: -42vw;
+    bottom: -8vh;
+    width: 130vw;
+    opacity: 0.46;
+  }
+
+
+  .staticMicroscope {
+    background:
+      linear-gradient(180deg, rgba(5, 9, 10, 0.44) 0%, rgba(5, 9, 10, 0.92) 50%, #05090a 100%),
+      url("/images/explore/microscope-opening.webp") 66% top / auto 62% no-repeat;
+    opacity: 0.78;
+  }
+}
+
+@media (max-width: 360px) {
+  .topBar {
+    padding: 12px;
+  }
+
+  .navControls {
+    gap: 6px;
+  }
+
+  .brandLabel {
+    font-size: 0.85rem;
+  }
+
+  .topBar .controlButton,
+  .exitButton {
+    min-height: 40px;
+    padding-inline: 8px;
+    font-size: 0.68rem;
+  }
+
+  .heroTitle {
+    font-size: 2.6rem;
+  }
+
+  .stageLabel {
+    font-size: 0.62rem;
+  }
+
+  .discoveryTitle {
+    font-size: 2rem;
+  }
+
+  .pathLink {
+    min-height: 64px;
+  }
+}
+
+@media (max-height: 520px) and (min-width: 701px) {
+  .heroLead,
+  .heroMetadata {
+    display: none;
+  }
+
+  .pathLink {
+    min-height: 88px;
+  }
+
+  .pathSubtitle,
+  .pathProvenance {
+    display: none;
+  }
+}
+
+
+/* ---- Movimento local, inspeção e anotações (Fase 2.3.9) ------------------- */
+
+/*
+ * O movimento dos organismos é secundário e opcional: o controle de pausa fica sempre à mão
+ * enquanto um organismo móvel está à vista, e o painel de inspeção repete a ação.
+ */
+.motionDock {
+  position: absolute;
+  left: clamp(20px, 3vw, 48px);
+  bottom: 128px;
+  z-index: 26;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+}
+
+.motionDock[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.motionButton,
+.inspectButton {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  background: rgba(9, 13, 15, 0.66);
+  color: #f4f2ed;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 620;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.motionButton:hover,
+.inspectButton:hover {
+  border-color: rgba(128, 249, 199, 0.56);
+  background: rgba(19, 29, 27, 0.8);
+}
+
+.motionButton:focus-visible,
+.inspectButton:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+.motionButton[aria-pressed="true"],
+.inspectButton[aria-pressed="true"] {
+  border-color: rgba(128, 249, 199, 0.6);
+}
+
+.inspectButton:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.motionGlyph {
+  position: relative;
+  width: 10px;
+  height: 11px;
+  flex: 0 0 auto;
+}
+
+/* Pausa: duas barras; retomar: triângulo. Desenhados em CSS (sem depender de glifos da fonte). */
+.motionGlyph[data-state="pause"]::before,
+.motionGlyph[data-state="pause"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 11px;
+  border-radius: 1px;
+  background: var(--mint);
+}
+
+.motionGlyph[data-state="pause"]::before {
+  left: 0;
+}
+
+.motionGlyph[data-state="pause"]::after {
+  right: 0;
+}
+
+.motionGlyph[data-state="play"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1px;
+  border-style: solid;
+  border-width: 5.5px 0 5.5px 9px;
+  border-color: transparent transparent transparent var(--mint);
+}
+
+.inspectControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rotatePad,
+.zoomPad {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.rotatePad .inspectButton,
+.zoomPad .inspectButton {
+  min-width: 44px;
+  padding: 0 10px;
+  font-size: 0.95rem;
+}
+
+.panelHint,
+.panelMotionNote {
+  margin: 14px 0 0;
+  color: rgba(244, 242, 237, 0.6);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.panelMotionNote {
+  padding-left: 14px;
+  border-left: 1px solid rgba(128, 249, 199, 0.4);
+}
+
+/* Alça de arraste: só existe com a anotação aberta (a rolagem da jornada está parada). */
+.specimenHandle {
+  position: absolute;
+  z-index: 23;
+  cursor: grab;
+  touch-action: none;
+  border-radius: 50%;
+}
+
+.specimenHandle:active {
+  cursor: grabbing;
+}
+
+.annotationLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.annotationLayer[data-visible="true"] {
+  opacity: 1;
+}
+
+.annotation {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(244, 255, 250, 0.94);
+  font-size: 0.7rem;
+  font-weight: 640;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translate(0, -50%);
+}
+
+.annotation[data-side="left"] {
+  flex-direction: row-reverse;
+  transform: translate(-100%, -50%);
+}
+
+.annotationDot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(244, 255, 250, 0.95);
+  border-radius: 50%;
+  background: rgba(7, 20, 18, 0.7);
+  box-shadow: 0 0 0 3px rgba(128, 249, 199, 0.16);
+}
+
+.annotationText {
+  padding: 3px 8px;
+  border: 1px solid rgba(206, 227, 218, 0.28);
+  border-radius: 3px;
+  background: rgba(7, 16, 15, 0.74);
+}
+
+.annotation::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: rgba(128, 249, 199, 0.6);
+  order: 1;
+}
+
+.annotation .annotationText {
+  order: 2;
+  transform: translateX(var(--label-shift, 0px));
+}
+
+@media (max-width: 700px) {
+  .motionDock {
+    left: 16px;
+    bottom: 140px;
+  }
+
+  .annotation {
+    font-size: 0.62rem;
+  }
+
+  .annotation::before {
+    width: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motionDock,
+  .annotationLayer {
+    transition: none;
+  }
+}

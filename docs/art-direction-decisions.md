@@ -130,3 +130,58 @@ Plugin `frontend-design` e skill `microcosmos-art-direction` consultados; sem mu
 ### Pendências para a proprietária
 - Aprovar o rótulo "Ciência interativa" no menu e a linha de atalhos na seção do parasita.
 - Confirmar se `Giardia lamblia` (nome da referência) deve ser exibido como "Giardia duodenalis (nome aceito no NCBI)" na seção em destaque. O Atlas já resolve o sinônimo.
+
+## 2026-10-12 — Fase 2.3.1: reconstrução da jornada cinematográfica
+
+Skills `microcosmos-art-direction` e `redesign-existing-projects` consultadas. A reconstrução permanece isolada em `/explorar`; a homepage, seus seis blocos, tipografia e tokens globais não foram alterados.
+
+- **Conceito:** passagem contínua da precisão mecânica de uma objetiva de microscópio para uma visualização biológica artística. A cena evita vocabulário espacial: partículas usam mistura normal, baixa opacidade, distribuição determinística em aglomerados e só aparecem após o diafragma.
+- **Instrumento:** composição assimétrica em três quartos, barril de grafite escalonado, colar metálico, knurling instanciado, poço de retenção e dois elementos ópticos convexos. Menta aparece como estado/ação; lilás identifica dado e reflexão secundária.
+- **Câmera:** percurso Catmull–Rom no mesmo eixo óptico, sem giro; FOV varia de 39° a 52° durante a passagem e retorna a 42° no campo microscópico.
+- **Biologia abstrata:** membranas orgânicas translúcidas, volumes citoplasmáticos, vesículas, dobra em primeiro plano e filamento. Nenhuma forma é apresentada como micrografia, anatomia ou espécie validada.
+- **Descoberta:** três destinos viraram caminhos editoriais assimétricos integrados ao campo, com links HTML completos. A grade de cards convencionais foi removida.
+- **Movimento e energia:** o frame inicial e o hub final não mantêm loop contínuo; a renderização contínua ocorre apenas durante os 14,5 s de travessia. Pausa interrompe `requestAnimationFrame`; replay cria uma única retomada.
+- **Fallback:** movimento reduzido e ausência de WebGL abrem diretamente um campo estático polido com os três destinos, sem exigir a animação.
+- **Ativos:** nenhum ativo externo foi incorporado. Geometria, textura de partículas e grão são gerados localmente em código; não há atribuição ou licença adicional.
+
+## 2026-10-12 — Fase 2.3.2: jornada guiada pela rolagem (substitui a linha do tempo de 14,5 s)
+
+Skills `microcosmos-art-direction` e `redesign-existing-projects` consultadas. Identidade (paleta grafite/menta/lilás, Newsreader + Plus Jakarta Sans), ordem da homepage e a fronteira "cinematográfico só em Explore o Invisível" **preservadas**. A mudança é de modelo de interação e de composição da cena; não há novos tokens de marca.
+
+- **Interação:** o visitante não assiste à animação, ele a controla rolando. A posição de rolagem é a única fonte de verdade; não há botões de reprodução, pausa, retomada ou repetição. Controles de etapa (anterior/próxima/ir à descoberta) apenas alteram a posição de rolagem.
+- **Estrutura:** trilha de 520vh com palco `sticky` de 100dvh; depois da trilha o fluxo normal da página continua (rodapé). Sem `overflow: hidden` global, sem camada `position: fixed` sobre o site, sem `preventDefault` em wheel/touch.
+- **Convite:** o botão "Iniciar travessia" e a duração "14,5 segundos" foram removidos. A chamada é "Role para explorar" (some com o início da rolagem e volta ao retroceder).
+- **Descoberta integrada:** três marcadores 3D ancorados ao micromundo e linhas-guia pontilhadas ligam cada marcador ao seu destino HTML. A revelação é função do progresso (88,5%–96,5%) e desaparece ao retroceder. Abaixo de 980 px as linhas-guia são omitidas e a lista ocupa a base da tela.
+- **Óptica (onde a rolagem exigiu):** como o visitante pode parar em qualquer ponto da travessia, todo ponto precisa parecer intencional. Adicionados: ambiente de estúdio procedural (reflexos reais nos metais e no vidro, sem HDRI externo), pilha de lentes interna com anteparos, assentos de lente em duas ligas, rosca helicoidal, trilhos e parafusos assimétricos (para não repetir o túnel radial rejeitado), e a abertura sem disco opaco (a câmera atravessa o diafragma sem um corte para o preto).
+- **Micromundo:** membranas com granulação de superfície, rede de fibras, enxame de organelas instanciadas, células em primeiro plano (paralaxe real ao percorrer), fundo desfocado de bokeh biológico. Tudo permanece abstrato e rotulado como não diagnóstico.
+- **Movimento vinculado ao progresso:** rotação, respiração e deriva de membranas, organelas e partículas são funções do progresso; ao parar, tudo para. Nenhuma animação ambiente contínua.
+- **Movimento reduzido:** nenhum movimento de câmera; a versão estática editorial lista as quatro etapas em texto e os três destinos. Também há "Versão sem movimento" para quem não usa a preferência do sistema.
+
+## Fase 2.3.6 — Entrada pela ocular (skill `microcosmos-art-direction` consultada)
+
+- Decisão: o observador entra pela ocular superior (direita na vista frontal), nunca pela objetiva. Oculares reorientadas com o olho para cima; composição do microscópio preservada.
+- Trajetória derivada da geometria medida; detalhes e evidência em `docs/phase236-eyepiece-entry-report.md`.
+
+## Fase 2.3.8 — Transição óptica (skills `microcosmos-art-direction` e `frontend-design` consultadas)
+
+Sem mudança de identidade: paleta (grafite, verde-menta `#80F9C7`, lilás), tipografia e composição da homepage e do hub de descoberta preservadas. Relatório e evidências: `docs/phase238-optical-transition-acceptance.md`.
+
+- **Decisão central:** a continuidade percebida vale mais que a continuidade literal de coordenadas. A câmera deixou de atravessar a carcaça; ela para diante do vidro da ocular direita, o exterior escurece até o limitador de campo, a lente acende e a cena do instrumento cede lugar à cena da amostra **sob o campo totalmente luminoso**.
+- **Campo microscópico:** iluminação em verde-menta (poça de Köhler) que se assenta no campo escuro aprovado, grão fino, bolhas/células fora de foco. Proibido: cinza chapado, véu claro, fade de materiais do instrumento. Menta é luz do instrumento (papel funcional), não lavagem decorativa.
+- **Foco como narrativa:** o campo e cada organismo resolvem de desfoque para nitidez em função do progresso. Organismo nunca existe antes de o campo estar formado; marcador só aparece e só é acionável com o organismo suficientemente revelado.
+- **Ritmo:** trilha de 520vh → 600vh (cinco estados). A proprietária deve aprovar o novo ritmo.
+- **Movimento:** nenhuma animação autônoma; tudo é função pura do progresso, reversível (verificado por pixels). `prefers-reduced-motion` e falta de WebGL abrem a versão estática, como antes.
+- **Pendência de arte:** o vidro da ocular (0,47–0,49) ainda é um disco liso; refinar material/reflexos sem alterar a silhueta do instrumento.
+
+## Fase 2.3.9 — Movimento científico e fidelidade dos organismos (skills `microcosmos-art-direction` e `frontend-design` consultadas)
+
+Sem mudança de identidade: paleta (grafite, verde-menta `#80F9C7`, lilás), tipografia e a transição óptica aprovada (2.3.8) preservadas. Relatório, matriz de referências e evidências: `docs/phase239-scientific-motion-report.md`.
+
+- **Diagnóstico que orientou a rodada:** os organismos que o visitante via eram imagens editoriais geradas (`*-editorial-v2.png`) sobrepostas em DOM; os modelos 3D eram só âncoras minúsculas. Imagem estática não pode ter movimento coerente, então os mesmos ativos aprovados passaram a ser renderizados em WebGL como folhas de relevo deformadas na GPU (campos derivados do canal alfa). A aparência aprovada foi conservada; nada foi redesenhado nem substituído por geometria procedural "de brinquedo".
+- **Cada organismo, uma linguagem de movimento:** *Giardia* — onda coordenada e defasada nos oito flagelos, corpo rígido com rotação lenta limitada (±11°) e deslocamento mínimo; *T. cruzi* — onda viajante da ponta para a base no flagelo livre, membrana ondulante acoplada e flexão do corpo pinada nas extremidades; ovo de *Trichuris* — nenhum movimento autônomo, apenas inspeção pelo visitante (sólido de revolução com a silhueta medida e a mesma textura).
+- **Sem hélice nem giro contínuo:** nenhuma rotação acumula; toda amplitude é limitada e função do tempo local (testado).
+- **Movimento é secundário e opcional:** relógio local próprio, separado do progresso narrativo; pausa visível ("Pausar movimento") sempre à mão quando há organismo móvel à vista; o painel de inspeção pausa o movimento ao abrir e restaura o estado anterior ao fechar (leitura calma). `prefers-reduced-motion` mantém a versão estática (sem canvas).
+- **Marcador fora da anatomia:** o "+" fica sobre a margem do corpo (ou do contorno do ovo), não sobre núcleos, disco, membrana ou plugues. As anotações (Núcleos, Disco ventral, Flagelos / Núcleo, Membrana ondulante, Flagelo / Plugue polar, Casca espessa) só nomeiam estruturas citadas pela fonte (CDC DPDx) e seguem o ponto projetado durante o movimento.
+- **Composição:** organismos inteiros dentro do quadro durante toda a janela (defeito de recorte à esquerda de *T. cruzi* corrigido: composição centrada, saída pela esquerda com deriva limitada, janelas do ovo e de *T. cruzi* menos sobrepostas). No hub, cada espécime fica ao lado da linha do próprio destino; anéis e pontos decorativos foram removidos.
+- **Materiais:** *Giardia* e *T. cruzi* mantêm a textura aprovada com sombreamento de relevo suave e luz de contorno (menta / lilás); o ovo ganha casca espessa, escurecimento e aquecimento nas margens e brilho especular fino. Sem bloom, sem neon, sem translucidez extra. Profundidade de campo leve: pontas dos flagelos e foco de entrada suavizam por LOD.
+- **Pendências de arte:** o lado dorsal não tem referência (sombreamento neutro nas vistas laterais); a posição do cinetoplasto na imagem de *T. cruzi* precisa de revisão especializada (ver relatório).

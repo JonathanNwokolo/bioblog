@@ -196,7 +196,7 @@ export function LaboratorioWorkspace({
             </div>
 
             {pins.length > 0 ? (
-              <ul className={styles.pinsList} role="list">
+              <ul className={styles.pinsList}>
                 {pins.map((pin) => {
                   const isActive = activePinId === pin.id;
                   return (
