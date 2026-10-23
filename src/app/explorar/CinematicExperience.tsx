@@ -25,6 +25,7 @@ import { INSPECTION_LIMITS } from "@/cinematic/organisms";
 import { ORGANISM_ASPECT, type HubTarget } from "@/cinematic/organismMotion";
 import {
   PREPARATION_CONTEXTS,
+  SPECIMEN_TIMELINE,
   type SpecimenWorldId,
 } from "@/cinematic/specimenTimeline";
 import {
@@ -232,6 +233,7 @@ export function CinematicExperience() {
   const annotationsOnRef = useRef(true);
   const panelProgressRef = useRef<number | null>(null);
   const restoreProgressRef = useRef<number | null>(null);
+  const hotspotAnchorRef = useRef<{ id: ParasiteObservationId; progress: number } | null>(null);
   const engineRef = useRef<CinematicEngine | null>(null);
   const progressRef = useRef(0);
   const tierRef = useRef<EngineTier>("high");
@@ -296,9 +298,12 @@ export function CinematicExperience() {
     let contextTimer: ReturnType<typeof setTimeout> | undefined;
     const intervals: number[] = [];
     const quality = detectQualityTier();
+    const debugParams = new URLSearchParams(window.location.search);
     const specimenDebug =
       process.env.NODE_ENV !== "production" &&
-      new URLSearchParams(window.location.search).get("debug") === "specimen";
+      debugParams.get("debug") === "specimen";
+    const debugChapter = debugParams.get("chapter");
+    stage.dataset.specimenDebug = specimenDebug ? "true" : "false";
     tierRef.current = quality.tier;
 
     // O canvas é criado por sessão: um contexto perdido/liberado não pode ser reutilizado.
@@ -365,15 +370,11 @@ export function CinematicExperience() {
       style.setProperty("--optic-r", `${radius.toFixed(1)}px`);
       style.setProperty("--optic-f", `${feather.toFixed(1)}px`);
       style.setProperty("--optic-iris", optics.fieldStop >= 0.999 ? "0" : "1");
-      // O campo luminoso nasce como um núcleo brilhante que cresce dentro da lente escurecida
-      // (a luz entra pela ocular) e termina cobrindo todo o limitador de campo.
-      // Opacidade: a lente escurece quase de imediato (sem estado intermediário acinzentado);
-      // depois o campo inteiro se apaga, sem o núcleo encolher sobre o campo já formado.
-      const dim = smoothstep(0.47, 0.505, progress) * (1 - smoothstep(0.58, 0.63, progress));
-      style.setProperty("--optic-glow", dim.toFixed(3));
+      // O campo luminoso cobre a troca entre instrumento e amostra durante o corte óptico.
+      style.setProperty("--optic-glow", optics.glow.toFixed(3));
       style.setProperty("--optic-g", `${(hold * (0.2 + 0.95 * optics.glowCore)).toFixed(1)}px`);
-      style.setProperty("--optic-wash", (1 - smoothstep(0.4, 0.5, progress)).toFixed(3));
-      style.setProperty("--optic-field-vignette", smoothstep(0.58, 0.68, progress).toFixed(3));
+      style.setProperty("--optic-wash", optics.instrumentVisible ? (1 - optics.eyecup).toFixed(3) : "0");
+      style.setProperty("--optic-field-vignette", optics.sampleVisible ? Math.min(1, optics.detail * 1.15).toFixed(3) : "0");
       const blur = optics.blurPx * Math.min(1, width / 1440);
       host.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : "";
       stage.dataset.optical = optics.phase;
@@ -592,6 +593,16 @@ export function CinematicExperience() {
         // Compila todos os shaders antes de a rolagem revelar o micromundo.
         await engine.warmUp();
         if (cancelled) return;
+        if (specimenDebug && debugChapter) {
+          const chapter = debugChapter === "trichuris"
+            ? SPECIMEN_TIMELINE.chapters.trichuris
+            : debugChapter === "t-cruzi"
+              ? SPECIMEN_TIMELINE.chapters["t-cruzi"]
+              : debugChapter === "giardia"
+                ? SPECIMEN_TIMELINE.chapters.giardia
+                : null;
+          if (chapter) scrollToProgress((chapter.contemplation[0] + chapter.contemplation[1]) * 0.5);
+        }
         window.__MICROCOSMOS_CINEMATIC__ = {
           getProgress: () => progressRef.current,
           getStageId: () => JOURNEY_STAGES[stageIndexAt(progressRef.current)].id,
@@ -657,26 +668,33 @@ export function CinematicExperience() {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pageshow", schedule);
       observer.disconnect();
+      delete stage.dataset.specimenDebug;
       engineRef.current?.dispose();
       engineRef.current = null;
       canvas.remove();
       delete window.__MICROCOSMOS_CINEMATIC__;
     };
-  }, [mode]);
+  }, [mode, scrollToProgress]);
 
   const handleHighlight = useCallback((id: string | null) => {
     engineRef.current?.setHighlight(id);
   }, []);
 
-  const preserveHotspotFocusPosition = useCallback(() => {
+  const preserveHotspotFocusPosition = useCallback((id: ParasiteObservationId) => {
     // Elementos dentro de um ancestral sticky podem fazer o navegador tentar
     // revelar sua posição no fluxo ao receber foco pelo teclado.
-    scrollToProgress(progressRef.current);
+    const progress = progressRef.current;
+    hotspotAnchorRef.current = { id, progress };
+    scrollToProgress(progress);
   }, [scrollToProgress]);
 
   const openObservation = useCallback((id: ParasiteObservationId, trigger: HTMLButtonElement) => {
     lastTriggerRef.current = trigger;
-    panelProgressRef.current = progressRef.current;
+    const anchor = hotspotAnchorRef.current;
+    // Acionadores posicionados dentro do palco sticky podem ser rolados pelo
+    // navegador entre foco e click. A observação pertence ao ponto em que o
+    // visitante descobriu o hotspot, não ao deslocamento automático do foco.
+    panelProgressRef.current = anchor?.id === id ? anchor.progress : progressRef.current;
     // Leitura calma: o movimento local pausa ao abrir a anotação e volta ao estado anterior ao fechar.
     pausedBeforePanelRef.current = motionPausedRef.current;
     setMotionPaused(true);
@@ -754,7 +772,11 @@ export function CinematicExperience() {
   }, []);
 
   useLayoutEffect(() => {
-    if (activeObservation) return;
+    if (activeObservation) {
+      const savedProgress = panelProgressRef.current;
+      if (savedProgress !== null) scrollToProgress(savedProgress);
+      return;
+    }
     const savedProgress = restoreProgressRef.current;
     if (savedProgress === null) return;
     restoreProgressRef.current = null;
@@ -918,7 +940,7 @@ export function CinematicExperience() {
                 data-visible="false"
                 tabIndex={-1}
                 aria-label={`Abrir anotação de ${observation.scientificName}, ${observation.stage}`}
-                onFocus={preserveHotspotFocusPosition}
+                onFocus={() => preserveHotspotFocusPosition(observation.id)}
                 onClick={(event) => openObservation(observation.id, event.currentTarget)}
               >
                 <span aria-hidden="true">+</span>

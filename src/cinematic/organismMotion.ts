@@ -205,9 +205,9 @@ const BASE_ROLL: Record<OrganismId, number> = { giardia: -0.1, "t-cruzi": -0.08,
  * junto com o texto da descoberta, depois que a janela de observação deles já terminou.
  */
 export const HUB_WINDOW: Record<OrganismId, readonly [number, number]> = {
-  giardia: [0.925, 0.955],
-  "t-cruzi": [0.93, 0.96],
-  trichuris: [0.925, 0.96],
+  giardia: [0.985, 0.998],
+  "t-cruzi": [0.985, 0.998],
+  trichuris: [0.985, 0.998],
 };
 
 const enter = (id: OrganismId, progress: number) =>
@@ -223,27 +223,26 @@ export function windowPlacement(id: OrganismId, progress: number, width: number,
   let centerY: number;
   let widthPx: number;
   if (portrait) {
-    centerX = 0.5;
-    centerY = id === "giardia" ? 0.4 : 0.42;
-    widthPx = width * (id === "giardia" ? 0.66 : id === "t-cruzi" ? 0.9 : 0.78);
+    centerX = id === "t-cruzi" ? 0.48 : 0.49;
+    centerY = id === "giardia" ? 0.43 : id === "t-cruzi" ? 0.44 : 0.44;
+    widthPx = width * (id === "giardia" ? 0.40 : id === "t-cruzi" ? 0.48 : 0.40);
     // A altura útil é limitada pela barra inferior e pelo cabeçalho.
-    const maxHeight = height * 0.46;
+    const maxHeight = height * (id === "giardia" ? 0.25 : id === "t-cruzi" ? 0.25 : 0.22);
     widthPx = Math.min(widthPx, maxHeight / aspect);
   } else {
-    centerX = id === "t-cruzi" ? 0.38 : 0.4;
-    centerY = id === "giardia" ? 0.47 : id === "t-cruzi" ? 0.5 : 0.5;
-    const byHeight = (height * (id === "giardia" ? 0.58 : id === "t-cruzi" ? 0.62 : 0.5)) / aspect;
-    const byWidth = width * (id === "giardia" ? 0.34 : id === "t-cruzi" ? 0.5 : 0.3);
+    centerX = id === "t-cruzi" ? 0.44 : id === "giardia" ? 0.43 : 0.44;
+    centerY = id === "giardia" ? 0.46 : id === "t-cruzi" ? 0.48 : 0.47;
+    // Escala calibrada: organismos integrados ao ecossistema da lâmina, não ocupando o palco inteiro.
+    const byHeight = (height * (id === "giardia" ? 0.28 : id === "t-cruzi" ? 0.23 : 0.21)) / aspect;
+    const byWidth = width * (id === "giardia" ? 0.18 : id === "t-cruzi" ? 0.24 : 0.16);
     widthPx = Math.min(byHeight, byWidth);
   }
-  // Deriva suave de entrada (vem da direita) e de saída (segue para a esquerda): sempre contida.
-  // O ovo chega de mais longe (à direita) e T. cruzi parte para a esquerda: os dois quase não
-  // dividem os mesmos pixels durante o cruzamento.
-  const inReach = id === "trichuris" ? 0.3 : 0.1;
-  const outReach = id === "t-cruzi" ? 0.13 : 0.07;
+  // Deriva suave de entrada e saída: contida para manter o espécime integrado ao campo.
+  const inReach = id === "trichuris" ? 0.16 : 0.08;
+  const outReach = id === "t-cruzi" ? 0.10 : 0.06;
   const driftIn = (portrait ? inReach * 0.5 : inReach) * (1 - enter(id, progress));
   const driftOut = -(portrait ? outReach * 0.45 : outReach) * exit(id, progress);
-  const scale = 0.92 + 0.08 * enter(id, progress) - 0.04 * exit(id, progress);
+  const scale = 0.94 + 0.06 * enter(id, progress) - 0.04 * exit(id, progress);
   return {
     ndcX: (centerX * 2 - 1) + driftIn + driftOut,
     ndcY: 1 - centerY * 2,

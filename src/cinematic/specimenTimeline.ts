@@ -13,47 +13,47 @@ export interface SpecimenChapter {
 }
 
 /**
- * Timeline editorial único da Fase 2.3.10.
+ * Timeline editorial da Fase 2.3.11.
  *
- * A entrada óptica termina em 34%: em 1100vh isso conserva quase a mesma distância física
- * da coreografia aprovada em 600vh. O espaço adicional pertence aos três capítulos, não ao
- * microscópio. Intervalos são inclusivos nas bordas e todos os cálculos são determinísticos.
+ * A entrada óptica termina em 24,3% de uma trilha de 1500vh. Em distância física isso preserva
+ * a travessia aprovada da Fase 2.3.10. O ganho de percurso pertence à busca, revelação,
+ * contemplação, saída e buffer de cada preparo.
  */
 export const SPECIMEN_TIMELINE = {
-  opticalEnd: 0.34,
+  opticalEnd: 0.235,
   chapters: {
     giardia: {
       id: "giardia",
       world: "giardia",
-      environment: [0.34, 0.38],
-      reveal: [0.38, 0.41],
-      contemplation: [0.41, 0.49],
-      departure: [0.49, 0.52],
-      transitionBuffer: [0.52, 0.56],
+      environment: [0.235, 0.315],
+      reveal: [0.315, 0.355],
+      contemplation: [0.355, 0.435],
+      departure: [0.435, 0.465],
+      transitionBuffer: [0.465, 0.535],
     },
     "t-cruzi": {
       id: "t-cruzi",
       world: "blood",
-      environment: [0.56, 0.56],
-      reveal: [0.56, 0.59],
-      contemplation: [0.59, 0.68],
-      departure: [0.68, 0.71],
-      transitionBuffer: [0.71, 0.75],
+      environment: [0.535, 0.615],
+      reveal: [0.615, 0.650],
+      contemplation: [0.650, 0.725],
+      departure: [0.725, 0.755],
+      transitionBuffer: [0.755, 0.795],
     },
     trichuris: {
       id: "trichuris",
       world: "stool",
-      environment: [0.75, 0.75],
-      reveal: [0.75, 0.78],
-      contemplation: [0.78, 0.87],
-      departure: [0.87, 0.9],
-      transitionBuffer: [0.9, 0.92],
+      environment: [0.800, 0.835],
+      reveal: [0.835, 0.865],
+      contemplation: [0.865, 0.940],
+      departure: [0.940, 0.965],
+      transitionBuffer: [0.965, 0.985],
     },
   } satisfies Record<"giardia" | "t-cruzi" | "trichuris", SpecimenChapter>,
-  discovery: [0.92, 0.975] as const,
+  discovery: [0.985, 0.999] as const,
   worldTransitions: {
-    giardiaToBlood: [0.515, 0.56] as const,
-    bloodToStool: [0.705, 0.75] as const,
+    giardiaToBlood: [0.495, 0.535] as const,
+    bloodToStool: [0.765, 0.800] as const,
   },
 } as const;
 

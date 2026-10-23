@@ -7,7 +7,7 @@
  */
 
 /** Comprimento da trilha em vh (1 viewport fixa + o restante é percurso de rolagem). */
-export const JOURNEY_TRACK_VH = 1100;
+export const JOURNEY_TRACK_VH = 1500;
 
 /** Variação mínima de progresso que justifica redesenhar (~0,4 px de rolagem em 4 000 px). */
 export const PROGRESS_EPSILON = 1e-4;
@@ -80,55 +80,55 @@ export interface JourneyStage {
   end: number;
 }
 
-/** Capítulos físicos da Fase 2.3.10; os intervalos biológicos vivem em `specimenTimeline`. */
+/** Capítulos físicos da Fase 2.3.11; os intervalos biológicos vivem em `specimenTimeline`. */
 export const JOURNEY_STAGES: readonly JourneyStage[] = [
   {
     id: "approach",
     label: "O instrumento",
     subtitle: "O microscópio composto estabelece o espaço de observação.",
     start: 0,
-    end: 0.11,
+    end: 0.075,
   },
   {
     id: "optical",
     label: "A ocular",
     subtitle: "A câmera sobe até o cabeçote binocular e se aproxima da ocular superior.",
-    start: 0.11,
-    end: 0.22,
+    start: 0.075,
+    end: 0.155,
   },
   {
     id: "scale",
     label: "Pela ocular",
     subtitle: "O vidro da ocular preenche o campo; a luz do instrumento forma a imagem e o campo de observação se organiza.",
-    start: 0.22,
-    end: 0.34,
+    start: 0.155,
+    end: 0.235,
   },
   {
     id: "giardia",
     label: "Giardia",
     subtitle: "Montagem úmida intestinal ilustrativa: matéria orgânica, grânulos e foco local envolvem o trofozoíto.",
-    start: 0.34,
-    end: 0.56,
+    start: 0.235,
+    end: 0.535,
   },
   {
     id: "t-cruzi",
     label: "T. cruzi",
     subtitle: "Um novo preparo assume o campo: filme fino de sangue com hemácias e resposta cromática inspirada em Giemsa.",
-    start: 0.56,
-    end: 0.75,
+    start: 0.535,
+    end: 0.800,
   },
   {
     id: "trichuris",
     label: "Trichuris",
     subtitle: "A montagem fecal torna-se mais densa, com detritos irregulares e o ovo em seu próprio plano focal.",
-    start: 0.75,
-    end: 0.92,
+    start: 0.800,
+    end: 0.985,
   },
   {
     id: "discovery",
     label: "Descoberta",
     subtitle: "Três caminhos para investigar o que acabou de ficar visível.",
-    start: 0.92,
+    start: 0.985,
     end: 1,
   },
 ] as const;
@@ -160,9 +160,10 @@ export function adjacentStageStart(progress: number, direction: 1 | -1): number 
  */
 export const BEAT_VISIBILITY = {
   /** Convite inicial (título e chamada para rolar). */
-  invitation: (p: number) => 1 - smoothstep(0.05, 0.16, p),
+  invitation: (p: number) => 1 - smoothstep(0.04, 0.12, p),
   /** Dica "Role para explorar". */
-  scrollHint: (p: number) => 1 - smoothstep(0.015, 0.06, p),
+  scrollHint: (p: number) => 1 - smoothstep(0.015, 0.05, p),
   /** Revelação final dos destinos. */
-  discovery: (p: number) => smoothstep(0.92, 0.975, p),
+  discovery: (p: number) => smoothstep(0.98, 0.998, p),
 } as const;
+

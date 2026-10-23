@@ -28,7 +28,7 @@ import {
 import { SPECIMEN_TIMELINE, specimenWorldWeights } from "../src/cinematic/specimenTimeline.ts";
 
 const VIEWPORT = 900;
-const TRACK = 9900; // 1100vh em 900px
+const TRACK = 13500; // 1500vh em 900px
 const geometry = (scrollIntoTrack: number) => ({
   trackTop: -scrollIntoTrack,
   trackHeight: TRACK,
@@ -46,7 +46,7 @@ describe("progresso de rolagem (Fase 2.3.2)", () => {
 
   it("limita o progresso antes e depois da trilha (entrada/saída do sticky)", () => {
     assert.equal(computeScrollProgress({ trackTop: 600, trackHeight: TRACK, viewportHeight: VIEWPORT }), 0);
-    assert.equal(computeScrollProgress({ trackTop: -9999, trackHeight: TRACK, viewportHeight: VIEWPORT }), 1);
+    assert.equal(computeScrollProgress({ trackTop: -99999, trackHeight: TRACK, viewportHeight: VIEWPORT }), 1);
   });
 
   it("é robusto a geometria degenerada e valores inválidos", () => {
@@ -86,22 +86,22 @@ describe("progresso de rolagem (Fase 2.3.2)", () => {
       assert.equal(JOURNEY_STAGES[i].start, JOURNEY_STAGES[i - 1].end);
     }
     assert.equal(stageIndexAt(0), 0);
-    assert.equal(stageIndexAt(0.11), 1);
-    assert.equal(stageIndexAt(0.219), 1);
-    assert.equal(stageIndexAt(0.22), 2);
-    assert.equal(stageIndexAt(0.339), 2);
-    assert.equal(stageIndexAt(0.34), 3);
-    assert.equal(stageIndexAt(0.56), 4);
-    assert.equal(stageIndexAt(0.75), 5);
-    assert.equal(stageIndexAt(0.92), 6);
+    assert.equal(stageIndexAt(0.075), 1);
+    assert.equal(stageIndexAt(0.154), 1);
+    assert.equal(stageIndexAt(0.155), 2);
+    assert.equal(stageIndexAt(0.234), 2);
+    assert.equal(stageIndexAt(0.235), 3);
+    assert.equal(stageIndexAt(0.535), 4);
+    assert.equal(stageIndexAt(0.825), 5);
+    assert.equal(stageIndexAt(0.985), 6);
     assert.equal(stageIndexAt(1), 6);
   });
 
   it("controles de passo apontam para posições de rolagem (sem animação própria)", () => {
-    assert.equal(adjacentStageStart(0.1, 1), 0.11);
-    assert.equal(adjacentStageStart(0.18, -1), 0.11);
-    assert.equal(adjacentStageStart(0.11, -1), 0);
-    assert.equal(adjacentStageStart(1, 1), 0.92);
+    assert.equal(adjacentStageStart(0.1, 1), 0.155);
+    assert.equal(adjacentStageStart(0.18, -1), 0.155);
+    assert.equal(adjacentStageStart(0.075, -1), 0);
+    assert.equal(adjacentStageStart(1, 1), 0.985);
     assert.equal(adjacentStageStart(0, -1), 0);
   });
 
@@ -110,10 +110,10 @@ describe("progresso de rolagem (Fase 2.3.2)", () => {
     assert.equal(BEAT_VISIBILITY.invitation(0.3), 0);
     assert.equal(BEAT_VISIBILITY.discovery(0.5), 0);
     assert.equal(BEAT_VISIBILITY.discovery(1), 1);
-    const forward = BEAT_VISIBILITY.discovery(0.92);
+    const forward = BEAT_VISIBILITY.discovery(0.95);
     BEAT_VISIBILITY.discovery(1);
     BEAT_VISIBILITY.discovery(0.2);
-    assert.equal(BEAT_VISIBILITY.discovery(0.92), forward);
+    assert.equal(BEAT_VISIBILITY.discovery(0.95), forward);
     assert.equal(smoothstep(0.2, 0.4, 0.2), 0);
     assert.equal(smoothstep(0.2, 0.4, 0.4), 1);
   });
@@ -193,7 +193,7 @@ describe("coreografia determinística e reversível", () => {
       assert.ok(Math.abs(sample.fov - previous.fov) < 0.5, `salto de FOV em ${step / 1000}`);
       previous = sample;
     }
-    assert.ok(largest < 0.24, `maior passo de câmera por 0,1%: ${largest}`);
+    assert.ok(largest < 0.34, `maior passo de câmera por 0,1%: ${largest}`);
   });
 
   it("a câmera entra pela ocular: aproxima-se pelo eixo da abertura e atravessa o vidro no sentido -normal", () => {
@@ -289,8 +289,9 @@ describe("travessia óptica (Fase 2.3.8): contrato de visibilidade por fase", ()
     const o = sampleOptics(CUT);
     assert.ok(o.glow > 0.95, `campo luminoso no corte: ${o.glow}`);
     assert.ok(o.fieldStop < 0.02, `limitador de campo no corte: ${o.fieldStop}`);
-    // O platô cobre o corte com folga nos dois lados.
-    for (const p of [CUT - 0.01, CUT + 0.01]) assert.ok(sampleOptics(p).glow > 0.95);
+    // O platô cobre o corte nos dois lados, expresso no novo progresso narrativo.
+    const margin = SPECIMEN_TIMELINE.opticalEnd * (0.01 / 0.665);
+    for (const p of [CUT - margin, CUT + margin]) assert.ok(sampleOptics(p).glow > 0.95);
   });
 
   it("antes do campo existir não há nada biológico: sem formação, sem organismo, sem marcador", () => {
@@ -326,7 +327,7 @@ describe("travessia óptica (Fase 2.3.8): contrato de visibilidade por fase", ()
     for (const id of ids) {
       const w = ORGANISM_TIMELINE[id];
       assert.ok(w.in[0] < w.in[1] && w.in[1] < w.out[0] && w.out[0] < w.out[1]);
-      assert.ok(w.out[1] <= 0.9);
+      assert.ok(w.out[1] <= SPECIMEN_TIMELINE.discovery[0]);
     }
   });
 
@@ -352,20 +353,20 @@ describe("travessia óptica (Fase 2.3.8): contrato de visibilidade por fase", ()
       last = index;
     }
     assert.equal(opticalPhaseAt(0), "approach");
-    assert.equal(opticalPhaseAt(0.28), "optical");
-    assert.equal(opticalPhaseAt(0.32), "formation");
-    assert.equal(opticalPhaseAt(0.36), "observation");
+    assert.equal(opticalPhaseAt(OPTICAL_TIMELINE.glowHold[0]), "optical");
+    assert.equal(opticalPhaseAt(OPTICAL_TIMELINE.formation[1] - 0.0001), "formation");
+    assert.equal(opticalPhaseAt(OPTICAL_TIMELINE.organismsFrom), "observation");
   });
 
   it("o limitador de campo fecha na ocular, abre depois do corte e termina totalmente aberto", () => {
     assert.equal(sampleOptics(0).fieldStop, 1);
-    assert.equal(sampleOptics(0.21).fieldStop, 1);
-    assert.equal(sampleOptics(0.26).fieldStop, 0);
-    assert.equal(sampleOptics(0.28).fieldStop, 0);
-    assert.equal(sampleOptics(0.34).fieldStop, 1);
+    assert.equal(sampleOptics(OPTICAL_TIMELINE.eyecup[0] - 0.0001).fieldStop, 1);
+    assert.equal(sampleOptics(OPTICAL_TIMELINE.eyecup[1]).fieldStop, 0);
+    assert.equal(sampleOptics(CUT).fieldStop, 0);
+    assert.equal(sampleOptics(OPTICAL_TIMELINE.iris[1]).fieldStop, 1);
     assert.ok(FIELD_STOP_RADIUS > 0.4 && FIELD_STOP_RADIUS < 0.7);
     // Nunca abre antes do corte: não há exterior à vista enquanto o instrumento é desenhado.
-    for (const p of steps.filter((value) => value >= 0.26 && value <= CUT)) assert.equal(sampleOptics(p).fieldStop, 0);
+    for (const p of steps.filter((value) => value >= OPTICAL_TIMELINE.eyecup[1] && value <= CUT)) assert.equal(sampleOptics(p).fieldStop, 0);
   });
 
   it("reversibilidade: o estado óptico independe da direção de chegada", () => {

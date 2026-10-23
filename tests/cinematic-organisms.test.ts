@@ -17,6 +17,7 @@ import {
   type MotionSchedulerInput,
 } from "../src/cinematic/organismMotion.ts";
 import { HOTSPOT_MIN_REVEAL, ORGANISM_TIMELINE, organismReveal, type OrganismId } from "../src/cinematic/opticalTransition.ts";
+import { SPECIMEN_TIMELINE } from "../src/cinematic/specimenTimeline.ts";
 
 const ids: OrganismId[] = ["giardia", "t-cruzi", "trichuris"];
 
@@ -180,7 +181,7 @@ describe("composição dos organismos (enquadramento)", () => {
 
   it("o buffer editorial separa a saída do ovo e sua reaparição no hub", () => {
     const target = { x: 600, y: 540, widthPx: 120 };
-    const beforeHub = organismPresence("trichuris", 0.915);
+    const beforeHub = organismPresence("trichuris", 0.975);
     assert.equal(combinedPresence(beforeHub.reveal, beforeHub.hub), 0);
     const atHub = organismPlacement("trichuris", HUB_WINDOW.trichuris[0], 1440, 900, target);
     assert.equal(atHub.widthPx, target.widthPx);
@@ -192,7 +193,7 @@ describe("composição dos organismos (enquadramento)", () => {
       assert.ok(combinedPresence(reveal, hub) > 0.99, `ovo perde legibilidade em ${p.toFixed(3)}`);
     }
     // Nenhum organismo aparece como fantasma durante a janela de outro (antes da descoberta).
-    for (let p = 0; p < 0.92; p += 0.002) {
+    for (let p = 0; p < SPECIMEN_TIMELINE.discovery[0]; p += 0.002) {
       for (const id of ["giardia", "t-cruzi"] as const) {
         const { reveal, hub } = organismPresence(id, p);
         if (reveal === 0) assert.equal(hub, 0, `${id} fantasma em ${p.toFixed(3)}`);

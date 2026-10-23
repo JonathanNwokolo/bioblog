@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { specimenWorldWeights, type SpecimenWorldId } from "./specimenTimeline";
+import { createSpecimenFieldSystem, type SpecimenFieldSystem } from "./specimenFieldSystem";
+import { SPECIMEN_TIMELINE, specimenWorldWeights, type SpecimenWorldId } from "./specimenTimeline";
 
 const GRAPHITE = 0x22292b;
 const BLACKENED_STEEL = 0x343b3d;
@@ -454,6 +455,7 @@ interface SpecimenWorldRig {
   group: THREE.Group;
   materials: SpecimenMaterialEntry[];
   backdrop: THREE.Mesh;
+  ecology: SpecimenFieldSystem | null;
 }
 
 function tube(points: THREE.Vector3[], radius: number, material: THREE.Material, tubularSegments = 72) {
@@ -667,6 +669,85 @@ function createPreparationTexture(id: SpecimenWorldId, quality: Quality) {
     context.ellipse(x, y, radius * (0.6 + random()), radius * (0.4 + random() * 0.7), random() * Math.PI, 0, Math.PI * 2);
     context.fill();
   }
+
+  if (id === "stool") {
+    // Sedimento fecal distribuído no próprio substrato: massas amorfas, microfragmentos,
+    // raros artefatos angulares e impurezas circulares. A baixa opacidade impede que o
+    // fundo concorra com o ovo, mas evita a leitura de um palco vazio.
+    context.save();
+    context.globalCompositeOperation = "multiply";
+    const masses = quality === "low" ? 24 : 44;
+    for (let index = 0; index < masses; index += 1) {
+      const x = random() * width;
+      const y = random() * height;
+      const rx = width * (0.012 + random() * 0.045);
+      const ry = height * (0.01 + random() * 0.04);
+      const points = 7 + Math.floor(random() * 5);
+      context.beginPath();
+      for (let point = 0; point < points; point += 1) {
+        const angle = (point / points) * Math.PI * 2;
+        const jitter = 0.62 + random() * 0.55;
+        const px = x + Math.cos(angle) * rx * jitter;
+        const py = y + Math.sin(angle) * ry * jitter;
+        if (point === 0) context.moveTo(px, py);
+        else context.lineTo(px, py);
+      }
+      context.closePath();
+      context.fillStyle = `rgba(${34 + Math.floor(random() * 25)},${25 + Math.floor(random() * 20)},${10 + Math.floor(random() * 12)},${0.05 + random() * 0.09})`;
+      context.fill();
+    }
+    const fragments = quality === "low" ? 45 : 95;
+    context.lineCap = "round";
+    for (let index = 0; index < fragments; index += 1) {
+      const x = random() * width;
+      const y = random() * height;
+      const length = 2 + random() * 11;
+      const angle = random() * Math.PI;
+      context.strokeStyle = `rgba(52,39,18,${0.055 + random() * 0.1})`;
+      context.lineWidth = 0.5 + random() * 1.8;
+      context.beginPath();
+      context.moveTo(x, y);
+      context.quadraticCurveTo(
+        x + Math.cos(angle + 0.55) * length * 0.5,
+        y + Math.sin(angle + 0.55) * length * 0.5,
+        x + Math.cos(angle) * length,
+        y + Math.sin(angle) * length,
+      );
+      context.stroke();
+    }
+    context.globalCompositeOperation = "screen";
+    const artifacts = quality === "low" ? 10 : 18;
+    for (let index = 0; index < artifacts; index += 1) {
+      const x = random() * width;
+      const y = random() * height;
+      const size = 1.5 + random() * 5;
+      context.strokeStyle = `rgba(215,192,126,${0.035 + random() * 0.055})`;
+      context.lineWidth = 0.6 + random();
+      context.beginPath();
+      context.moveTo(x, y - size);
+      context.lineTo(x + size * 0.55, y);
+      context.lineTo(x, y + size);
+      context.lineTo(x - size * 0.55, y);
+      context.closePath();
+      context.stroke();
+    }
+    context.restore();
+  } else if (id === "giardia") {
+    context.save();
+    context.globalCompositeOperation = "screen";
+    const haze = quality === "low" ? 8 : 14;
+    for (let index = 0; index < haze; index += 1) {
+      const x = random() * width;
+      const y = random() * height;
+      const radius = 7 + random() * 24;
+      const veil = context.createRadialGradient(x, y, 0, x, y, radius);
+      veil.addColorStop(0, `rgba(195,210,174,${0.025 + random() * 0.025})`);
+      veil.addColorStop(1, "rgba(195,210,174,0)");
+      context.fillStyle = veil;
+      context.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+    }
+    context.restore();
+  }
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 2;
@@ -681,9 +762,9 @@ function createSpecimenBackdrop(id: SpecimenWorldId, quality: Quality, entries: 
     fog: false,
     depthWrite: false,
   }), 1);
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(44, 27.5), material);
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(140, 90), material);
   mesh.name = `specimen-${id}-backdrop`;
-  mesh.position.set(1.1, 0.2, -9);
+  mesh.position.set(0, 0, -14);
   mesh.renderOrder = -20;
   mesh.userData.noFade = true;
   return mesh;
@@ -767,11 +848,20 @@ function createOrganicFragments(
   palette: readonly number[],
   entries: SpecimenMaterialEntry[],
   quality: Quality,
+  options: {
+    opacity?: number;
+    scale?: readonly [number, number];
+    z?: readonly [number, number];
+    spread?: number;
+    uniform?: boolean;
+    renderOrder?: number;
+  } = {},
 ) {
   const group = new THREE.Group();
   const random = seededRandom(seed);
   const variants = quality === "low" ? 2 : 4;
   for (let variant = 0; variant < variants; variant += 1) {
+    const baseOpacity = (options.opacity ?? 0.16) + variant * 0.018;
     const material = registerMaterial(entries, new THREE.MeshStandardMaterial({
       color: palette[variant % palette.length],
       emissive: palette[variant % palette.length],
@@ -779,9 +869,9 @@ function createOrganicFragments(
       roughness: 0.95,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.16 + variant * 0.025,
+      opacity: baseOpacity,
       depthWrite: false,
-    }), 0.16 + variant * 0.025);
+    }), baseOpacity);
     const amount = Math.ceil(count / variants);
     const mesh = new THREE.InstancedMesh(irregularShape(seed + variant * 17, 1, 7 + variant), material, amount);
     const matrix = new THREE.Matrix4();
@@ -792,58 +882,242 @@ function createOrganicFragments(
       const pocket = (index + variant) % 5;
       const centers = [[-5, 2.5], [-3, -2.4], [2.8, 2.1], [5.5, -1.5], [0.5, -3.1]];
       const center = centers[pocket];
-      position.set(center[0] + (random() - 0.5) * 3.3, center[1] + (random() - 0.5) * 2.2, -5.7 + random() * 2.4);
+      const z = options.z ?? [-5.7, -3.3];
+      const spread = options.spread ?? 1;
+      position.set(
+        options.uniform ? (random() - 0.5) * 15.5 : center[0] + (random() - 0.5) * 3.3 * spread,
+        options.uniform ? (random() - 0.5) * 8.4 : center[1] + (random() - 0.5) * 2.2 * spread,
+        z[0] + random() * (z[1] - z[0]),
+      );
       quaternion.setFromEuler(new THREE.Euler(0, 0, random() * Math.PI));
-      const s = 0.07 + Math.pow(random(), 1.9) * 0.46;
+      const scaleRange = options.scale ?? [0.07, 0.53];
+      const s = scaleRange[0] + Math.pow(random(), 1.9) * (scaleRange[1] - scaleRange[0]);
       scale.set(s * (0.72 + random() * 1.15), s * (0.48 + random() * 0.78), 1);
       matrix.compose(position, quaternion, scale);
       mesh.setMatrixAt(index, matrix);
     }
     mesh.instanceMatrix.needsUpdate = true;
+    mesh.renderOrder = options.renderOrder ?? 0;
     mesh.userData.noFade = true;
     group.add(mesh);
   }
   return group;
 }
 
-function createRbcLayer(quality: Quality, entries: SpecimenMaterialEntry[]) {
-  const count = quality === "high" ? 78 : quality === "medium" ? 58 : 38;
+function createRbcLayer(
+  quality: Quality,
+  entries: SpecimenMaterialEntry[],
+  options: {
+    seed: number;
+    count: readonly [number, number, number];
+    z: readonly [number, number];
+    opacity: number;
+    diameter: number;
+    softness: number;
+    renderOrder?: number;
+  },
+) {
+  const count = quality === "high" ? options.count[2] : quality === "medium" ? options.count[1] : options.count[0];
   const material = registerMaterial(entries, new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
     side: THREE.DoubleSide,
-    uniforms: { uOpacity: { value: 0 } },
+    uniforms: { uOpacity: { value: 0 }, uSoftness: { value: options.softness } },
     vertexShader: `
+      attribute vec3 instanceShape;
       varying vec2 vUv;
-      void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0); }
+      varying vec3 vShape;
+      void main(){ vUv=uv; vShape=instanceShape; gl_Position=projectionMatrix*modelViewMatrix*instanceMatrix*vec4(position,1.0); }
     `,
     fragmentShader: `
       varying vec2 vUv;
+      varying vec3 vShape;
       uniform float uOpacity;
+      uniform float uSoftness;
       void main(){
-        vec2 p=(vUv-.5)*2.; float r=length(p);
-        float edge=1.-smoothstep(.82,1.,r);
-        float rim=smoothstep(.47,.76,r)*(1.-smoothstep(.76,.97,r));
+        vec2 p=(vUv-.5)*2.;
+        float angle=atan(p.y,p.x);
+        float contour=1.+.026*sin(angle*3.+vShape.x*6.283)+.018*sin(angle*5.+vShape.y*6.283);
+        float r=length(p)/contour;
+        float edge=1.-smoothstep(.78-uSoftness*.16,1.,r);
+        float rim=smoothstep(.40-uSoftness*.10,.73,r)*(1.-smoothstep(.71,1.,r));
         float center=1.-smoothstep(.18,.55,r);
         vec3 pale=vec3(.72,.58,.63); vec3 stained=vec3(.42,.22,.34);
-        vec3 color=mix(pale,stained,rim*.72); color=mix(color,vec3(.80,.71,.72),center*.72);
-        gl_FragColor=vec4(color,edge*(.4+rim*.22)*uOpacity);
+        vec3 color=mix(pale,stained,rim*(.64+.16*vShape.z)); color=mix(color,vec3(.80,.71,.72),center*(.64+.12*vShape.y));
+        gl_FragColor=vec4(color,edge*(.34+rim*.26)*uOpacity);
       }
     `,
-  }), 0.62);
-  const mesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(1.6, 1.6, 1, 1), material, count);
-  const random = seededRandom(1493);
+  }), options.opacity);
+  const geometry = new THREE.PlaneGeometry(options.diameter, options.diameter, 1, 1);
+  const shapes = new Float32Array(count * 3);
+  geometry.setAttribute("instanceShape", new THREE.InstancedBufferAttribute(shapes, 3));
+  const mesh = new THREE.InstancedMesh(geometry, material, count);
+  const random = seededRandom(options.seed);
   const matrix = new THREE.Matrix4();
   const quaternion = new THREE.Quaternion();
   const scale = new THREE.Vector3();
   const position = new THREE.Vector3();
   for (let index = 0; index < count; index += 1) {
-    const lane = index % 6;
-    const cx = [-5.8, -3.8, -1.4, 1.3, 3.8, 5.8][lane];
-    position.set(cx + (random() - 0.5) * 2.1, (random() - 0.5) * 7.4, -6.6 + random() * 2.1);
+    const centers = [
+      [-11.5, 4.2], [-8.4, -3.8], [-6.2, 2.5], [-3.1, -1.8],
+      [-0.8, 3.6], [1.8, -3.2], [4.5, 2.1], [7.2, -2.4],
+      [9.8, 3.8], [12.4, -1.2],
+    ];
+    const center = centers[(index * 7 + Math.floor(random() * centers.length)) % centers.length];
+    // 55% monocamada distribuída cobrindo todas as bordas e 45% em cadeias/rouleaux
+    const inChain = random() < 0.45;
+    const x = inChain
+      ? center[0] + (random() - 0.5) * 3.8
+      : (random() - 0.5) * 32;
+    const y = inChain
+      ? center[1] + (random() - 0.5) * 3.0
+      : (random() - 0.5) * 20;
+    position.set(x, y, options.z[0] + random() * (options.z[1] - options.z[0]));
+    quaternion.setFromEuler(new THREE.Euler(
+      (random() - 0.5) * 0.35,
+      (random() - 0.5) * 0.35,
+      random() * Math.PI * 2,
+    ));
+    const s = 0.48 + random() * 0.28;
+    scale.set(s * (0.92 + random() * 0.16), s * (0.84 + random() * 0.2), 1);
+    matrix.compose(position, quaternion, scale);
+    mesh.setMatrixAt(index, matrix);
+    shapes[index * 3] = random();
+    shapes[index * 3 + 1] = random();
+    shapes[index * 3 + 2] = random();
+  }
+  mesh.instanceMatrix.needsUpdate = true;
+  geometry.getAttribute("instanceShape").needsUpdate = true;
+  mesh.renderOrder = options.renderOrder ?? 0;
+  mesh.userData.noFade = true;
+  return mesh;
+}
+
+function createPlateletLayer(entries: SpecimenMaterialEntry[], quality: Quality) {
+  const count = quality === "low" ? 18 : quality === "medium" ? 34 : 52;
+  const material = registerMaterial(entries, new THREE.MeshBasicMaterial({
+    color: 0x6e4368,
+    transparent: true,
+    opacity: 0.52,
+    depthWrite: false,
+    side: THREE.DoubleSide,
+  }), 0.52);
+  const geometry = new THREE.CircleGeometry(0.12, 7);
+  const mesh = new THREE.InstancedMesh(geometry, material, count);
+  const random = seededRandom(2487);
+  const matrix = new THREE.Matrix4();
+  const quaternion = new THREE.Quaternion();
+  const scale = new THREE.Vector3();
+  const position = new THREE.Vector3();
+  const clumps = [
+    [-6.5, 1.8], [-2.8, -2.4], [1.2, 2.2], [5.8, -1.9], [-9.2, -1.5], [8.4, 2.7],
+  ];
+  for (let index = 0; index < count; index += 1) {
+    const clump = clumps[index % clumps.length];
+    const clustered = random() < 0.72;
+    const x = clustered ? clump[0] + (random() - 0.5) * 1.8 : (random() - 0.5) * 28;
+    const y = clustered ? clump[1] + (random() - 0.5) * 1.4 : (random() - 0.5) * 18;
+    position.set(x, y, -6.4 + random() * 1.8);
     quaternion.setFromEuler(new THREE.Euler(0, 0, random() * Math.PI));
-    const s = 0.46 + random() * 0.25;
-    scale.set(s * (0.92 + random() * 0.16), s * (0.82 + random() * 0.22), 1);
+    const s = 0.55 + random() * 0.95;
+    scale.set(s, s * (0.65 + random() * 0.5), 1);
+    matrix.compose(position, quaternion, scale);
+    mesh.setMatrixAt(index, matrix);
+  }
+  mesh.instanceMatrix.needsUpdate = true;
+  mesh.renderOrder = 14;
+  mesh.userData.noFade = true;
+  return mesh;
+}
+
+function createVesicleLayer(entries: SpecimenMaterialEntry[], quality: Quality) {
+  const count = quality === "low" ? 9 : quality === "medium" ? 14 : 18;
+  const material = registerMaterial(entries, new THREE.MeshBasicMaterial({
+    color: 0xb7c5a2,
+    transparent: true,
+    opacity: 0.085,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+  }), 0.085);
+  const mesh = new THREE.InstancedMesh(new THREE.RingGeometry(0.46, 0.52, 38), material, count);
+  const random = seededRandom(1327);
+  const matrix = new THREE.Matrix4();
+  const quaternion = new THREE.Quaternion();
+  const scale = new THREE.Vector3();
+  const position = new THREE.Vector3();
+  for (let index = 0; index < count; index += 1) {
+    position.set((random() - 0.5) * 15.5, (random() - 0.5) * 8.2, -7.2 + random() * 3.5);
+    quaternion.setFromEuler(new THREE.Euler(0, 0, random() * Math.PI));
+    const size = 0.18 + Math.pow(random(), 2) * 0.48;
+    scale.set(size * (0.72 + random() * 0.5), size, 1);
+    matrix.compose(position, quaternion, scale);
+    mesh.setMatrixAt(index, matrix);
+  }
+  mesh.instanceMatrix.needsUpdate = true;
+  mesh.userData.noFade = true;
+  return mesh;
+}
+
+function createShortFibers(
+  seed: number,
+  count: number,
+  color: number,
+  opacity: number,
+  entries: SpecimenMaterialEntry[],
+  z: readonly [number, number],
+) {
+  const group = new THREE.Group();
+  const random = seededRandom(seed);
+  const material = registerMaterial(entries, new THREE.MeshBasicMaterial({
+    color,
+    transparent: true,
+    opacity,
+    depthWrite: false,
+  }), opacity);
+  for (let index = 0; index < count; index += 1) {
+    const x = (random() - 0.5) * 15;
+    const y = (random() - 0.5) * 8;
+    const depth = z[0] + random() * (z[1] - z[0]);
+    const length = 0.45 + random() * 1.15;
+    const bend = (random() - 0.5) * 0.48;
+    const points = [
+      new THREE.Vector3(x - length * 0.5, y, depth),
+      new THREE.Vector3(x, y + bend, depth + 0.03),
+      new THREE.Vector3(x + length * 0.5, y + bend * 0.2, depth),
+    ];
+    const strand = tube(points, 0.009 + random() * 0.012, material, 10);
+    strand.userData.noFade = true;
+    group.add(strand);
+  }
+  return group;
+}
+
+function createCrystalArtifacts(entries: SpecimenMaterialEntry[], quality: Quality) {
+  const count = quality === "low" ? 6 : quality === "medium" ? 10 : 14;
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 0.72);
+  shape.lineTo(0.42, 0);
+  shape.lineTo(0, -0.72);
+  shape.lineTo(-0.42, 0);
+  shape.closePath();
+  const material = registerMaterial(entries, new THREE.MeshBasicMaterial({
+    color: 0xcab477,
+    transparent: true,
+    opacity: 0.1,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+  }), 0.1);
+  const mesh = new THREE.InstancedMesh(new THREE.ShapeGeometry(shape), material, count);
+  const random = seededRandom(2089);
+  const matrix = new THREE.Matrix4();
+  const quaternion = new THREE.Quaternion();
+  const scale = new THREE.Vector3();
+  const position = new THREE.Vector3();
+  for (let index = 0; index < count; index += 1) {
+    position.set((random() - 0.5) * 15, (random() - 0.5) * 8, -7 + random() * 3.2);
+    quaternion.setFromEuler(new THREE.Euler(0, 0, random() * Math.PI));
+    const size = 0.1 + random() * 0.25;
+    scale.set(size * (0.65 + random() * 0.65), size, 1);
     matrix.compose(position, quaternion, scale);
     mesh.setMatrixAt(index, matrix);
   }
@@ -856,11 +1130,11 @@ function createBubbleLayer(entries: SpecimenMaterialEntry[], quality: Quality) {
   const material = registerMaterial(entries, new THREE.MeshBasicMaterial({
     color: 0xd8c68b,
     transparent: true,
-    opacity: 0.13,
+    opacity: 0.1,
     side: THREE.DoubleSide,
     depthWrite: false,
-  }), 0.13);
-  const count = quality === "low" ? 5 : 9;
+  }), 0.1);
+  const count = quality === "low" ? 7 : quality === "medium" ? 11 : 15;
   const mesh = new THREE.InstancedMesh(new THREE.RingGeometry(0.72, 0.79, 52), material, count);
   const random = seededRandom(2011);
   const matrix = new THREE.Matrix4();
@@ -870,7 +1144,7 @@ function createBubbleLayer(entries: SpecimenMaterialEntry[], quality: Quality) {
   for (let index = 0; index < count; index += 1) {
     position.set((random() - 0.5) * 14.5, (random() - 0.5) * 7.8, -6.8 + random() * 2.2);
     quaternion.setFromEuler(new THREE.Euler(0, 0, random() * Math.PI));
-    const size = 0.35 + random() * 1.15;
+    const size = 0.18 + Math.pow(random(), 1.7) * 0.72;
     scale.set(size, size * (0.8 + random() * 0.25), 1);
     matrix.compose(position, quaternion, scale);
     mesh.setMatrixAt(index, matrix);
@@ -886,11 +1160,40 @@ function createSpecimenWorld(id: SpecimenWorldId, quality: Quality): SpecimenWor
   const materials: SpecimenMaterialEntry[] = [];
   const backdrop = createSpecimenBackdrop(id, quality, materials);
   group.add(backdrop);
+  const ecology = createSpecimenFieldSystem(id, quality);
+  if (ecology) {
+    ecology.materials.forEach((entry) => materials.push(entry));
+    group.add(ecology.root);
+  }
 
   if (id === "giardia") {
-    group.add(createGranularLayer(1193, quality === "low" ? 18 : 34, 0x9ba58b, 0.78, 0.075, [-7.8, -5.8], materials));
-    group.add(createGranularLayer(1201, quality === "low" ? 190 : 360, 0xb5c39a, 0.055, 0.3, [-7.5, -4.3], materials));
-    group.add(createOrganicFragments(1223, quality === "low" ? 28 : 50, [0x65705b, 0x8b8c68, 0x4e6350], materials, quality));
+    group.add(createOrganicFragments(
+      1171,
+      quality === "low" ? 12 : 22,
+      [0x405044, 0x73806a, 0x56664e],
+      materials,
+      quality,
+      { opacity: 0.075, scale: [0.55, 1.8], z: [-8.3, -7.1], spread: 1.5 },
+    ));
+    group.add(createGranularLayer(1193, quality === "low" ? 24 : 46, 0x9ba58b, 0.48, 0.065, [-7.8, -5.9], materials));
+    group.add(createGranularLayer(1201, quality === "low" ? 220 : 440, 0xb5c39a, 0.045, 0.28, [-7.5, -4.1], materials));
+    group.add(createOrganicFragments(
+      1223,
+      quality === "low" ? 42 : 76,
+      [0x65705b, 0x8b8c68, 0x4e6350],
+      materials,
+      quality,
+      { opacity: 0.105, scale: [0.045, 0.34], z: [-7.2, -4.1], spread: 1.15 },
+    ));
+    group.add(createOrganicFragments(
+      1259,
+      quality === "low" ? 14 : 26,
+      [0x71816b, 0x9a9a77, 0x52645a],
+      materials,
+      quality,
+      { opacity: 0.075, scale: [0.16, 0.66], z: [-6.8, -4.2], spread: 1.25, uniform: true },
+    ));
+    group.add(createShortFibers(1283, quality === "low" ? 5 : 9, 0xb1bea0, 0.075, materials, [-6.9, -4.3]));
     const mucous = registerMaterial(materials, new THREE.MeshBasicMaterial({ color: 0xc3cfaa, transparent: true, opacity: 0.11, depthWrite: false }), 0.11);
     [
       [[-6, 2.8, -5.4], [-4.9, 2.5, -5.2], [-4.0, 2.9, -5.5]],
@@ -901,20 +1204,82 @@ function createSpecimenWorld(id: SpecimenWorldId, quality: Quality): SpecimenWor
       strand.userData.noFade = true;
       group.add(strand);
     });
+    group.add(createOrganicFragments(
+      1307,
+      quality === "low" ? 4 : 7,
+      [0x87967a, 0x566957, 0x9da185],
+      materials,
+      quality,
+      { opacity: 0.055, scale: [0.7, 1.65], z: [-3.75, -3.15], spread: 1.55, uniform: true, renderOrder: 42 },
+    ));
   } else if (id === "blood") {
-    group.add(createRbcLayer(quality, materials));
-    group.add(createGranularLayer(1531, quality === "low" ? 70 : 120, 0x6d526d, 0.035, 0.16, [-7.2, -4.7], materials));
-  } else {
-    group.add(createGranularLayer(1793, quality === "low" ? 18 : 38, 0x9a855b, 0.82, 0.08, [-8.0, -5.9], materials));
-    group.add(createGranularLayer(1811, quality === "low" ? 260 : 520, 0xc3a66b, 0.052, 0.34, [-7.6, -4.1], materials));
-    group.add(createOrganicFragments(1847, quality === "low" ? 34 : 68, [0x68532e, 0x8b7444, 0x4d4228, 0xa08d58], materials, quality));
+    group.add(createRbcLayer(quality, materials, {
+      seed: 1471,
+      count: [36, 64, 96],
+      z: [-8.3, -7.15],
+      opacity: 0.38,
+      diameter: 2.1,
+      softness: 0.95,
+      renderOrder: -3,
+    }));
+    group.add(createRbcLayer(quality, materials, {
+      seed: 1493,
+      count: [80, 140, 220],
+      z: [-6.7, -4.9],
+      opacity: 0.68,
+      diameter: 1.52,
+      softness: 0.16,
+      renderOrder: 10,
+    }));
+    group.add(createRbcLayer(quality, materials, {
+      seed: 1511,
+      count: [12, 20, 30],
+      z: [-4.6, -3.3],
+      opacity: 0.28,
+      diameter: 2.4,
+      softness: 0.82,
+      renderOrder: 42,
+    }));
+    group.add(createPlateletLayer(materials, quality));
+    group.add(createGranularLayer(1531, quality === "low" ? 180 : 360, 0x765d75, 0.035, 0.18, [-7.5, -4.1], materials));
+    group.add(createGranularLayer(1553, quality === "low" ? 35 : 70, 0xc0aeb7, 0.18, 0.07, [-7.8, -4.4], materials));
+  } else if (id === "stool") {
+    group.add(createGranularLayer(1793, quality === "low" ? 34 : 72, 0x806b45, 0.48, 0.095, [-8.2, -6.1], materials));
+    group.add(createGranularLayer(1811, quality === "low" ? 340 : 720, 0xc3a66b, 0.047, 0.34, [-7.8, -4.0], materials));
+    group.add(createGranularLayer(1829, quality === "low" ? 75 : 150, 0x4c3b20, 0.095, 0.22, [-6.9, -3.9], materials));
+    group.add(createOrganicFragments(
+      1847,
+      quality === "low" ? 58 : 112,
+      [0x68532e, 0x8b7444, 0x4d4228, 0xa08d58],
+      materials,
+      quality,
+      { opacity: 0.19, scale: [0.035, 0.38], z: [-7.2, -4.0], spread: 1.18, uniform: true },
+    ));
+    group.add(createOrganicFragments(
+      1871,
+      quality === "low" ? 16 : 30,
+      [0x3e321d, 0x756039, 0x91764a],
+      materials,
+      quality,
+      { opacity: 0.12, scale: [0.24, 0.68], z: [-8.0, -6.2], spread: 1.35, uniform: true },
+    ));
+    group.add(createOrganicFragments(
+      1889,
+      quality === "low" ? 10 : 18,
+      [0x5a4729, 0x7c6338, 0x41351f],
+      materials,
+      quality,
+      { opacity: 0.095, scale: [0.18, 0.52], z: [-4.0, -3.35], spread: 1.42, uniform: true },
+    ));
+    group.add(createShortFibers(1931, quality === "low" ? 8 : 16, 0x927b4c, 0.105, materials, [-7.0, -4.2]));
+    group.add(createCrystalArtifacts(materials, quality));
     group.add(createBubbleLayer(materials, quality));
   }
 
   group.traverse((object) => {
     if ((object as THREE.Mesh).material) object.userData.noFade = true;
   });
-  return { group, materials, backdrop };
+  return { group, materials, backdrop, ecology };
 }
 
 /**
@@ -933,8 +1298,16 @@ export function createMicroscopicWorld(quality: Quality = "high") {
   WORLD_IDS.forEach((id) => world.add(worlds[id].group));
   const rig: WorldRig = { worlds, weights: specimenWorldWeights(0) };
   world.userData.rig = rig;
+  world.userData.ready = Promise.all(
+    WORLD_IDS.map((id) => worlds[id].ecology?.ready ?? Promise.resolve()),
+  ).then(() => undefined);
 
   return world;
+}
+
+export async function waitForMicroscopicWorld(world: THREE.Group) {
+  const ready = world.userData.ready as Promise<void> | undefined;
+  await (ready ?? Promise.resolve());
 }
 
 /**
@@ -954,9 +1327,28 @@ export function updateMicroscopicWorld(
   WORLD_IDS.forEach((id, index) => {
     const specimen = rig.worlds[id];
     const weight = weights[id];
+    specimen.ecology?.update(progress);
     specimen.group.visible = weight > 0.002;
-    specimen.group.position.x = (progress - 0.55) * (index === 0 ? -0.5 : index === 1 ? -0.28 : -0.18);
-    specimen.group.position.y = Math.sin(progress * (2.1 + index * 0.31)) * 0.045;
+    const chapter = id === "giardia"
+      ? SPECIMEN_TIMELINE.chapters.giardia
+      : id === "blood"
+        ? SPECIMEN_TIMELINE.chapters["t-cruzi"]
+        : SPECIMEN_TIMELINE.chapters.trichuris;
+    const local = THREE.MathUtils.clamp(
+      (progress - chapter.environment[0]) / Math.max(0.0001, chapter.transitionBuffer[1] - chapter.environment[0]),
+      0,
+      1,
+    );
+    const search = THREE.MathUtils.smoothstep(local, 0, 0.42);
+    const depart = THREE.MathUtils.smoothstep(local, 0.78, 1);
+    specimen.group.position.x = 0;
+    specimen.group.position.y = 0;
+    // O trajeto óptico atravessa o eixo z do micromundo. No início do esfregaço,
+    // acompanha o campo sanguíneo até a objetiva assentar; sem esta compensação
+    // as hemácias ficavam atrás da câmera justamente durante a etapa de busca.
+    specimen.group.position.z = id === "blood"
+      ? THREE.MathUtils.lerp(-2.65, 0, THREE.MathUtils.smoothstep(local, 0.02, 0.38))
+      : 0;
     specimen.materials.forEach((entry) => {
       entry.material.opacity = entry.baseOpacity * detail * weight;
       if (entry.baseColor && entry.material instanceof THREE.MeshBasicMaterial) {

@@ -31,6 +31,12 @@
   background: #05080a;
 }
 
+/* Modo de direção de arte: somente o campo renderizado, sem auxílio da interface. */
+.stage[data-specimen-debug="true"] > :not(.canvasWrapper) {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .canvasWrapper,
 .canvas,
 .opticalVignette,
@@ -95,9 +101,7 @@
 .opticalVignette {
   pointer-events: none;
   opacity: var(--optic-wash, 1);
-  background:
-    linear-gradient(90deg, rgba(233, 230, 222, 0.76) 0%, transparent 37%, transparent 80%, rgba(93, 96, 92, 0.08) 100%),
-    radial-gradient(circle at 68% 48%, transparent 26%, rgba(54, 58, 56, 0.06) 66%, rgba(15, 19, 19, 0.24) 125%);
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(8, 14, 16, 0.45) 100%);
 }
 
 .filmGrain {

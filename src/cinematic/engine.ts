@@ -16,12 +16,14 @@ import {
   createMicroscopicWorld,
   getSpecimenWorldWeights,
   updateMicroscopicWorld,
+  waitForMicroscopicWorld,
 } from "./sceneBuilder";
 import { createCompleteMicroscope } from "./microscopeAsset";
 import { createOpticsDebugOverlay, type OpticsDebugOverlay } from "./opticsDebug";
 import { CINEMATIC_HOTSPOTS, type GraphicsQualityTier } from "./types";
 import { OrganismSystem, DEFAULT_INSPECTION, type InspectionState, type OrganismScreenState } from "./organisms";
 import { shouldRunMotion, type HubTarget, type OrganismId } from "./organismMotion";
+import { specimenWorldWeights } from "./specimenTimeline";
 
 export interface CinematicMetrics {
   renders: number;
@@ -111,9 +113,15 @@ interface LightEntry {
 }
 
 const FOG_OPTICAL = new THREE.Color(0xe8e5dd);
-const FOG_BIOLOGICAL = new THREE.Color(0x0a1c1b);
 const BG_OPTICAL = new THREE.Color(0xe8e5dd);
-const BG_BIOLOGICAL = new THREE.Color(0x061312);
+
+const BG_GIARDIA = new THREE.Color(0x111811);
+const BG_BLOOD = new THREE.Color(0x211b28);
+const BG_STOOL = new THREE.Color(0x1d170e);
+
+const FOG_GIARDIA = new THREE.Color(0x0e1712);
+const FOG_BLOOD = new THREE.Color(0x1a1322);
+const FOG_STOOL = new THREE.Color(0x18120a);
 
 /**
  * Motor de cena guiado por rolagem.
@@ -715,14 +723,29 @@ export class CinematicEngine {
     this.dust.position.z = -(sample.progress - 0.7) * 1.1;
     this.dust.rotation.z = Math.sin(sample.progress * 5.2) * 0.02;
 
-    // Atmosfera: estúdio claro até o corte; depois, o meio biológico escuro (sem mistura intermediária).
+    // Atmosfera: estúdio claro até o corte; depois, a lâmina microscópica com a tonalidade exata da preparação.
     const fog = this.scene.fog as THREE.FogExp2;
     const studio = optics.instrumentVisible;
-    fog.color.copy(studio ? FOG_OPTICAL : FOG_BIOLOGICAL);
-    fog.density = studio ? 0.028 : 0.034;
-    (this.scene.background as THREE.Color).copy(studio ? BG_OPTICAL : BG_BIOLOGICAL);
-    this.scene.environmentIntensity = studio ? 0.92 : 0.44;
-    this.renderer.toneMappingExposure = studio ? 1.12 : 1.1;
+    if (studio) {
+      fog.color.copy(FOG_OPTICAL);
+      fog.density = 0.028;
+      (this.scene.background as THREE.Color).copy(BG_OPTICAL);
+      this.scene.environmentIntensity = 0.92;
+      this.renderer.toneMappingExposure = 1.12;
+    } else {
+      const weights = specimenWorldWeights(sample.progress);
+      const bg = this.scene.background as THREE.Color;
+      bg.r = BG_GIARDIA.r * weights.giardia + BG_BLOOD.r * weights.blood + BG_STOOL.r * weights.stool;
+      bg.g = BG_GIARDIA.g * weights.giardia + BG_BLOOD.g * weights.blood + BG_STOOL.g * weights.stool;
+      bg.b = BG_GIARDIA.b * weights.giardia + BG_BLOOD.b * weights.blood + BG_STOOL.b * weights.stool;
+
+      fog.color.r = FOG_GIARDIA.r * weights.giardia + FOG_BLOOD.r * weights.blood + FOG_STOOL.r * weights.stool;
+      fog.color.g = FOG_GIARDIA.g * weights.giardia + FOG_BLOOD.g * weights.blood + FOG_STOOL.g * weights.stool;
+      fog.color.b = FOG_GIARDIA.b * weights.giardia + FOG_BLOOD.b * weights.blood + FOG_STOOL.b * weights.stool;
+      fog.density = 0.028;
+      this.scene.environmentIntensity = 0.44;
+      this.renderer.toneMappingExposure = 1.1;
+    }
 
     this.lights.forEach(({ light, baseIntensity }) => {
       light.intensity = baseIntensity * sample.instrumentLight;
@@ -801,7 +824,7 @@ export class CinematicEngine {
   public async warmUp() {
     if (this.disposed) return;
     try {
-      await this.loadOrganisms();
+      await Promise.all([this.loadOrganisms(), waitForMicroscopicWorld(this.world)]);
     } catch (error) {
       // Sem os ativos dos organismos a jornada continua (campo e instrumento); o erro é registrado.
       console.warn("Os organismos não puderam ser carregados.", error);

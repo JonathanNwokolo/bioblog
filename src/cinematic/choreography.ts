@@ -321,7 +321,7 @@ export function sampleJourney(progressInput: number, path: JourneyPath = DEFAULT
     // Rolagem sutil só depois do corte (sem girar o horizonte durante o acoplamento).
     roll: 0.1 * Math.sin(Math.PI * smoothstep(0.62, 0.8, visualProgress)),
     optics,
-    discoveryReveal: smoothstep(0.92, 0.975, progress),
+    discoveryReveal: smoothstep(0.95, 0.99, progress),
     instrumentLight: optics.instrumentVisible ? 1 : 0.08,
   };
 }
