@@ -1,5 +1,5 @@
 /**
- * Fase 2.3.9 — regressão da transição óptica aprovada (2.3.8) com os organismos agora em WebGL:
+ * Regressão da transição óptica aprovada (2.3.8) no contrato narrativo da Fase 2.3.11:
  *   1. varredura de contrato a cada 0,5 % (visibilidade instrumento/amostra/organismos/marcadores)
  *   2. reversibilidade (estado e pixels) com o movimento local CONGELADO numa fase fixa
  *
@@ -10,7 +10,8 @@
  *   QA_VPS=1440,390  QA_OUT=optical-regression
  */
 import { mkdir, writeFile } from "node:fs/promises";
-import { launch, openJourney, seek, EVIDENCE, VIEWPORTS } from "./qa239-lib.mjs";
+import { launch, openJourney, seek, EVIDENCE, VIEWPORTS } from "./qa2311-lib.mjs";
+import { OPTICAL_TIMELINE, ORGANISM_TIMELINE } from "../src/cinematic/opticalTransition.ts";
 
 const out = `${EVIDENCE}/${process.env.QA_OUT ?? "optical-regression"}`;
 await mkdir(out, { recursive: true });
@@ -38,18 +39,18 @@ for (const vp of (process.env.QA_VPS ?? "1440,390").split(",")) {
   // 1 — contrato
   const violations = [];
   let rows = 0;
-  for (let p = 0.4; p <= 0.92001; p += 0.005) {
+  for (let p = 0.1; p <= 0.95001; p += 0.005) {
     await fast(Number(p.toFixed(3)));
     const s = await probe();
     rows += 1;
     const bad = (msg) => violations.push({ p: s.p, msg });
     if (s.instrument === s.world) bad(`instrumento e amostra ${s.instrument ? "juntos" : "ambos ocultos"}`);
-    if (s.p >= 0.555 && s.instrument) bad("instrumento visível depois do corte");
-    if (s.p < 0.55 && s.world) bad("amostra visível antes do corte");
+    if (s.p >= OPTICAL_TIMELINE.cut && s.instrument) bad("instrumento visível depois do corte");
+    if (s.p < OPTICAL_TIMELINE.cut && s.world) bad("amostra visível antes do corte");
     for (const [id, o] of Object.entries(s.organisms)) {
-      if (s.p < 0.665 && (o.visible || o.presence > 0)) bad(`${id} presente antes do campo formado`);
-      if (s.p < 0.86 && id === "giardia" && s.p > 0.79 && o.visible) bad(`${id} fantasma fora da janela (${s.p})`);
-      if (s.p < 0.9 && s.p > 0.86 && id === "t-cruzi" && o.visible) bad(`${id} fantasma fora da janela (${s.p})`);
+      const timeline = ORGANISM_TIMELINE[id];
+      if (s.p < timeline.in[0] - 0.002 && (o.visible || o.presence > 0)) bad(`${id} presente antes da própria revelação`);
+      if (s.p > timeline.out[1] + 0.002 && s.p < 0.95 && o.visible) bad(`${id} fantasma fora da janela (${s.p})`);
     }
     for (const [id, m] of Object.entries(s.markers)) {
       if (m.active && s.reveals[id] < 0.9) bad(`marcador ${id} ativo com reveal ${s.reveals[id]}`);
